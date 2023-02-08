@@ -1,5 +1,6 @@
 import './Header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { faBarsStaggered, faBell, faGear } from '@fortawesome/free-solid-svg-icons';
 import { useProSidebar } from 'react-pro-sidebar';
 import { useEffect, useState } from 'react';

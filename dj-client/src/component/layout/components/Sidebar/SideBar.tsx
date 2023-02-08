@@ -17,15 +17,15 @@ function SideBar() {
                 <MenuItem icon={<FontAwesomeIcon icon={faHouse} />} className="menu_item">
                     Bảng tin
                 </MenuItem>
-                <SubMenu label="Học viên" icon={<FontAwesomeIcon icon={faUser} />} className="sub_menu">
+                <SubMenu label="Trợ giảng" icon={<FontAwesomeIcon icon={faUser} />} className="sub_menu">
                     <MenuItem className="menu_item">Điểm danh</MenuItem>
-                    <MenuItem className="menu_item">Khóa học của tôi</MenuItem>
+               //     <MenuItem className="menu_item">Danh sách học viên</MenuItem>
                 </SubMenu>
-                <SubMenu label="Trợ giảng" icon={<FontAwesomeIcon icon={faUserGroup} />} className="sub_menu">
+                <SubMenu label="Sale" icon={<FontAwesomeIcon icon={faUserGroup} />} className="sub_menu">
                     <MenuItem className="menu_item">Học viên của tôi</MenuItem>
                     <MenuItem className="menu_item">Giám sát học tập</MenuItem>
                 </SubMenu>
-                <SubMenu label="Test Online" icon={<FontAwesomeIcon icon={faBars} />} className="sub_menu">
+                <SubMenu label="Admin" icon={<FontAwesomeIcon icon={faBars} />} className="sub_menu">
                     <MenuItem className="menu_item">Thư viện đề thi</MenuItem>
                 </SubMenu>
                 <SubMenu label="Công việc" icon={<FontAwesomeIcon icon={faCalendarCheck} />} className="sub_menu">
