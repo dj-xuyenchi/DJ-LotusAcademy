@@ -1,12 +1,12 @@
 .sidebar_logo {
-    width: 100%;
+    width: 280px;
     height: 60px;
     display: flex;
-    margin-left: 10px;
 }
 .sidebar_logo img {
     width: 60px;
     height: 60px;
+    margin-left: 10px;
 }
 .sidebar_title {
     margin-left: 10px;
@@ -18,17 +18,27 @@
     line-height: 60px;
 }
 .menu_item {
-    background-color:#F9FAFB;
+    background-color: #f9fafb;
 }
 .css-honxw6 {
     border-right: 0px solid currentcolor !important;
     border-bottom: 2px solid currentcolor !important;
     border-left: 2px solid currentcolor !important;
     transform: rotate(-45deg) !important;
+    margin-right: 15px !important;
 }
 .css-jn69v9 {
     border-left: 2px solid currentcolor !important;
     border-right: 0px solid currentcolor !important;
     border-bottom: 2px solid currentcolor !important;
     transform: rotate(-225deg) !important;
+    margin-right: 15px !important;
+}
+.ps-menu-button {
+    padding: 0px !important;
+    margin: 0 20px;
+}
+.ps-menu-button:hover {
+    border-radius: 10px;
+    background-color: #dcdde1 !important;
 }
