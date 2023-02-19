@@ -1,4 +1,4 @@
-import './Header.scss';
+import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBarsStaggered, faBell, faGear } from '@fortawesome/free-solid-svg-icons';
 import { useProSidebar } from 'react-pro-sidebar';

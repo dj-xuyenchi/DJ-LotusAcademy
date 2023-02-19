@@ -1,7 +1,10 @@
 import Table from 'react-bootstrap/Table';
 import './EvaluteStudent.css';
 import SimpleStudentDataEvalute from './SimpleEval/SimpleStudentDataEvalute';
-import { mapData, SimpleStudentEvalute } from '../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
+import {
+    mapData,
+    SimpleStudentEvalute,
+} from '../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faArrowUp, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -20,17 +23,19 @@ function EvaluteStudent() {
             studentActive: true,
         },
     ]);
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         const callApi = async () => {
-            const data = await studentStatisticalApi.getListStudentByPaging(1)
-            console.log(data)
-            setStudentPaging10(mapData(data.data))
-        }
-        callApi()
-    },[])
+            const data = await studentStatisticalApi.getListStudentByPaging(1);
+            setStudentPaging10(mapData(data.data));
+        };
+        callApi();
+    }, []);
     return (
-        <div className="EvaStudent" style={{ padding: '24px 32px' }}>
+        <div
+            className="EvaStudent"
+            style={{ padding: '24px 20px', width: '100%', maxWidth: '1300px', margin: '0 auto' }}
+        >
             <div className="table-title">
                 <h3>Thống kê</h3>
             </div>

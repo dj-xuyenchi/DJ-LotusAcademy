@@ -7,10 +7,10 @@
     border-bottom: 1px solid rgba(229, 231, 235);
     color: #6b7280;
 }
-.header_left {
+.header .header_left {
     padding-left: 16px;
 }
-.header_icon {
+.header .header_icon {
     font-size: 20px;
     color: #6b7280;
     width: 40px;
@@ -21,30 +21,30 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    &:hover {
-        background-color: #f2f2f2;
-    }
 }
-.header_right {
+.header .header_icon:hover {
+    background-color: #f2f2f2;
+}
+.header .header_right {
     display: flex;
     align-items: center;
     padding-right: 16px;
-    .user_card {
-        display: flex;
-        align-items: center;
-        margin-left: 10px;
-        cursor: pointer;
-    }
-    .avatar {
-        width: 32px;
-        height: 32px;
-        margin-right: 10px;
-        img {
-            width: 100%;
-            border-radius: 50%;
-        }
-    }
-    .user_name {
-        font-weight: bold;
-    }
+}
+.header .header_right .user_card {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.header .header_right .avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+.header .header_right .avatar img {
+    width: 100%;
+    border-radius: 50%;
+}
+.header .header_right .user_name {
+    font-weight: bold;
 }
