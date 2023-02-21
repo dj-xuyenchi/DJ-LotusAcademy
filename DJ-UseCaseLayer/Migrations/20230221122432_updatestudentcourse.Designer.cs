@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DJUseCaseLayer.Migrations
 {
     [DbContext(typeof(LAContext))]
-    [Migration("20230212072742_remakeattendance")]
-    partial class remakeattendance
+    [Migration("20230221122432_updatestudentcourse")]
+    partial class updatestudentcourse
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -264,6 +264,9 @@ namespace DJUseCaseLayer.Migrations
 
                     b.Property<DateTime?>("OpenCourse")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("SortNumber")
+                        .HasColumnType("int");
 
                     b.Property<int?>("StudentLAId")
                         .HasColumnType("int");
@@ -916,6 +919,9 @@ namespace DJUseCaseLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StudentStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnactiveTotal")
                         .HasColumnType("int");
 
                     b.Property<float?>("UnauthorizedAbsencesTotal")

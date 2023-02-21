@@ -6,7 +6,27 @@ import {
     FaTwitter,
     FaLinkedinIn,
 } from "react-icons/fa";
+import { useEffect, useState } from "react";
 function StudentDetail() {
+    const [studentDetail, setStudentDetail] = useState({
+        avatar: "",
+        name: "",
+        email: "",
+        phone: "",
+        location: "",
+        birthday: "",
+        gender: "",
+        zalo: "",
+        facebook: "",
+        scoreBoard: {
+            lesson: "",
+            score: 0,
+            dateTime: "",
+            employeeCheck: "",
+            evaluate: "",
+            linkStudentTest: ""
+        }
+    })
     return (
         <div className="StudentDetail w-100" style={{ padding: "24px 32px" }}>
             <div className="detail-title">
@@ -24,7 +44,8 @@ function StudentDetail() {
                             style={{ borderRadius: "50%" }}
                         />
                         <h4 style={{ marginTop: "20px", fontWeight: "bold" }}>
-                            Nguyễn Quang Anh
+                         {studentDetail.name}
+                         
                         </h4>
                     </div>
                     <div
@@ -33,23 +54,23 @@ function StudentDetail() {
                     >
                         <div>
                             <span>Email</span>
-                            <p>quanganh@gmail.com</p>
+                            <p>{studentDetail.email}</p>
                         </div>
                         <div>
-                            <span>Phone</span>
-                            <p>quanganh@gmail.com</p>
+                            <span>Số điện thoại</span>
+                            <p>{studentDetail.phone}</p>
                         </div>
                         <div>
-                            <span>Location</span>
-                            <p>quanganh@gmail.com</p>
+                            <span>Địa chỉ</span>
+                            <p>{studentDetail.location}</p>
                         </div>
                         <div>
-                            <span>Date of birth</span>
-                            <p>quanganh@gmail.com</p>
+                            <span>Ngày sinh</span>
+                            <p>{studentDetail.birthday}</p>
                         </div>
                         <div>
-                            <span>Title</span>
-                            <p>quanganh@gmail.com</p>
+                            <span>Giới tính</span>
+                            <p>{studentDetail.gender}</p>
                         </div>
                         <div>
                             <span>Social</span>

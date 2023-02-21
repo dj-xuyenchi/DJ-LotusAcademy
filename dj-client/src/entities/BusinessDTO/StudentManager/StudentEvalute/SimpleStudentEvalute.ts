@@ -14,6 +14,9 @@ export interface SimpleStudentEvalute {
 // "employeeLAName": "2 mét",
 // "isActive": 1
 export const mapData = (input: any): SimpleStudentEvalute[] => {
+    if (input == null || input.length == 0) {
+        return [];
+    }
     return input.map((element: any) => {
         return {
             studentAvatar:

@@ -5,7 +5,6 @@ namespace DJ_UseCaseLayer.DAO
 {
 	public class Setting
 	{
-        public virtual void method() { }
         public static string url()
         {
             return "Data Source=192.168.1.101;Initial Catalog=djxuyenc_ladatabase;User ID=qa_remote1;password=1231234;encrypt=true;trustservercertificate=true;";
