@@ -47,7 +47,7 @@ function EvaluteStudent() {
             }}
         >
             <div className="table-title">
-                <h3>Thống kê</h3>
+                <h3>Danh sách học viên</h3>
             </div>
             <div className="statistical row g-2">
                 <div className="statistical_item col-md-6 col-lg-4 col-xl-3">
@@ -88,9 +88,9 @@ function EvaluteStudent() {
                                         marginBottom: "8px",
                                     }}
                                 >
-                                    Total Customers
+                                  Đang theo học
                                 </span>
-                                <h3 className="mb-0">2,420</h3>
+                                <h4 className="mb-0">2,420 + 10</h4>
                             </div>
                         </div>
                         <div
@@ -153,9 +153,9 @@ function EvaluteStudent() {
                                         marginBottom: "8px",
                                     }}
                                 >
-                                    Total Customers
+                                    Học Offline
                                 </span>
-                                <h3 className="mb-0">2,420</h3>
+                                <h4 className="mb-0">2,420 + 10</h4>
                             </div>
                         </div>
                         <div
@@ -218,9 +218,9 @@ function EvaluteStudent() {
                                         marginBottom: "8px",
                                     }}
                                 >
-                                    Total Customers
+                                    Học Online
                                 </span>
-                                <h3 className="mb-0">2,420</h3>
+                                <h4 className="mb-0">2,420 + 10</h4>
                             </div>
                         </div>
                         <div
@@ -283,9 +283,9 @@ function EvaluteStudent() {
                                         marginBottom: "8px",
                                     }}
                                 >
-                                    Total Customers
+                                    Đang bảo lưu
                                 </span>
-                                <h3 className="mb-0">2,420</h3>
+                                <h4 className="mb-0">2,420 + 10</h4>
                             </div>
                         </div>
                         <div
