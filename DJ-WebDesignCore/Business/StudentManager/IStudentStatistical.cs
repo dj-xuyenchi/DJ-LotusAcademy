@@ -9,7 +9,7 @@ namespace DJ_WebDesignCore.Business.StudentManager
 {
     public interface IStudentStatistical
     {
-        StudentLAPagingDTO getListStudentLA(int page);
+        StudentLAPagingDTO getListStudentLA(int? page);
         StatisticsStudyTimeDTO getListStatisticsStudyTime();
     }
 }

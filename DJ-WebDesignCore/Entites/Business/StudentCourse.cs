@@ -14,6 +14,7 @@ namespace DJ_WebDesignCore.Entites.Business
         public DateTime? OpenCourse { get; set; }
         public DateTime? CloseCourse { get; set; }
         public int? SupportMonth { get; set; }
+        public int? SortNumber { get; set; }
     }
 }
 

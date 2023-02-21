@@ -1,6 +1,6 @@
 import NotFound from "../components/404/NotFound";
 import EvaluteStudent from "../components/Business/StudentManager/Evalute/EvaluteStudent";
-import StudentDetail from "../components/StudentDetail/StudentDetail";
+import StudentDetail from "../components/Business/StudentManager/Evalute/StudentDetail/StudentDetail";
 import Home from "../Layout/Home";
 
 const Routes = [

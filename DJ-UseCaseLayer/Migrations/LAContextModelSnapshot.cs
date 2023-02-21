@@ -262,6 +262,9 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<DateTime?>("OpenCourse")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("SortNumber")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StudentLAId")
                         .HasColumnType("int");
 
@@ -913,6 +916,9 @@ namespace DJUseCaseLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StudentStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UnactiveTotal")
                         .HasColumnType("int");
 
                     b.Property<float?>("UnauthorizedAbsencesTotal")

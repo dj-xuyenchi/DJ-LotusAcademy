@@ -1,4 +1,4 @@
-import { SimpleStudentEvalute } from "../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
+import { SimpleStudentEvalute } from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
 import { Link } from "react-router-dom";
 function SimpleStudentDataEvalute(studentData: SimpleStudentEvalute) {
     return (

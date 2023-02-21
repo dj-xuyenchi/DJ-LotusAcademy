@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 import "./EvaluteStudent.css";
-import SimpleStudentDataEvalute from "./SimpleEval/SimpleStudentDataEvalute";
+import SimpleStudentDataEvalute from "./SimpleStudentDataEvalute";
 import {
     mapData,
     SimpleStudentEvalute,
@@ -17,8 +17,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import studentStatisticalApi from "../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi";
 function EvaluteStudent() {
-    const [studentPaging10, setStudentPaging10] = useState([
-        {
+    const [evaluteData, setEvaluteData] = useState({
+        data: [{
             studentAvatar:
                 "https://img.meta.com.vn/Data/image/2021/09/22/anh-meo-cute-de-thuong-dang-yeu-41.jpg",
             studentName: "Đỗ Quang Anh",
@@ -26,17 +26,33 @@ function EvaluteStudent() {
             studentCourse: "java",
             studentTurtor: "Chị Giang",
             studentActive: true,
+        },],
+        solutionCenterLADTO: {
+            totalStudentOFF: 0,
+            totalStudentLA: 0,
+            totalStudentLAThisMonth: 0,
+            totalStudentON: 0,
+            totalStudentReserve: 0
         },
-    ]);
+        mes: "",
+        status: 0
+    });
 
     useEffect(() => {
-        const callApi = async () => {
-            const data = await studentStatisticalApi.getListStudentByPaging(1);
-            console.log(data);
-            setStudentPaging10(mapData(data.data));
-        };
-        callApi();
+        const dt = setInterval(() => {
+            const callApi = async () => {
+                const data = await studentStatisticalApi.getListStudentByPaging(1);
+                console.log(data);
+                setEvaluteData(data);
+            };
+            callApi();
+        }, 10000)
+        return () => {
+            clearInterval(dt);
+        }
     }, []);
+
+
     return (
         <div
             className="EvaStudent"
@@ -88,9 +104,9 @@ function EvaluteStudent() {
                                         marginBottom: "8px",
                                     }}
                                 >
-                                  Đang theo học
+                                    Đang theo học
                                 </span>
-                                <h4 className="mb-0">2,420 + 10</h4>
+                                <h4 className="mb-0">{evaluteData.solutionCenterLADTO.totalStudentLA}</h4>
                             </div>
                         </div>
                         <div
@@ -103,14 +119,14 @@ function EvaluteStudent() {
                         >
                             <div
                                 style={{
-                                    fontSize: "13px",
+                                    fontSize: "20px",
                                     padding: "3px 8px",
                                     backgroundColor: "#D1FAE5",
                                     borderRadius: "25px",
                                 }}
                             >
                                 <FontAwesomeIcon icon={faArrowUp} />
-                                <span style={{ marginLeft: "5px" }}>17.2%</span>
+                                <span style={{ marginLeft: "5px" }}>{evaluteData.solutionCenterLADTO.totalStudentLAThisMonth}</span>
                             </div>
                         </div>
                     </div>
@@ -155,7 +171,7 @@ function EvaluteStudent() {
                                 >
                                     Học Offline
                                 </span>
-                                <h4 className="mb-0">2,420 + 10</h4>
+                                <h4 className="mb-0">{evaluteData.solutionCenterLADTO.totalStudentOFF}</h4>
                             </div>
                         </div>
                         <div
@@ -166,7 +182,7 @@ function EvaluteStudent() {
                                 alignItems: "center",
                             }}
                         >
-                            <div
+                            {/* <div
                                 style={{
                                     fontSize: "13px",
                                     padding: "3px 8px",
@@ -176,7 +192,7 @@ function EvaluteStudent() {
                             >
                                 <FontAwesomeIcon icon={faArrowUp} />
                                 <span style={{ marginLeft: "5px" }}>17.2%</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -220,7 +236,7 @@ function EvaluteStudent() {
                                 >
                                     Học Online
                                 </span>
-                                <h4 className="mb-0">2,420 + 10</h4>
+                                <h4 className="mb-0">{evaluteData.solutionCenterLADTO.totalStudentON}</h4>
                             </div>
                         </div>
                         <div
@@ -231,7 +247,7 @@ function EvaluteStudent() {
                                 alignItems: "center",
                             }}
                         >
-                            <div
+                            {/* <div
                                 style={{
                                     fontSize: "13px",
                                     padding: "3px 8px",
@@ -241,7 +257,7 @@ function EvaluteStudent() {
                             >
                                 <FontAwesomeIcon icon={faArrowUp} />
                                 <span style={{ marginLeft: "5px" }}>17.2%</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -285,7 +301,7 @@ function EvaluteStudent() {
                                 >
                                     Đang bảo lưu
                                 </span>
-                                <h4 className="mb-0">2,420 + 10</h4>
+                                <h4 className="mb-0">{evaluteData.solutionCenterLADTO.totalStudentReserve}</h4>
                             </div>
                         </div>
                         <div
@@ -296,7 +312,7 @@ function EvaluteStudent() {
                                 alignItems: "center",
                             }}
                         >
-                            <div
+                            {/* <div
                                 style={{
                                     fontSize: "13px",
                                     padding: "3px 8px",
@@ -306,7 +322,7 @@ function EvaluteStudent() {
                             >
                                 <FontAwesomeIcon icon={faArrowUp} />
                                 <span style={{ marginLeft: "5px" }}>17.2%</span>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -388,7 +404,7 @@ function EvaluteStudent() {
                     </tr>
                 </thead>
                 <tbody>
-                    {studentPaging10.map(
+                    {evaluteData.data ? mapData(evaluteData.data).map(
                         (element: SimpleStudentEvalute, index: number) => {
                             return (
                                 <SimpleStudentDataEvalute
@@ -397,7 +413,7 @@ function EvaluteStudent() {
                                 />
                             );
                         }
-                    )}
+                    ) : ""}
                 </tbody>
             </Table>
         </div>
