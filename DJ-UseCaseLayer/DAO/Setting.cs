@@ -7,7 +7,7 @@ namespace DJ_UseCaseLayer.DAO
 	{
         public static string url()
         {
-            return "Data Source=localhost;Initial Catalog=djxuyenc_ladatabase;User ID=djxuyenc_qa;password=Mamama99!@;encrypt=true;trustservercertificate=true;";
+            return "Data Source=localhost;Initial Catalog=djxuyenc_ladatabase;User ID=sa;password=Mamama99!@;encrypt=true;trustservercertificate=true;";
         }
         public static string urlWin()
         {

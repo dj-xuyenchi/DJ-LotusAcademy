@@ -1,18 +1,23 @@
-import NotFound from '../component/404/NotFound';
-import EvaluteStudent from '../component/Business/StudentManager/Evalute/EvaluteStudent';
-import StudentDetail from '../component/StudentDetail/StudentDetail';
+import NotFound from "../components/404/NotFound";
+import EvaluteStudent from "../components/Business/StudentManager/Evalute/EvaluteStudent";
+import StudentDetail from "../components/StudentDetail/StudentDetail";
+import Home from "../Layout/Home";
 
 const Routes = [
     {
-        path: '/',
+        path: "/",
+        element: <Home />,
+    },
+    {
+        path: "/hocvien",
         element: <EvaluteStudent />,
     },
     {
-        path: '/hocvien/:id',
+        path: "/hocvien/:id",
         element: <StudentDetail />,
     },
 
-    { path: '*', element: <NotFound /> },
+    { path: "*", element: <NotFound /> },
 ];
 
 export default Routes;
