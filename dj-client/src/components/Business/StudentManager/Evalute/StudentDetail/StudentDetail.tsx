@@ -17,19 +17,23 @@ function StudentDetail() {
         location: "Thái Thụy - Thái Bình",
         birthday: "09-02-1999",
         gender: "Nữ",
+        job: "Sinh viên cấp 2",
+        active: "Đang học",
         zalo: "http://zalo.com/123",
         facebook: "http://facebook.com/anhlin",
         scoreBoard: [{
             lesson: "Java Method",
             score: 10,
-            dateTime: "02-1-2023",
+            openTime: "02-01-2023",
+            closeTime: "12-01-2023",
             employeeCheck: "Sếp Bình",
             evaluate: "Đạt",
             linkStudentTest: "gggdrive/123"
         }, {
             lesson: "C# Method",
             score: 10,
-            dateTime: "02-1-2023",
+            openTime: "02-01-2023",
+            closeTime: "12-01-2023",
             employeeCheck: "Sếp Bình",
             evaluate: "Đạt",
             linkStudentTest: "gggdrive/123"
@@ -81,6 +85,14 @@ function StudentDetail() {
                         <div>
                             <span>Giới tính</span>
                             <p>{studentDetail.gender}</p>
+                        </div>
+                        <div>
+                            <span>Công việc</span>
+                            <p>{studentDetail.job}</p>
+                        </div>
+                        <div>
+                            <span>Trạng thái</span>
+                            <p>{studentDetail.active}</p>
                         </div>
                         <div className="icons-social">
                             <span>Social</span>
@@ -158,9 +170,6 @@ function StudentDetail() {
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
                     <div style={{ marginBottom: "32px" }}>
-                        <h6 style={{ fontSize: "16px", marginBottom: "16px" }}>
-                            Sale
-                        </h6>
                         <div
                             style={{
                                 height: "85px",
@@ -180,48 +189,32 @@ function StudentDetail() {
                     <Table className="table-default" hover>
                         <thead>
                             <tr style={{ backgroundColor: "#ccc" }}>
-                                <th>
+                                <th style={{ width: "20%" }}>
                                     <span>Học phần</span>
                                 </th>
-                                <th>
+                                <th style={{ width: "15%" }}>
                                     <span>Ngày kiểm tra</span>
                                 </th>
-                                <th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Ngày chấm</span>
+                                </th>
+                                <th style={{ width: "5%" }}>
                                     <span>Điểm</span>
                                 </th>
-                                <th>
+                                <th style={{ width: "10%" }}>
                                     <span>Đánh giá</span>
                                 </th>
-                                <th>
+                                <th style={{ width: "15%" }}>
                                     <span>Người check</span>
                                 </th>
-                                <th>
+                                <th style={{ width: "20%" }}>
                                     <span>Link bài làm</span>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             {studentDetail.scoreBoard.map((item) => {
-                                return `<tr>
-                                <th>
-                                    <span>${item.lesson}</span>
-                                </th>
-                                <th>
-                                    <span>${item.dateTime}</span>
-                                </th>
-                                <th>
-                                    <span>${item.score}</span>
-                                </th>
-                                <th>
-                                    <span>${item.evaluate}</span>
-                                </th>
-                                <th>
-                                    <span>${item.employeeCheck}</span>
-                                </th>
-                                <th>
-                                    <span>${item.linkStudentTest}</span>
-                                </th>
-                            </tr>`
+                                return <DetailRow item={item} />
                             })}
                         </tbody>
                     </Table>
@@ -229,5 +222,32 @@ function StudentDetail() {
             </div>
         </div>
     );
+}
+function DetailRow({ item }: any) {
+    return (
+        <><tr>
+            <th>
+                <span>{item.lesson}</span>
+            </th>
+            <th>
+                <span>{item.openTime}</span>
+            </th>
+            <th>
+                <span>{item.closeTime}</span>
+            </th>
+            <th>
+                <span>{item.score}</span>
+            </th>
+            <th>
+                <span>{item.evaluate}</span>
+            </th>
+            <th>
+                <span>{item.employeeCheck}</span>
+            </th>
+            <th>
+                <span>{item.linkStudentTest}</span>
+            </th>
+        </tr></>
+    )
 }
 export default StudentDetail;
