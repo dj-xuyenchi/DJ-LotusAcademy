@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import './StudentDetail.css';
 import zalo from '../../../../../assets/icons/zalo-icon.svg';
 import facebook from '../../../../../assets/icons/facebook-icon.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 function StudentDetail() {
     const [studentDetail, setStudentDetail] = useState({
         avatar: '',
@@ -79,7 +79,7 @@ function StudentDetail() {
                                     <img src={zalo} alt="" />
                                 </div>
                                 <div className="icon-cirle">
-                                    <img src={facebook} alt="" />
+                                    <img src={facebook} alt="" style={{ borderRadius: '50%' }} />
                                 </div>
                             </div>
                         </div>

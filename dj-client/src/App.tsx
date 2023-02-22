@@ -1,10 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import LotusLayout from './Layout/LotusLayout';
-
+// import LotusLayout from './Layout/LotusLayout';
+import EmployeeLogin from './components/Login/EmployeeLogin';
 function App() {
-    return <LotusLayout />;
+    return <EmployeeLogin />;
 }
 
 export default App;

@@ -2,12 +2,9 @@
     font-weight: 550;
 }
 .StudentDetail .icons-social .icon-cirle {
-    margin-right: 8px;
-    border-radius: '50%';
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
-    border: '1px solid #ccc';
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 50%;
 }
 
 .StudentDetail table tbody tr th {
