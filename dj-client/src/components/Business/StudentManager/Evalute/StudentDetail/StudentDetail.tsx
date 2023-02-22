@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
+import './StudentDetail.css'
 import {
     FaPinterestP,
     FaFacebookF,
@@ -10,22 +11,29 @@ import { useEffect, useState } from "react";
 function StudentDetail() {
     const [studentDetail, setStudentDetail] = useState({
         avatar: "",
-        name: "",
-        email: "",
-        phone: "",
-        location: "",
-        birthday: "",
-        gender: "",
-        zalo: "",
-        facebook: "",
-        scoreBoard: {
-            lesson: "",
-            score: 0,
-            dateTime: "",
-            employeeCheck: "",
-            evaluate: "",
-            linkStudentTest: ""
-        }
+        name: "Thái Lan Hương",
+        email: "huongkute@gmail.com",
+        phone: "+84 968491797",
+        location: "Thái Thụy - Thái Bình",
+        birthday: "09-02-1999",
+        gender: "Nữ",
+        zalo: "http://zalo.com/123",
+        facebook: "http://facebook.com/anhlin",
+        scoreBoard: [{
+            lesson: "Java Method",
+            score: 10,
+            dateTime: "02-1-2023",
+            employeeCheck: "Sếp Bình",
+            evaluate: "Đạt",
+            linkStudentTest: "gggdrive/123"
+        }, {
+            lesson: "C# Method",
+            score: 10,
+            dateTime: "02-1-2023",
+            employeeCheck: "Sếp Bình",
+            evaluate: "Đạt",
+            linkStudentTest: "gggdrive/123"
+        },]
     })
     return (
         <div className="StudentDetail w-100" style={{ padding: "24px 32px" }}>
@@ -35,17 +43,19 @@ function StudentDetail() {
             <div style={{ display: "flex" }}>
                 <div
                     className="card"
-                    style={{ width: "400px", padding: "20px" }}
+                    style={{ width: "30%", padding: "20px" }}
                 >
-                    <div className="avatar" style={{ margin: "0 auto" }}>
+                    <div className="avatar" style={{ display: 'flex', justifyContent: 'center' }}>
                         <img
                             src="https://elstar.themenate.net/img/avatars/thumb-1.jpg"
                             alt=""
-                            style={{ borderRadius: "50%" }}
+                            style={{ borderRadius: "50%", height: "100px", width: "100px", alignItems: 'center' }}
                         />
+                    </div>
+                    <div className="name" style={{ alignItems: "center", margin: "0 auto" }}>
                         <h4 style={{ marginTop: "20px", fontWeight: "bold" }}>
-                         {studentDetail.name}
-                         
+                            {studentDetail.name}
+
                         </h4>
                     </div>
                     <div
@@ -72,10 +82,10 @@ function StudentDetail() {
                             <span>Giới tính</span>
                             <p>{studentDetail.gender}</p>
                         </div>
-                        <div>
+                        <div className="icons-social">
                             <span>Social</span>
                             <div style={{ display: "flex" }}>
-                                <div
+                                <div className="icon-cirle"
                                     style={{
                                         width: "30px",
                                         height: "30px",
@@ -88,7 +98,7 @@ function StudentDetail() {
                                 >
                                     <FaPinterestP size={"20px"} />
                                 </div>
-                                <div
+                                <div className="icon-cirle"
                                     style={{
                                         width: "30px",
                                         height: "30px",
@@ -101,7 +111,7 @@ function StudentDetail() {
                                 >
                                     <FaFacebookF size={"20px"} />
                                 </div>
-                                <div
+                                <div className="icon-cirle"
                                     style={{
                                         width: "30px",
                                         height: "30px",
@@ -114,7 +124,7 @@ function StudentDetail() {
                                 >
                                     <FaTwitter size={"20px"} />
                                 </div>
-                                <div
+                                <div className="icon-cirle"
                                     style={{
                                         width: "30px",
                                         height: "30px",
@@ -154,10 +164,15 @@ function StudentDetail() {
                         <div
                             style={{
                                 height: "85px",
-                                backgroundColor: "#ccc",
+                                backgroundColor: "#ffff",
                                 borderRadius: "20px",
+                                border: "1px solid rgba(0, 0, 0, 0.175)"
                             }}
-                        ></div>
+                        >
+
+
+
+                        </div>
                     </div>
                     <h6 style={{ fontSize: "16px", marginBottom: "16px" }}>
                         Bảng điểm
@@ -166,34 +181,48 @@ function StudentDetail() {
                         <thead>
                             <tr style={{ backgroundColor: "#ccc" }}>
                                 <th>
-                                    <span>Học viên</span>
-                                </th>
-                                <th>
                                     <span>Học phần</span>
                                 </th>
                                 <th>
-                                    <span>Điểm kiểm tra</span>
+                                    <span>Ngày kiểm tra</span>
+                                </th>
+                                <th>
+                                    <span>Điểm</span>
                                 </th>
                                 <th>
                                     <span>Đánh giá</span>
                                 </th>
+                                <th>
+                                    <span>Người check</span>
+                                </th>
+                                <th>
+                                    <span>Link bài làm</span>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            {studentDetail.scoreBoard.map((item) => {
+                                return `<tr>
                                 <th>
-                                    <span>Nguyễn Quang Anh</span>
+                                    <span>${item.lesson}</span>
                                 </th>
                                 <th>
-                                    <span>Java</span>
+                                    <span>${item.dateTime}</span>
                                 </th>
                                 <th>
-                                    <span>9</span>
+                                    <span>${item.score}</span>
                                 </th>
                                 <th>
-                                    <span>Đạt</span>
+                                    <span>${item.evaluate}</span>
                                 </th>
-                            </tr>
+                                <th>
+                                    <span>${item.employeeCheck}</span>
+                                </th>
+                                <th>
+                                    <span>${item.linkStudentTest}</span>
+                                </th>
+                            </tr>`
+                            })}
                         </tbody>
                     </Table>
                 </div>

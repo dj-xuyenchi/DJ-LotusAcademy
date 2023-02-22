@@ -1,0 +1,13 @@
+.StudentDetail .info div p {
+    font-weight: 550;
+}
+.StudentDetail .icons-social .icon-cirle{
+    margin-right: 8px;
+}
+
+
+.StudentDetail table tbody tr th {
+    color: rgb(61, 62, 62);
+    font-weight: 400;
+    font-size: 14px;
+}
