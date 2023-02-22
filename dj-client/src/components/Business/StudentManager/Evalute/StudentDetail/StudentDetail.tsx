@@ -15,9 +15,10 @@ function StudentDetail() {
         gender: "Nữ",
         job: "Sinh viên cấp 2",
         active: "Đang học",
-        zalo: "http://zalo.com/123",
-        facebook: "http://facebook.com/anhlin",
+        zalo: "https://zalo.me/0968491797",
+        facebook: "https://www.facebook.com/xuyenchi0902hihihi/",
         scoreBoard: [{
+            stt: 1,
             lesson: "Java Method",
             score: 10,
             openTime: "02-01-2023",
@@ -26,6 +27,7 @@ function StudentDetail() {
             evaluate: "Đạt",
             linkStudentTest: "gggdrive/123"
         }, {
+            stt: 2,
             lesson: "C# Method",
             score: 10,
             openTime: "02-01-2023",
@@ -82,14 +84,18 @@ function StudentDetail() {
                             <p>{studentDetail.active}</p>
                         </div>
                         <div className="icons-social">
-                            <span>Social</span>
+                            <span>Mạng xã hội</span>
                             <div style={{ display: 'flex' }}>
-                                <div className="icon-cirle">
-                                    <img src={zalo} alt="" />
-                                </div>
-                                <div className="icon-cirle">
-                                    <img src={facebook} alt="" />
-                                </div>
+                                <a target="_blank" href={studentDetail.zalo}>
+                                    <div className="icon-cirle">
+                                        <img src={require('../../../../../assets/icons/zalo-icon-filled-256.png')} alt="" />
+                                    </div>
+                                </a>
+                                <a target="_blank" href={studentDetail.facebook}>
+                                    <div className="icon-cirle">
+                                        <img src={require('../../../../../assets/icons/Facebook-200x200.jpg')} alt="" />
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <div style={{ display: 'flex', marginTop: '20px' }}>
@@ -110,21 +116,222 @@ function StudentDetail() {
                     </div>
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
-                    <div style={{ marginBottom: "32px" }}>
-                        <div
-                            style={{
-                                height: '85px',
-                                backgroundColor: '#ffff',
-                                borderRadius: '20px',
-                                border: '1px solid rgba(0, 0, 0, 0.175)',
-                            }}
-                        ></div>
-                    </div>
+                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
+                    <Table className="table-default" hover>
+                        <thead>
+                            <tr style={{ backgroundColor: "#ccc" }}>
+                                <th style={{ width: "10%" }}>
+                                    <span>STT</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Tên khóa học</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Ngày đăng ký</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Thời gian hỗ trợ</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Dự kiến kết thúc</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Tiến độ hiện tại</span>
+                                </th>
+                                <th style={{ width: "10%" }}>
+                                    <span>Đánh giá</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <span>1</span>
+                                </th>
+                                <th>
+                                    <span>Back end Java</span>
+                                </th>
+                                <th>
+                                    <span>20-10-2023</span>
+                                </th>
+                                <th>
+                                    <span>4 tháng</span>
+                                </th>
+                                <th>
+                                    <span>20-10-2023</span>
+                                </th>
+                                <th>
+                                    <span>Java Basic</span>
+                                </th>
+                                <th>
+                                    <span>Khá</span>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ không phép</h6>
+                    <Table className="table-default" hover>
+                        <thead>
+                            <tr style={{ backgroundColor: "#ccc" }}>
+                                <th style={{ width: "10%" }}>
+                                    <span>STT</span>
+                                </th>
+                                <th style={{ width: "25%" }}>
+                                    <span>Ngày nghỉ</span>
+                                </th>
+                                <th style={{ width: "25%" }}>
+                                    <span>Ca nghỉ</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Xác nhận </span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Người xác nhận</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <span>1</span>
+                                </th>
+                                <th>
+                                    <span>20-01-2023</span>
+                                </th>
+                                <th>
+                                    <span>Ca 1-2</span>
+                                </th>
+                                <th>
+                                    <span>20-01-2023:14h-30p</span>
+                                </th>
+                                <th>
+                                    <span>Gấu mập</span>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ có phép</h6>
+                    <Table className="table-default" hover>
+                        <thead>
+                            <tr style={{ backgroundColor: "#ccc" }}>
+                                <th style={{ width: "10%" }}>
+                                    <span>STT</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Ngày nghỉ</span>
+                                </th>
+                                <th style={{ width: "10%" }}>
+                                    <span>Ca nghỉ</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Lý do</span>
+                                </th>
+                                <th style={{ width: "25%" }}>
+                                    <span>Xác nhận </span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Người xác nhận</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <span>1</span>
+                                </th>
+                                <th>
+                                    <span>20-01-2023</span>
+                                </th>
+                                <th>
+                                    <span>Ca 1-2</span>
+                                </th>
+                                <th>
+                                    <span>Đi pắn pia</span>
+                                </th>
+                                <th>
+                                    <span>20-01-2023:14h-30p</span>
+                                </th>
+                                <th>
+                                    <span>Gấu mập</span>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảo lưu</h6>
+                    <Table className="table-default" hover>
+                        <thead>
+                            <tr style={{ backgroundColor: "#ccc" }}>
+                                <th style={{ width: "10%" }}>
+                                    <span>STT</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Lý do</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Bắt đầu</span>
+                                </th>
+                                <th style={{ width: "20%" }}>
+                                    <span>Kết thúc dự kiến</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Số ngày bảo lưu</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
+                                    <span>Người xác nhận</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <span>1</span>
+                                </th>
+                                <th>
+                                    <span>Việc bận gia đình</span>
+                                </th>
+                                <th>
+                                    <span>30-01-2023</span>
+                                </th>
+                                <th>
+                                    <span>19-02-2023</span>
+                                </th>
+                                <th>
+                                    <span>20 ngày</span>
+                                </th>
+                                <th>
+                                    <span>Gấu mập</span>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <span>2</span>
+                                </th>
+                                <th>
+                                    <span>Đi chơi</span>
+                                </th>
+                                <th>
+                                    <span>23-02-2023</span>
+                                </th>
+                                <th>
+                                    <span>29-02-2023</span>
+                                </th>
+                                <th>
+                                    <span>6 ngày</span>
+                                </th>
+                                <th>
+                                    <span>Gấu mập</span>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </Table>
                     <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảng điểm</h6>
                     <Table className="table-default" hover>
                         <thead>
                             <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "20%" }}>
+                                <th style={{ width: "10%" }}>
+                                    <span>STT</span>
+                                </th>
+                                <th style={{ width: "15%" }}>
                                     <span>Học phần</span>
                                 </th>
                                 <th style={{ width: "15%" }}>
@@ -142,16 +349,16 @@ function StudentDetail() {
                                 <th style={{ width: "15%" }}>
                                     <span>Người check</span>
                                 </th>
-                                <th style={{ width: "20%" }}>
+                                <th style={{ width: "15%" }}>
                                     <span>Link bài làm</span>
                                 </th>
                             </tr>
                         </thead>
-                        {/* <tbody>
+                        <tbody>
                             {studentDetail.scoreBoard.map((item) => {
                                 return <DetailRow item={item} />
                             })}
-                        </tbody> */}
+                        </tbody>
                     </Table>
                 </div>
             </div>
@@ -161,6 +368,9 @@ function StudentDetail() {
 function DetailRow({ item }: any) {
     return (
         <><tr>
+            <th>
+                <span>{item.stt}</span>
+            </th>
             <th>
                 <span>{item.lesson}</span>
             </th>

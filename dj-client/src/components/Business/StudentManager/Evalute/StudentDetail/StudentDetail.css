@@ -1,17 +1,29 @@
 .StudentDetail .info div p {
     font-weight: 550;
 }
+
 .StudentDetail .icons-social .icon-cirle {
-    margin-right: 8px;
+    margin-right: 14px;
     border-radius: '50%';
     display: 'flex';
     align-items: 'center';
     justify-content: 'center';
     border: '1px solid #ccc';
+    margin-top: 16px;
 }
 
+.StudentDetail .icons-social .icon-cirle:hover{
+    cursor: pointer;
+    
+}
 .StudentDetail table tbody tr th {
     color: rgb(61, 62, 62);
     font-weight: 400;
     font-size: 14px;
+}
+.StudentDetail .icons-social .icon-cirle{
+    border-radius: 50%;
+    overflow: hidden;
+    height: 40px;
+    width: 40px;
 }

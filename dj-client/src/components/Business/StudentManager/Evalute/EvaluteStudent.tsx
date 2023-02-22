@@ -39,17 +39,17 @@ function EvaluteStudent() {
     });
 
     useEffect(() => {
-        const dt = setInterval(() => {
+        // const dt = setInterval(() => {
             const callApi = async () => {
                 const data = await studentStatisticalApi.getListStudentByPaging(1);
                 console.log(data);
                 setEvaluteData(data);
             };
             callApi();
-        }, 10000)
-        return () => {
-            clearInterval(dt);
-        }
+        // }, 10000)
+        // return () => {
+        //     clearInterval(dt);
+        // }
     }, []);
 
 
