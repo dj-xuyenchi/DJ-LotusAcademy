@@ -1,10 +1,14 @@
 .StudentDetail .info div p {
     font-weight: 550;
 }
-.StudentDetail .icons-social .icon-cirle{
+.StudentDetail .icons-social .icon-cirle {
     margin-right: 8px;
+    border-radius: '50%';
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+    border: '1px solid #ccc';
 }
-
 
 .StudentDetail table tbody tr th {
     color: rgb(61, 62, 62);

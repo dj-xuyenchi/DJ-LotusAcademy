@@ -8,19 +8,14 @@
     justify-content: space-between;
 }
 
-:where(.css-dev-only-do-not-override-diro6f).ant-menu-dark
-    .ant-menu-item-selected {
+:where(.css-dev-only-do-not-override-diro6f).ant-menu-dark .ant-menu-item-selected {
     background-color: #042341;
 }
 
 :where(.css-dev-only-do-not-override-diro6f).ant-menu-dark
-    .ant-menu-item:hover:not(.ant-menu-item-selected):not(
-        .ant-menu-submenu-selected
-    ),
+    .ant-menu-item:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected),
 :where(.css-dev-only-do-not-override-diro6f).ant-menu-dark
-    .ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(
-        .ant-menu-submenu-selected
-    ) {
+    .ant-menu-submenu-title:hover:not(.ant-menu-item-selected):not(.ant-menu-submenu-selected) {
     color: unset;
 }
 
@@ -28,10 +23,8 @@
     background: white;
 }
 
-:where(.css-dev-only-do-not-override-diro6f).ant-menu-inline.ant-menu-root
-    .ant-menu-item,
-:where(.css-dev-only-do-not-override-diro6f).ant-menu-inline.ant-menu-root
-    .ant-menu-submenu-title {
+:where(.css-dev-only-do-not-override-diro6f).ant-menu-inline.ant-menu-root .ant-menu-item,
+:where(.css-dev-only-do-not-override-diro6f).ant-menu-inline.ant-menu-root .ant-menu-submenu-title {
     display: block;
     text-align: center;
 }
@@ -53,7 +46,7 @@
     color: #1890ff;
 }
 
-.logo {
-    // height: 32px;
-    // // // // margin: 16px;
-}
+// .logo {
+//     // height: 32px;
+//     // // // // margin: 16px;
+// }
