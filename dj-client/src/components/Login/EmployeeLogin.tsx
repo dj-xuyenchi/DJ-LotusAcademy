@@ -1,8 +1,7 @@
 import './EmployeeLogin.css';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-const EmployeeLogin = ({setLogin}:any) => {
+const EmployeeLogin = (props:any) => {
     const [showPassword, setShowPassword] = useState(false);
     const linkNavi = useNavigate();
     return (
@@ -52,10 +51,8 @@ const EmployeeLogin = ({setLogin}:any) => {
                                     </div>
                                     <a href="/">Quên mật khẩu?</a>
                                 </div>
-                                <button onClick={()=>{
-                                    setLogin(true)
-                                }} type="submit" className="btn btn-primary w-100 h-11">
-                                   Đăng nhập
+                                <button type="submit" className="btn btn-primary w-100 h-11" onClick={()=>{props.checkLogin(true)}}>
+                                    Sign In
                                 </button>
                                 <div className="mt-3 text-center">
                                     <span>Bạn không có tài khoản?</span>
