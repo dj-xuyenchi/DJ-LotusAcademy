@@ -1,8 +1,10 @@
 import './EmployeeLogin.css';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-const EmployeeLogin = () => {
+import { useNavigate } from 'react-router-dom';
+const EmployeeLogin = ({setLogin}:any) => {
     const [showPassword, setShowPassword] = useState(false);
+    const linkNavi = useNavigate();
     return (
         <div className="login">
             <div className="login__background"></div>
@@ -10,23 +12,23 @@ const EmployeeLogin = () => {
                 <div className="login-main_content">
                     <div className="login-container">
                         <div className="login__title">
-                            <h3 className="mb-1">Welcome back!</h3>
-                            <p>Please enter your credentials to sign in!</p>
+                            <h3 style={{color:"#0d6efd"}} className="mb-1">LTS Edu!</h3>
+                            <p>Nhập tên đăng nhập và mật khẩu!</p>
                         </div>
                         <div>
                             <form>
                                 <div className="form-group mb-7">
-                                    <label className="mb-2">User Name</label>
+                                    <label className="mb-2">Tên đăng nhập</label>
                                     <input
-                                        type="email"
+                                        type="text"
                                         className="form-control"
-                                        id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"
-                                        placeholder="Enter Email"
+                                        id="userName"
+                                        aria-describedby=""
+                                        placeholder="Tên đăng nhập"
                                     />
                                 </div>
                                 <div className="form-group  mb-7">
-                                    <label className="mb-2">Password</label>
+                                    <label className="mb-2">Mật khẩu</label>
                                     <div className="position-relative">
                                         <input
                                             type={showPassword ? 'text' : 'password'}
@@ -46,17 +48,19 @@ const EmployeeLogin = () => {
                                 <div className="d-flex justify-content-between">
                                     <div className="d-flex">
                                         <input type="checkbox" role="button" className="w-4 h-4 mt-1" />
-                                        <p className="ml-2">Remember Me</p>
+                                        <p className="ml-2">Lưu tài khoản</p>
                                     </div>
-                                    <a href="/">Forgot Password?</a>
+                                    <a href="/">Quên mật khẩu?</a>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100 h-11">
-                                    Sign In
+                                <button onClick={()=>{
+                                    setLogin(true)
+                                }} type="submit" className="btn btn-primary w-100 h-11">
+                                   Đăng nhập
                                 </button>
                                 <div className="mt-3 text-center">
-                                    <span>Don't have an account yet?</span>
+                                    <span>Bạn không có tài khoản?</span>
                                     <a className="ml-2 text-decoration-none" href="/">
-                                        Sign up
+                                       Đăng ký
                                     </a>
                                 </div>
                             </form>
