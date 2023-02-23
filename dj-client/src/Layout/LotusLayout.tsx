@@ -16,7 +16,7 @@ import { Link, useLocation, useRoutes } from 'react-router-dom';
 import Routes from '../route/Router';
 const { Sider } = Layout;
 
-const LotusLayout: React.FC = () => {
+const LotusLayout = (props:any) => {
     const [collapsed, setCollapsed] = useState(true);
     // const {
     //     token: { colorBgContainer },
@@ -73,7 +73,7 @@ const LotusLayout: React.FC = () => {
                     <div className="mb-3">
                         <FontAwesomeIcon icon={faMessage} className="text-[#042341]" />
                     </div>
-                    <Avatar
+                    <Avatar onClick={()=>{props.checkLogin(false)}}
                         className="h-[50px] w-[50px] bg-top bg-cover bg-[url('https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-trung-quoc.jpg')] align-middle"
                         size="large"
                     ></Avatar>

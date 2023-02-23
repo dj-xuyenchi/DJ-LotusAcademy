@@ -1,7 +1,7 @@
 import './EmployeeLogin.css';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-const EmployeeLogin = () => {
+const EmployeeLogin = (props:any) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="login">
@@ -50,7 +50,7 @@ const EmployeeLogin = () => {
                                     </div>
                                     <a href="/">Forgot Password?</a>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100 h-11">
+                                <button type="submit" className="btn btn-primary w-100 h-11" onClick={()=>{props.checkLogin(true)}}>
                                     Sign In
                                 </button>
                                 <div className="mt-3 text-center">
