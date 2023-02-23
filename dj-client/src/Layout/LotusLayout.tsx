@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './LotusLayout.scss';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Avatar } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,9 +18,9 @@ const { Sider } = Layout;
 
 const LotusLayout: React.FC = () => {
     const [collapsed, setCollapsed] = useState(true);
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+    // const {
+    //     token: { colorBgContainer },
+    // } = theme.useToken();
     const component = useRoutes(Routes);
 
     const location = useLocation();
@@ -35,7 +35,7 @@ const LotusLayout: React.FC = () => {
                     <Menu
                         theme="dark"
                         mode="inline"
-                        defaultSelectedKeys={[location.pathname == '/' ? '1' : '2']}
+                        defaultSelectedKeys={[location.pathname === '/' ? '1' : '2']}
                         className="text-[#042341] bg-white flex items-center justify-center flex-col px-3"
                         items={[
                             {
@@ -70,7 +70,7 @@ const LotusLayout: React.FC = () => {
                     />
                 </div>
                 <div className="d-flex flex-column justify-content-between align-items-center mb-3">
-                    <div className=" mb-3">
+                    <div className="mb-3">
                         <FontAwesomeIcon icon={faMessage} className="text-[#042341]" />
                     </div>
                     <Avatar

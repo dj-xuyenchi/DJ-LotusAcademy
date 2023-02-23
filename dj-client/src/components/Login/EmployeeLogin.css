@@ -1,0 +1,46 @@
+.login {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+.login .login__background {
+    width: calc(100% / 3);
+    height: 100%;
+}
+.login-main {
+    width: calc(100% / 3 * 2);
+    display: flex;
+    justify-content: center;
+}
+.login-main_content {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.login-container {
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.login__title {
+    margin: 2rem 0;
+}
+.login__title h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.login__title p {
+    font-size: 1rem;
+}
+
+.form-control {
+    padding-right: 2rem !important;
+}
+.btn-showpass span {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}

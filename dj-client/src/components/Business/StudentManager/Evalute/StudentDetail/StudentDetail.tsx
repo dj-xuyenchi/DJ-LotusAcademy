@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import './StudentDetail.css';
 import zalo from '../../../../../assets/icons/zalo-icon.svg';
 import facebook from '../../../../../assets/icons/facebook-icon.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 function StudentDetail() {
     const [studentDetail, setStudentDetail] = useState({
         avatar: "",
