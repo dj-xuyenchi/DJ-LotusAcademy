@@ -1,10 +1,4 @@
-import Table from "react-bootstrap/Table";
 import "./EvaluteStudent.css";
-import SimpleStudentDataEvalute from "./SimpleStudentDataEvalute";
-import {
-    mapData,
-    SimpleStudentEvalute,
-} from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faUsers,
@@ -13,9 +7,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import studentStatisticalApi from "../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi";
+import { Table, Space, Tag } from "antd";
+import { coursesEnum } from "../../../../enums/CoursesEnum";
 function EvaluteStudent() {
     const [evaluteData, setEvaluteData] = useState({
         data: [{
@@ -37,15 +32,86 @@ function EvaluteStudent() {
         mes: "",
         status: 0
     });
-
+    const columns = [
+        {
+            title: 'Họ tên',
+            dataIndex: 'name',
+            key: 'name',
+            render: (text: any) =>  <a>{text}</a>,
+        },
+        {
+            title: 'SDT',
+            dataIndex: 'age',
+            key: 'age',
+        },
+        {
+            title: 'Khóa học',
+            dataIndex: 'address',
+            key: 'address',
+        },
+        {
+            title: 'Trợ giảng',
+            key: 'tags',
+            dataIndex: 'tags',
+            render: (_: any, { tags }: any) => (
+                <>
+                    {tags.map((tag: any) => {
+                        let color
+                        switch (tag.course) {
+                            case coursesEnum.BEJAVA:
+                                color = 'blue'
+                                break;
+                        
+                            default:
+                                break;
+                        }
+                        return (
+                            <Tag color={color} key={tag}>
+                                {tag.toUpperCase()}
+                            </Tag>
+                        );
+                    })}
+                </>
+            ),
+        },
+        {
+            title: 'Action',
+            key: 'action',
+           dataIndex: 'action'
+        },
+    ];
+    const data = [
+        {
+            key: '1',
+            name: 'John Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+            tags: ['', 'developer'],
+            action:"aa"
+        },
+        {
+            key: '2',
+            name: 'Jim Green',
+            age: 42,
+            address: 'London No. 1 Lake Park',
+            tags: ['loser'],
+        },
+        {
+            key: '3',
+            name: 'Joe Black',
+            age: 32,
+            address: 'Sydney No. 1 Lake Park',
+            tags: ['cool', 'teacher'],
+        },
+    ];
     useEffect(() => {
         // const dt = setInterval(() => {
-            const callApi = async () => {
-                const data = await studentStatisticalApi.getListStudentByPaging(1);
-                console.log(data);
-                setEvaluteData(data);
-            };
-            callApi();
+        const callApi = async () => {
+            const data = await studentStatisticalApi.getListStudentByPaging(1);
+            console.log(data);
+            setEvaluteData(data);
+        };
+        callApi();
         // }, 10000)
         // return () => {
         //     clearInterval(dt);
@@ -383,9 +449,11 @@ function EvaluteStudent() {
                     <Button variant="outline-secondary">Export</Button>{" "}
                 </div>
             </div>
-            <Table className="table-default" hover responsive="sm">
+            <Table columns={columns} dataSource={data} />
+
+            {/* <Table className="table" hover responsive="sm">
                 <thead>
-                    <tr style={{ backgroundColor: "#ccc" }}>
+                    <tr style={{ backgroundColor: 'rgb(54, 48, 74)' }}>
                         <th id="table-name">
                             <span>Tên</span>
                         </th>
@@ -415,7 +483,7 @@ function EvaluteStudent() {
                         }
                     ) : ""}
                 </tbody>
-            </Table>
+            </Table> */}
         </div>
     );
 }

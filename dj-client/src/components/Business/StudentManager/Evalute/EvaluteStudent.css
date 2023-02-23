@@ -18,20 +18,25 @@
     display: flex;
     align-items: center;
 }
+
 .EvaStudent table {
     width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .EvaStudent table #table-name,
 .EvaStudent table #table-contact {
     width: 25%;
     float: left;
 }
+/* 
 .EvaStudent table #table-course,
 .EvaStudent table #table-turtol,
 .EvaStudent table #table-active {
     width: 16.666666%;
     float: left;
-}
+} */
+
 .EvaStudent table tr th span {
     padding-left: 4%;
 }
@@ -41,19 +46,23 @@
     height: 36px;
     border-radius: 50%;
 }
+
 .EvaStudent table .table-data-row th {
     height: 60px !important;
     background-color: white !important;
     color: #969698;
 }
+
 .EvaStudent table .table-data-row th img {
     margin-left: 4%;
 }
+
 .EvaStudent .statistical {
     /* height: 95px; */
     display: flex;
     margin-bottom: 24px;
 }
+
 .EvaStudent .statistical .statistical_item {
     /* width: calc(100% / 3); */
     /* background-color: red; */
@@ -63,6 +72,7 @@
     padding-bottom: 20px; */
     /* border: 1px solid #ccc; */
 }
+
 /* .EvaStudent .statistical_item:not(:last-child) {
     margin-right: 20px;
 } */
