@@ -29,6 +29,9 @@
     width: 25%;
     float: left;
 }
+.EvaStudent table thead th{
+    float: left;
+}
 /* 
 .EvaStudent table #table-course,
 .EvaStudent table #table-turtol,
@@ -37,14 +40,15 @@
     float: left;
 } */
 
-.EvaStudent table tr th span {
-    padding-left: 4%;
+.EvaStudent table tbody tr a {
+    text-decoration: none;
 }
 
-.EvaStudent table tr th img {
+.EvaStudent table tbody tr a img {
     width: 36px;
     height: 36px;
     border-radius: 50%;
+    display: inline;
 }
 
 .EvaStudent table .table-data-row th {
