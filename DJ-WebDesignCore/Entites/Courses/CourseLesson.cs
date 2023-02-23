@@ -11,10 +11,6 @@ namespace DJ_WebDesignCore.Entites.Courses
     {
         public string? CourseLessonCode { get; set; }
         public string? CourseLessonName { get; set;}
-        public int? CourseLAId { get; set; }
-        //Thứ tự học phần trong khóa học
-        public int? SortNumber { get; set; }
-        public CourseLA? CourseLA { get; set; }
         public int? CourseLessonStatusId { get; set; }
         public CourseLessonStatus? CourseLessonStatus { get; set; }
     }

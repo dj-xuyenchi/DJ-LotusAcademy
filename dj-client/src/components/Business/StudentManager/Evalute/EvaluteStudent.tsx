@@ -9,20 +9,25 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import studentStatisticalApi from "../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi";
-import { Table, Space, Tag } from "antd";
-import { coursesEnum } from "../../../../enums/CoursesEnum";
+import Table, { ColumnsType } from "antd/es/table";
+import Tag from "antd/es/tag";
+import { DataType } from "../../../../entities/table/Datatype";
 import { Link } from "react-router-dom";
+import { mapData, SimpleStudentEvalute } from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
 function EvaluteStudent() {
     const [evaluteData, setEvaluteData] = useState({
         data: [
             {
-                studentAvatar: 'https://img.meta.com.vn/Data/image/2021/09/22/anh-meo-cute-de-thuong-dang-yeu-41.jpg',
-                studentName: 'Đỗ Quang Anh',
-                studentSdt: '0987123123',
-                studentCourse: 'java',
-                studentTurtor: 'Chị Giang',
-                studentActive: true,
-            },
+                id: 1,
+                info: {
+                    avatar: "https://thietbigiadinh.org/wp-content/uploads/2022/04/anh-3d-meo-01.jpg",
+                    name: "Thai Lan Huowng"
+                },
+                phoneNumber: "+84 968491797",
+                mentor: "2 Mét",
+                courses: ["Java", "c#"],
+                status: "Học Online",
+            }
         ],
         solutionCenterLADTO: {
             totalStudentOFF: 0,
@@ -34,57 +39,32 @@ function EvaluteStudent() {
         mes: '',
         status: 0,
     });
-    const column = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-        },
-        {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-        },
-        {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
-    ];
-    const columns = [
+
+    const columns: ColumnsType<SimpleStudentEvalute> = [
         {
             title: 'Họ tên',
-            dataIndex: 'name',
-            key: 'name',
-            render: (element: any) => <Link to="/hocvien/1">
+            dataIndex: 'info',
+            key: 'info',
+            render: (element) => <Link to="/hocvien/1">
                 <img src={element.avatar} alt="" />
                 <span>{element.name}</span>
             </Link>,
         },
         {
-            title: 'SDT',
-            dataIndex: 'phone',
-            key: 'phone',
+            title: 'Số điện thoại',
+            dataIndex: 'phoneNumber',
+            key: 'phoneNumber',
         },
         {
             title: 'Khóa học',
             dataIndex: 'courses',
             key: 'courses',
-            render: (tags: any) => (
+            render: (_, { courses }) => (
                 <>
-                    {tags.map((tag: any) => {
-                        let color
-                        switch (tag.course) {
-                            case coursesEnum.BEJAVA:
-                                color = 'blue'
-                                break;
-
-                            default:
-                                break;
-                        }
+                    {courses.map((course) => {
                         return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+                            <Tag color={"green"} key={course}>
+                                {course.toUpperCase()}
                             </Tag>
                         );
                     })}
@@ -95,49 +75,15 @@ function EvaluteStudent() {
             title: 'Trợ giảng',
             key: 'mentor',
             dataIndex: 'mentor',
-
         },
         {
             title: 'Trạng thái',
             key: 'status',
-            dataIndex: 'status'
+            dataIndex: 'status',
         },
     ];
-    const data = [
-        {
-            key: '1',
-            name: {
-                avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
-                name: 'John Brown'
-            },
-            phone: '+84 968491797',
-            courses: ['JAVA'],
-            mentor: "2 mét",
-            status: "Học Online"
-        },
-        {
-            key: '2',
-            name: {
-                avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
-                name: 'John Brown'
-            },
-            phone: '+84 968491797',
-            courses: ['JAVA'],
-            mentor: "2 mét",
-            status: "Học Online"
-        },
-        {
-            key: '3',
-            name: {
-                avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
-                name: 'John Brown'
-            },
-            phone: '+84 968491797',
-            courses: ['JAVA'],
-            mentor: "2 mét",
-            status: "Học Online"
-        },
-    ];
+
+
     useEffect(() => {
         // const dt = setInterval(() => {
         const callApi = async () => {
@@ -455,16 +401,14 @@ function EvaluteStudent() {
                     <Button variant="outline-secondary">Export</Button>{' '}
                 </div>
             </div>
-            <Table columns={columns} dataSource={data} />
-
+            <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
             {/* <Table className="table" hover responsive="sm">
                 <thead>
-                    <tr style={{ backgroundColor: 'rgb(54, 48, 74)' }}>
                         <th id="table-name">
                             <span>Tên</span>
                         </th>
                         <th id="table-contact">
-                            <span>SDT liên hệ</span>
+                            <span>SDT liên hệ </span>
                         </th>
                         <th id="table-course">
                             <span>Khóa học</span>
@@ -475,7 +419,6 @@ function EvaluteStudent() {
                         <th id="table-active">
                             <span>Active</span>
                         </th>
-                    </tr>
                 </thead>
                 <tbody>
                     {evaluteData.data

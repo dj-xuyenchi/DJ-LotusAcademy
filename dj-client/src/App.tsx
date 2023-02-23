@@ -6,6 +6,7 @@ function App() {
 
     const checkLogin = (data: any) => {
         setIsLogin(data);
+        
     };
     return isLogin ? <LotusLayout checkLogin={checkLogin} /> : <EmployeeLogin checkLogin={checkLogin} />;
 }

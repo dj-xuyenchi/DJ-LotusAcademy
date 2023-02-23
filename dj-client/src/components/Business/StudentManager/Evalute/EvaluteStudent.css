@@ -1,36 +1,19 @@
-.EvaStudent table {
-    width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+.EvaStudent table{
+    border-radius: 10px;
+    border: 1px solid rgb(0,0,0,0.1); 
+     color: black;
 }
-
-.EvaStudent table thead th{
-    float: left;
-    width: 25%;
+.EvaStudent table tbody td a{
+   text-decoration: none;
+   color: black;
 }
-/* 
-.EvaStudent table #table-course,
-.EvaStudent table #table-turtol,
-.EvaStudent table #table-active {
-    width: 16.666666%;
-    float: left;
-} */
-
-.EvaStudent table tbody tr a {
-    text-decoration: none;
-}
-
-.EvaStudent table tbody tr a img {
-    width: 36px;
-    height: 36px;
+.EvaStudent table tbody td img {
+    height: 35px;
+    margin-right: 12px;
+    width: 35px;
     border-radius: 50%;
     display: inline;
 }
-
-.EvaStudent table tbody tr a span {
-   margin-left: 12px;
-   color: black;
-}
-
 
 .EvaStudent .statistical {
     /* height: 95px; */
