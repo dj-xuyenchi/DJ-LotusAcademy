@@ -66,9 +66,7 @@ const LotusLayout = (props:any) => {
                 </div>
                 <div className="d-flex flex-column justify-content-between align-items-center mb-3">
                     <div className="mb-3" onClick={()=>{
-                        console.log(1);
-                        
-                        setLogin(false)
+                       
                     }}>
                         <FontAwesomeIcon icon={faMessage} className="text-[#042341]" />
                     </div>

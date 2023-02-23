@@ -3,7 +3,6 @@ import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 const EmployeeLogin = (props:any) => {
     const [showPassword, setShowPassword] = useState(false);
-    const linkNavi = useNavigate();
     return (
         <div className="login">
             <div className="login__background"></div>

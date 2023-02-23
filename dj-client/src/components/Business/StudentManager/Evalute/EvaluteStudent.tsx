@@ -34,6 +34,23 @@ function EvaluteStudent() {
         mes: '',
         status: 0,
     });
+    const column = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+        },
+        {
+            title: 'Age',
+            dataIndex: 'age',
+            key: 'age',
+        },
+        {
+            title: 'Address',
+            dataIndex: 'address',
+            key: 'address',
+        },
+    ];
     const columns = [
         {
             title: 'Họ tên',
@@ -89,7 +106,10 @@ function EvaluteStudent() {
     const data = [
         {
             key: '1',
-            name: { avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg', name: 'John Brown' },
+            name: {
+                avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
+                name: 'John Brown'
+            },
             phone: '+84 968491797',
             courses: ['JAVA'],
             mentor: "2 mét",
@@ -97,7 +117,10 @@ function EvaluteStudent() {
         },
         {
             key: '2',
-            name: { avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg', name: 'John Brown' },
+            name: {
+                avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
+                name: 'John Brown'
+            },
             phone: '+84 968491797',
             courses: ['JAVA'],
             mentor: "2 mét",
@@ -105,7 +128,10 @@ function EvaluteStudent() {
         },
         {
             key: '3',
-            name: { avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg', name: 'John Brown' },
+            name: {
+                avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
+                name: 'John Brown'
+            },
             phone: '+84 968491797',
             courses: ['JAVA'],
             mentor: "2 mét",
