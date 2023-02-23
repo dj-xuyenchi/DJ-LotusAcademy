@@ -37,23 +37,18 @@ function EvaluteStudent() {
             title: 'Họ tên',
             dataIndex: 'name',
             key: 'name',
-            render: (text: any) =>  <a>{text}</a>,
+            render: (text: any) => <a>{text}</a>,
         },
         {
             title: 'SDT',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'phone',
+            key: 'phone',
         },
         {
             title: 'Khóa học',
-            dataIndex: 'address',
-            key: 'address',
-        },
-        {
-            title: 'Trợ giảng',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: (_: any, { tags }: any) => (
+            dataIndex: 'courses',
+            key: 'courses',
+            render: ( tags: any) => (
                 <>
                     {tags.map((tag: any) => {
                         let color
@@ -61,7 +56,7 @@ function EvaluteStudent() {
                             case coursesEnum.BEJAVA:
                                 color = 'blue'
                                 break;
-                        
+
                             default:
                                 break;
                         }
@@ -75,40 +70,47 @@ function EvaluteStudent() {
             ),
         },
         {
+            title: 'Trợ giảng',
+            key: 'mentor',
+            dataIndex: 'mentor',
+
+        },
+        {
             title: 'Action',
             key: 'action',
-           dataIndex: 'action'
+            dataIndex: 'action'
         },
     ];
     const data = [
         {
             key: '1',
             name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['', 'developer'],
-            action:"aa"
+            phone: 32,
+            courses: ['JAVA'],
+            mentor: "2 mét",
+            action: "aa"
         },
         {
             key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
+            name: 'John Brown',
+            phone: 32,
+            courses: ['JAVA'],
+            mentor: "2 mét",
+            action: "aa"
         },
         {
             key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sydney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
+            name: 'John Brown',
+            phone: 32,
+            courses: ['JAVA'],
+            mentor: "2 mét",
+            action: "aa"
         },
     ];
     useEffect(() => {
         // const dt = setInterval(() => {
         const callApi = async () => {
             const data = await studentStatisticalApi.getListStudentByPaging(1);
-            console.log(data);
             setEvaluteData(data);
         };
         callApi();
