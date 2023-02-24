@@ -17,6 +17,9 @@ namespace DJ_WebDesignCore.Entites.Student
         public string? FacebookUrl { get; set; }
         public int? StudentDatalogId { get; set; }
         public StudentDatalog? StudentDatalog { get; set; }
+        public string? StudentDatalogDetail { get; set; }
+        public int? StudentIntroduceId { get; set; }
+        public StudentLA? StudentIntroduce { get; set; }
         public string? WardCode { get; set; }
         [ForeignKey("WardCode")]
         public Ward? Ward { get; set; }
