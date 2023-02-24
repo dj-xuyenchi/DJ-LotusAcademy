@@ -1,15 +1,11 @@
 ﻿using DJ_WebDesignCore.DTOs.AttendanceManagerDTOs.AttendanceCRUDDTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DJ_WebDesignCore.Entites.Business;
 
 namespace DJ_WebDesignCore.Business.AttendanceManager
 {
     public interface IAttendanceCRUD
     {
-        AttendanceUpdateDTO updateAttendance();
-        AttendanceCreateDTO createAttendance();
+        AttendanceUpdateDTO updateAttendance(Attendance newData, DateTime? requestTime);
+        AttendanceCreateDTO createAttendance(Attendance newData, DateTime? resquestTime);
     }
 }
