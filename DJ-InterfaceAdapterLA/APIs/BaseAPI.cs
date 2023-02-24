@@ -3,7 +3,8 @@
 namespace DJ_InterfaceAdapterLA.APIs
 {
     [ApiController]
-   
+    [Route("api")]
+
     public class BaseAPI : ControllerBase
     {
         public static string url()

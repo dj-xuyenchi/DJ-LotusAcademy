@@ -12,10 +12,10 @@ namespace DJ_InterfaceAdapterLA.APIs.AttendanceUnauthorizedAbsencesGetAPIs
         {
             _attendanceUnauthorizedAbsencesCRUD = new AttendanceUnauthorizedAbsencesStatistical();
         }
-        [HttpGet("AttendanceUnauthorizedAbsencesCRUD")]
-        public ActionResult<AttendanceUnauthorizedAbsencesGetDTO> getAttendanceUnauthorizedAbsences(int? studentLAId)
+        [HttpGet("AttendanceUnauthorizedAbsencesCRUD/{studentId}")]
+        public ActionResult<AttendanceUnauthorizedAbsencesGetDTO> getAttendanceUnauthorizedAbsences(int? studentId)
         {
-            return Ok(_attendanceUnauthorizedAbsencesCRUD.getAttendanceUnauthorizedAbsences(studentLAId));
+            return Ok(_attendanceUnauthorizedAbsencesCRUD.getAttendanceUnauthorizedAbsences(studentId));
         }
     }
 }

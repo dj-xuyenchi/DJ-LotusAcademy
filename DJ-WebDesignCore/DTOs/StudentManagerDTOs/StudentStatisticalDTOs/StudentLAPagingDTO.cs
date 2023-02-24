@@ -4,6 +4,7 @@
     {
         public int Status { get; set; }
         public IEnumerable<StudentLADTO> Data { get; set; }
+        public SolutionCenterLADTO SolutionCenterLADTO { get; set; }
         public string? Mes { get; set; }
     }
 }

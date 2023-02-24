@@ -1,14 +1,11 @@
 ﻿using DJ_UseCaseLayer.Business.StudentManager;
 using DJ_WebDesignCore.Business.StudentManager;
-using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentCRUDDTOs;
 using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs;
-using DJ_WebDesignCore.Entites.Student;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
 {
-    [Route("api/hocvien/")]
-    public class StudentStatisticalController:BaseAPI
+    public class StudentStatisticalController : BaseAPI
     {
         private readonly IStudentStatistical _studentStatistical;
 
@@ -16,11 +13,11 @@ namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
         {
             _studentStatistical = new StudentStatistical();
         }
-        [HttpGet("paging")]
+        [HttpGet("StudentStatistical/{page}")]
         public ActionResult<StudentLAPagingDTO> getListStudentByPaging([FromQuery] int page)
         {
             return Ok(_studentStatistical.getListStudentLA(page));
         }
-     
+
     }
 }

@@ -25,19 +25,6 @@ namespace DJ_UseCaseLayer.Business.CourseManager
                 return res;
             }
 
-            if (newData.CourseLAId == null)
-            {
-                res.Status = CourseLessonsCreateEnums.NULLID;
-                res.ShortDetail = "Không nhận được Course LA id";
-                return res;
-            }
-            CourseLA courseLA = _context.courses.Find(newData.CourseLAId);
-            if (courseLA == null)
-            {
-                res.Status = CourseLessonsCreateEnums.NOTFOUND;
-                res.ShortDetail = $"Không tồn tại Course LA có id là {newData.CourseLAId}";
-                return res;
-            }
 
             if (newData.CourseLessonStatusId == null)
             {
@@ -50,13 +37,6 @@ namespace DJ_UseCaseLayer.Business.CourseManager
             {
                 res.Status = CourseLessonsCreateEnums.NOTFOUND;
                 res.ShortDetail = $"Không tồn tại Course Lesson Status có id là {newData.CourseLessonStatusId}";
-                return res;
-            }
-
-            if (newData.SortNumber == null)
-            {
-                res.Status = CourseLessonsCreateEnums.NOT_VALUE;
-                res.ShortDetail = "Vui lòng điền sort number";
                 return res;
             }
 
@@ -104,26 +84,7 @@ namespace DJ_UseCaseLayer.Business.CourseManager
                     _context.SaveChanges();
                 }
 
-                if (newData.CourseLAId != null)
-                {
-                    CourseLA courseLA = _context.courses.Find(newData.CourseLAId);
-                    if (courseLA == null)
-                    {
-                        res.Status = CourseLessonsUpdateEnums.NOTFOUND;
-                        res.ShortDetail = $"Không tồn tại course LA có id là {newData.CourseLAId}";
-                        return res;
-                    }
-                    courseLesson.CourseLAId = newData.CourseLAId;
-                    _context.Update(courseLesson);
-                    _context.SaveChanges();
-                }
 
-                if (newData.SortNumber != null)
-                {
-                    courseLesson.SortNumber = newData.SortNumber;
-                    _context.Update(courseLesson);
-                    _context.SaveChanges();
-                }
 
                 if (newData.CourseLessonStatusId != null)
                 {
