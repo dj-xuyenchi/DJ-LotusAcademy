@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 import studentStatisticalApi from "../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi";
 import Table, { ColumnsType } from "antd/es/table";
 import Tag from "antd/es/tag";
-import { DataType } from "../../../../entities/table/Datatype";
 import { Link } from "react-router-dom";
 import { mapData, SimpleStudentEvalute } from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
 function EvaluteStudent() {

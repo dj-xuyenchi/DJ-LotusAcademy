@@ -1,11 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import './StudentDetail.css';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Table, { ColumnsType } from 'antd/es/table';
 import { SimpleStudentEvalute } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
+import { columnsCourses, columnsUnactiveReason } from '../../../../../entities/table/TableColumn';
 function StudentDetail() {
+    const [tableView, setTableView] = useState(3)
+    function handleSetTableView(opt: number) {
+        setTableView(opt)
+    }
     const [studentDetail, setStudentDetail] = useState({
         avatar: "",
         name: "Thái Lan Hương",
@@ -38,56 +43,11 @@ function StudentDetail() {
             linkStudentTest: "gggdrive/123"
         },]
     })
-    const columnsCourses: ColumnsType<SimpleStudentEvalute> = [
-        {
-            title: 'STT',
-            dataIndex: 'info',
-            key: 'info',
-            width: '10%',
-
-        },
-        {
-            title: 'Tên khóa học',
-            dataIndex: 'courseName',
-            key: 'courseName',
-            width: '15%',
-        },
-        {
-            title: 'Ngày đăng ký',
-            dataIndex: 'openDateTime',
-            key: 'openDateTime',
-            width: '15%',
-        },
-        {
-            title: 'Thời gian hỗ trợ',
-            key: 'mentorTime',
-            dataIndex: 'mentorTime',
-            width: '15%',
-        },
-        {
-            title: 'Dự kiến kết thúc',
-            key: 'closeDateTime',
-            dataIndex: 'closeDateTime',
-            width: '15%',
-        },
-        {
-            title: 'Tiến độ hiện tại',
-            key: 'currentProgress',
-            dataIndex: 'currentProgress',
-            width: '15%',
-        },
-        {
-            title: 'Đánh giá',
-            key: 'evalute',
-            dataIndex: 'evalute',
-            width: '15%',
-        },
-    ];
 
     return (
         <div className="StudentDetail w-100" style={{ padding: '24px 32px' }}>
             <div className="detail-title">
-                <h3>Student Detail</h3>
+                <h3>Thông tin học viên </h3>
             </div>
             <div style={{ display: 'flex' }}>
                 <div className="card" style={{ width: '30%', padding: '20px' }}>
@@ -154,256 +114,169 @@ function StudentDetail() {
                                     marginRight: '10px',
                                 }}
                             >
-                                Delete
+                                Bảo lưu
                             </Button>
                             <Button variant="primary" style={{ width: '50%' }}>
-                                Edit
+                                Sửa thông tin
                             </Button>
                         </div>
                     </div>
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
-                    <Table columns={columnsCourses} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
-          
-                    {/* <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Tên khóa học</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Ngày đăng ký</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Thời gian hỗ trợ</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Dự kiến kết thúc</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Tiến độ hiện tại</span>
-                                </th>
-                                <th style={{ width: "10%" }}>
-                                    <span>Đánh giá</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>Back end Java</span>
-                                </th>
-                                <th>
-                                    <span>20-10-2023</span>
-                                </th>
-                                <th>
-                                    <span>4 tháng</span>
-                                </th>
-                                <th>
-                                    <span>20-10-2023</span>
-                                </th>
-                                <th>
-                                    <span>Java Basic</span>
-                                </th>
-                                <th>
-                                    <span>Khá</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ không phép</h6> */}
-                    {/* <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
-
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ có phép</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Ngày nghỉ</span>
-                                </th>
-                                <th style={{ width: "10%" }}>
-                                    <span>Ca nghỉ</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Lý do</span>
-                                </th>
-                                <th style={{ width: "25%" }}>
-                                    <span>Xác nhận </span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Người xác nhận</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023</span>
-                                </th>
-                                <th>
-                                    <span>Ca 1-2</span>
-                                </th>
-                                <th>
-                                    <span>Đi pắn pia</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023:14h-30p</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảo lưu</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Lý do</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Bắt đầu</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Kết thúc dự kiến</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Số ngày bảo lưu</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Người xác nhận</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>Việc bận gia đình</span>
-                                </th>
-                                <th>
-                                    <span>30-01-2023</span>
-                                </th>
-                                <th>
-                                    <span>19-02-2023</span>
-                                </th>
-                                <th>
-                                    <span>20 ngày</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <span>2</span>
-                                </th>
-                                <th>
-                                    <span>Đi chơi</span>
-                                </th>
-                                <th>
-                                    <span>23-02-2023</span>
-                                </th>
-                                <th>
-                                    <span>29-02-2023</span>
-                                </th>
-                                <th>
-                                    <span>6 ngày</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảng điểm</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Học phần</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Ngày kiểm tra</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Ngày chấm</span>
-                                </th>
-                                <th style={{ width: "5%" }}>
-                                    <span>Điểm</span>
-                                </th>
-                                <th style={{ width: "10%" }}>
-                                    <span>Đánh giá</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Người check</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Link bài làm</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {studentDetail.scoreBoard.map((item) => {
-                                return <DetailRow item={item} />
-                            })}
-                        </tbody>
-                    </Table> */}
+                    {tableView === 1 ? <TableViewSolution handleSetTableView={handleSetTableView} /> : ""
+                    }
+                    {tableView === 3 ? <TableViewActiveChart handleSetTableView={handleSetTableView} /> : ""
+                    }
                 </div>
             </div>
         </div>
     );
 }
-function DetailRow({ item }: any) {
+function TableViewSolution({ handleSetTableView }: any) {
     return (
-        <><tr>
-            <th>
-                <span>{item.stt}</span>
-            </th>
-            <th>
-                <span>{item.lesson}</span>
-            </th>
-            <th>
-                <span>{item.openTime}</span>
-            </th>
-            <th>
-                <span>{item.closeTime}</span>
-            </th>
-            <th>
-                <span>{item.score}</span>
-            </th>
-            <th>
-                <span>{item.evaluate}</span>
-            </th>
-            <th>
-                <span>{item.employeeCheck}</span>
-            </th>
-            <th>
-                <span>{item.linkStudentTest}</span>
-            </th>
-        </tr></>
+        <>
+            <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
+            <Table columns={columnsCourses} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Nghỉ học - <span id='active-chart' onClick={() => {
+                handleSetTableView(3)
+            }}>Xem biểu đồ hoạt động</span></h6>
+            <Table columns={columnsUnactiveReason} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+        </>
+    )
+}
+function TableViewReserve() {
+    return (
+        <>
+            <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảo lưu</h6>
+            <Table columns={columnsCourses} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+        </>
+    )
+}
+function TableViewActiveChart({ handleSetTableView }: any) {
+    const [now, setNow] = useState(new Date())
+    const content = useRef<any>()
+    useEffect(() => {
+        let dayCounter = 1;
+        const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+
+        const date = new Date();
+        date.setMonth(now.getMonth())
+        date.setDate(1)
+        date.setFullYear(now.getFullYear())
+        let dateOfMonth = date.getDay()
+        // console.log(dateOfMonth)3
+        if (content) {
+            const trArray = content.current.children;
+            for (const td of trArray[0].children) {
+                if (dateOfMonth > 0) {
+                    dateOfMonth--
+                    continue
+                }
+                const span: HTMLSpanElement = document.createElement("span")
+                span.classList.add("day-of-month")
+                span.innerHTML = dayCounter.toString()
+                dayCounter++
+                td.appendChild(span)
+            }
+            for (let i = 1; i < 6; i++) {
+                for (const td of trArray[i].children) {
+                    if (dayCounter > lastDay) {
+                        break;
+                    }
+                    const span: HTMLSpanElement = document.createElement("span")
+                    span.classList.add("day-of-month")
+                    span.innerHTML = dayCounter.toString()
+                    dayCounter++
+                    td.appendChild(span)
+                }
+            }
+        }
+    }, [])
+    return (
+        <>
+            <div style={{
+                display: 'flex',
+                justifyContent: "space-between"
+            }}><h3 style={{ marginBottom: '16px', display: 'inline' }}>Biểu đồ đi học - <span id='back-solution' onClick={() => {
+                handleSetTableView(1)
+            }}>Trở lại tổng quan</span></h3>
+                <h3 style={{ marginBottom: '16px', display: 'inline' }}>2023</h3></div>
+            <table className='active-table'>
+                <thead className="chart-header">
+                    <tr>
+                        <th className="element-week"><span>Chủ nhật</span></th>
+                        <th className="element-week"><span>Thứ 2</span></th>
+                        <th className="element-week"><span>Thứ 3</span></th>
+                        <th className="element-week"><span>Thứ 4</span></th>
+                        <th className="element-week"><span>Thứ 5</span></th>
+                        <th className="element-week"><span>Thứ 6</span></th>
+                        <th className="element-week"><span>Thứ 7</span></th>
+                    </tr>
+                </thead>
+                <tbody ref={content}>
+                    <tr>
+                        <td>
+                            <div className="active-detail">
+                                <span className='title'>Ca học: <span>Ca 1</span></span>
+                                <span className='title'>Điểm danh: <span>Quang Anh</span></span>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </>
     )
 }
 export default StudentDetail;
