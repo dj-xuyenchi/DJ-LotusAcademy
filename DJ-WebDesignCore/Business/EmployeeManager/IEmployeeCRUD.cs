@@ -5,8 +5,8 @@ namespace DJ_WebDesignCore.Business.EmployeeManager
 {
     public interface IEmployeeCRUD
     {
-        EmployeeCreateDTO createEmployee(EmployeeLA newData);
-        EmployeeUpdateDTO updateEmployee(EmployeeLA newData);
-        EmployeeDeleteDTO deleteEmployee(int? employeeId);
+        //EmployeeCreateDTO createEmployee(EmployeeLA newData);
+        //EmployeeUpdateDTO updateEmployee(EmployeeLA newData);
+        //EmployeeDeleteDTO deleteEmployee(int? employeeId);
     }
 }

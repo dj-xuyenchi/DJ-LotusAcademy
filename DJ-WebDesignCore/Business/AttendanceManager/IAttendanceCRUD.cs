@@ -5,7 +5,7 @@ namespace DJ_WebDesignCore.Business.AttendanceManager
 {
     public interface IAttendanceCRUD
     {
-        AttendanceUpdateDTO updateAttendance(Attendance newData, DateTime? requestTime);
-        AttendanceCreateDTO createAttendance(Attendance newData, DateTime? resquestTime);
+        //AttendanceUpdateDTO updateAttendance(Attendance newData, DateTime? requestTime);
+        //AttendanceCreateDTO createAttendance(Attendance newData, DateTime? resquestTime);
     }
 }

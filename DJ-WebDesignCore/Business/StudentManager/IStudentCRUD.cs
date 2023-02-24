@@ -5,10 +5,10 @@ namespace DJ_WebDesignCore.Business.StudentManager
 {
     public interface IStudentCRUD
     {
-        StudentCreateDTO createStudent
-        StudentDeleteDTO deleteStudent(int? studentId);
-        StudentUpdateDTO updateStudent(StudentLA newData);
-        StudentFindByIdDTO findStudentById(int? studentId);
+        //StudentCreateDTO createStudent
+        //StudentDeleteDTO deleteStudent(int? studentId);
+        //StudentUpdateDTO updateStudent(StudentLA newData);
+        //StudentFindByIdDTO findStudentById(int? studentId);
 
     }
 }

@@ -14,7 +14,7 @@ namespace DJ_WebDesignCore.Entites.Employee
         public string? EmployeeLAUserName { get; set; }
         public string? EmployeeLAPassword { get; set; }
         public EmployeeRole? EmployeeRole { get; set; }
-        //  public byte[]? EmployeeAvatar { get; set; }
+        public byte[]? EmployeeAvatar { get; set; }
         public string? WardCode { get; set; }
         [ForeignKey("WardCode")]
         public Ward? Ward { get; set; }
@@ -28,6 +28,7 @@ namespace DJ_WebDesignCore.Entites.Employee
         public Gender? Gender { get; set; }
         public string? NumberPhone { get; set; }
         public string? FacebookUrl { get; set; }
+        public string? ZaloUrl { get; set; }
         public string? SkyUrl { get; set; }
         public string? EmployeeLAName { get; set; }
         public DateTime? EmployeeLABirthDay { get; set; }
