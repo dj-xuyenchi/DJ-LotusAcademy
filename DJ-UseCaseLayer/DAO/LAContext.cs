@@ -37,6 +37,7 @@ namespace DJ_UseCaseLayer.DAO
         // Course
         public DbSet<CourseLA> courses { get; set; }
         public DbSet<CourseLesson> courseLessons { get; set; }
+        public DbSet<CourseLACourseLesson> courseLACourseLessons { get; set; }
         // Business
         public DbSet<Holiday> holidays { get; set; }
         public DbSet<Reserve> reserves { get; set; }
@@ -53,7 +54,7 @@ namespace DJ_UseCaseLayer.DAO
         {
            //optionsBuilder.UseSqlServer(Setting.connectServerUrl());
             //optionsBuilder.UseSqlServer(Setting.connectServerUrlMacOS());
-            optionsBuilder.UseSqlServer(Setting.urlWin());
+            optionsBuilder.UseSqlServer(Setting.url());
 
         }
 

@@ -1,10 +1,13 @@
 export interface SimpleStudentEvalute {
-    studentAvatar: string;
-    studentName: string;
-    studentSdt: string;
-    studentCourse: string;
-    studentTurtor: string;
-    studentActive: boolean;
+    id: number;
+    info: {
+        avatar: string,
+        name: string
+    };
+    phoneNumber: string;
+    mentor: string;
+    courses: string[];
+    status: string;
 }
 
 // "studentLAName": "Ngọc Bảo Châu",
@@ -18,13 +21,18 @@ export const mapData = (input: any): SimpleStudentEvalute[] => {
         return [];
     }
     return input.map((element: any) => {
+
+
         return {
-            studentAvatar: 'https://img.meta.com.vn/Data/image/2021/09/22/anh-meo-cute-de-thuong-dang-yeu-41.jpg',
-            studentName: element.studentLAName,
-            studentSdt: element.studentLASdt,
-            studentCourse: '13',
-            studentTurtor: element.employeeLAName,
-            studentActive: true,
+            id: element.studentLAId,
+            info: {
+                avatar: "https://thietbigiadinh.org/wp-content/uploads/2022/04/anh-3d-meo-01.jpg",
+                name: element.studentLAName
+            },
+            phoneNumber: element.studentLASdt,
+            mentor: element.employeeLAName,
+            courses: element.studentCourses ? element.studentCourses : [],
+            status: element.isActive == 1 ? "Học Online" : "Học Offline"
         };
     });
 };

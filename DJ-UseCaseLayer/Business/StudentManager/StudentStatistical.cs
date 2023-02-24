@@ -32,7 +32,13 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 studentLa.StudentLAId = x.Id;
                 studentLa.StudentLAName = x.StudentLAName;
                 studentLa.StudentLASdt = x.StudentLASdt;
-                studentLa.StudentCourses = x.studentCourses;
+                List<string> studentCoursesName = new List<string>();
+                foreach (var element in x.studentCourses)
+                {
+                    studentCoursesName.Add(_context.courses.Find(element.CourseLAId).CourseLAName);
+                }
+                studentLa.StudentCourses = studentCoursesName;
+               // studentLa.StudentCourses = x.studentCourses;
                 if (x.StudentStatusId == 1 || x.StudentStatusId == 2)
                 {
                     studentLa.IsActive = DJ_WebDesignCore.Enums.StudentActiveManagerEnums.ActiveStatus.ACTIVE;

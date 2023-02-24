@@ -437,7 +437,7 @@ namespace DJUseCaseLayer.Migrations
                     b.ToTable("courses");
                 });
 
-            modelBuilder.Entity("DJ_WebDesignCore.Entites.Courses.CourseLesson", b =>
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Courses.CourseLACourseLesson", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -448,6 +448,29 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<int?>("CourseLAId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CourseLessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SortNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseLAId");
+
+                    b.HasIndex("CourseLessonId");
+
+                    b.ToTable("courseLACourseLessons");
+                });
+
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Courses.CourseLesson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("CourseLessonCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -457,12 +480,7 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<int?>("CourseLessonStatusId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SortNumber")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseLAId");
 
                     b.HasIndex("CourseLessonStatusId");
 
@@ -1136,17 +1154,26 @@ namespace DJUseCaseLayer.Migrations
                     b.Navigation("CourseStatus");
                 });
 
-            modelBuilder.Entity("DJ_WebDesignCore.Entites.Courses.CourseLesson", b =>
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Courses.CourseLACourseLesson", b =>
                 {
                     b.HasOne("DJ_WebDesignCore.Entites.Courses.CourseLA", "CourseLA")
                         .WithMany()
                         .HasForeignKey("CourseLAId");
 
+                    b.HasOne("DJ_WebDesignCore.Entites.Courses.CourseLesson", "CourseLesson")
+                        .WithMany()
+                        .HasForeignKey("CourseLessonId");
+
+                    b.Navigation("CourseLA");
+
+                    b.Navigation("CourseLesson");
+                });
+
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Courses.CourseLesson", b =>
+                {
                     b.HasOne("DJ_WebDesignCore.Entites.Properties.CourseLessonStatus", "CourseLessonStatus")
                         .WithMany()
                         .HasForeignKey("CourseLessonStatusId");
-
-                    b.Navigation("CourseLA");
 
                     b.Navigation("CourseLessonStatus");
                 });
