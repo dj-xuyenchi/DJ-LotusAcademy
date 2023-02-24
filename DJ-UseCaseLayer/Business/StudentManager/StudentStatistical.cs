@@ -38,12 +38,8 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                     studentCoursesName.Add(_context.courses.Find(element.CourseLAId).CourseLAName);
                 }
                 studentLa.StudentCourses = studentCoursesName;
-               // studentLa.StudentCourses = x.studentCourses;
-                if (x.StudentStatusId == 1)
-                {
-                    studentLa.Status = "";
-                }
-                studentLa.IsActive = DJ_WebDesignCore.Enums.StudentActiveManagerEnums.ActiveStatus.UNACTIVE;
+                // studentLa.StudentCourses = x.studentCourses;
+                studentLa.Status = _context.studentStatuses.Find(x.StudentStatusId).StudentStatusName;
                 var t = _context.studentEmployees.Where(x => x.StudentLAId == x.StudentLAId).ToList();
                 studentLa.EmployeeLAName = _context.studentEmployees.Include(x => x.EmployeeLA).Where(x => x.StudentLAId == x.StudentLAId).OrderByDescending(x => x.SortNumber).FirstOrDefault().EmployeeLA.EmployeeLAName;
                 data.Add(studentLa);
