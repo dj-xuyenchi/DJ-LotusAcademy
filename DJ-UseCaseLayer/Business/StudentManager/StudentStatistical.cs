@@ -1,17 +1,13 @@
 ﻿using DJ_WebDesignCore.Business.StudentManager;
 using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs;
+using DJ_WebDesignCore.Enums.StudentActiveManagerEnums;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DJ_UseCaseLayer.Business.StudentManager
 {
     public class StudentStatistical : BaseDB, IStudentStatistical
     {
-        public StudentLAPagingDTO getListStudentLA(int? page)
+        StudentLAPagingDTO IStudentStatistical.getListStudentLA(int? page)
         {
             StudentLAPagingDTO resultData = new StudentLAPagingDTO();
             if (page == null)
@@ -25,7 +21,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             List<StudentLADTO> data = new List<StudentLADTO>();
             //try
             //{
-            var listPage = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip((int)page - 1).Take(10).OrderByDescending(x=>x.CreateAccountDatetime).ToList();
+            var listPage = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip((int)page - 1).Take(10).OrderByDescending(x => x.CreateAccountDatetime).ToList();
             listPage.ForEach(x =>
             {
                 StudentLADTO studentLa = new StudentLADTO();
@@ -64,11 +60,34 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             //}
         }
 
-        StatisticsStudyTimeDTO IStudentStatistical.getListStatisticsStudyTime()
+        StatisticsStudyTimePagingDTO IStudentStatistical.getListStatisticsStudyTime(int? page)
         {
-            return null;
+            StatisticsStudyTimePagingDTO res = new StatisticsStudyTimePagingDTO();
+            List<StatisticsStudyTimeDTO> data = new List<StatisticsStudyTimeDTO>();
+            var listPages = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip(((int)page - 1) * 10).Take(10).ToList();
+            listPages.ForEach(x =>
+            {
+                StatisticsStudyTimeDTO item = new StatisticsStudyTimeDTO();
+                item.StudentLAId = x.Id;
+                item.StudentLAName = x.StudentLAName;
+                item.StudentCourses = x.studentCourses;
+                if (x.StudentStatusId == 1 || x.StudentStatusId == 2)
+                {
+                    item.IsActive = ActiveStatus.ACTIVE;
+                }
+                else
+                {
+                    item.IsActive = ActiveStatus.UNACTIVE;
+                }
+                item.HolidayTotal = x.HolidayTotal;
+                item.UnactiveTotal = x.UnactiveTotal;
+                item.ReserveTotal = x.ReserveTotal;
+                data.Add(item);
+            });
+            res.Status = 1;
+            res.Data = data;
+            res.Mes = "Lấy dữ liệu thành công!";
+            return res;
         }
-
-
     }
 }

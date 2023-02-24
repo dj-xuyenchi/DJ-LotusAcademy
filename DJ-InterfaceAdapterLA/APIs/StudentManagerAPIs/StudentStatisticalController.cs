@@ -13,11 +13,15 @@ namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
         {
             _studentStatistical = new StudentStatistical();
         }
-        [HttpGet("StudentStatistical/{page}")]
-        public ActionResult<StudentLAPagingDTO> getListStudentByPaging([FromQuery] int page)
+        [HttpGet("getListStudentLA/{page}")]
+        public ActionResult<StudentLAPagingDTO> getListStudentByPaging([FromQuery] int? page)
         {
             return Ok(_studentStatistical.getListStudentLA(page));
         }
-
+        [HttpGet("getListStatisticsStudyTime/{page}")]
+        public ActionResult<StatisticsStudyTimePagingDTO> getListStatisticsStudyTime([FromQuery] int? page)
+        {
+            return Ok(_studentStatistical.getListStatisticsStudyTime(page));
+        }
     }
 }
