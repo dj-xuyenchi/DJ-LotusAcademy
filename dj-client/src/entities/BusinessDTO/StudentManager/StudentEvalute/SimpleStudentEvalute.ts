@@ -32,7 +32,7 @@ export const mapData = (input: any): SimpleStudentEvalute[] => {
             phoneNumber: element.studentLASdt,
             mentor: element.employeeLAName,
             courses: element.studentCourses ? element.studentCourses : [],
-            status: element.isActive == 1 ? "Học Online" : "Học Offline"
+            status: element.status
         };
     });
 };

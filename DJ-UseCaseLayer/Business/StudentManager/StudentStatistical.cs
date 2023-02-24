@@ -1,5 +1,8 @@
 ﻿using DJ_WebDesignCore.Business.StudentManager;
 using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs;
+using DJ_WebDesignCore.Entites.Business;
+using DJ_WebDesignCore.Entites.Student;
+using DJ_WebDesignCore.Enums.StatisticsEnums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,7 +20,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             if (page == null)
             {
                 resultData.Mes = "Không nhận được page!";
-                resultData.Status = 2;
+                resultData.Status = StatisticStatusAPIEnum.PARAMNULL;
                 return resultData;
 
             }
@@ -25,7 +28,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             List<StudentLADTO> data = new List<StudentLADTO>();
             //try
             //{
-            var listPage = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip((int)page - 1).Take(10).OrderByDescending(x=>x.CreateAccountDatetime).ToList();
+            var listPage = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip((int)page - 1).Take(10).OrderByDescending(x => x.CreateAccountDatetime).ToList();
             listPage.ForEach(x =>
             {
                 StudentLADTO studentLa = new StudentLADTO();
@@ -51,7 +54,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             solutionCenterLADTO.TotalStudentON = _context.studentLAs.Where(x => x.StudentStatusId == 2).Count();
             solutionCenterLADTO.TotalStudentReserve = _context.studentLAs.Where(x => x.StudentStatusId == 5).Count();
             resultData.SolutionCenterLADTO = solutionCenterLADTO;
-            resultData.Status = 1;
+            resultData.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
             resultData.Data = data;
             resultData.Mes = "Lấy dữ liệu thành công";
             return resultData;
@@ -62,6 +65,39 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             //    resultData.Mes = "Lấy dữ liệu thất bại!";
             //    return resultData;
             //}
+        }
+
+        public StudentDetailDTO getStudentDetailById(int? id)
+        {
+            StudentDetailDTO result = new StudentDetailDTO();
+            if (id == null)
+            {
+                result.Status = StatisticStatusAPIEnum.PARAMNULL;
+                result.mes = "Không nhận được id";
+                return result;
+            }
+            StudentLA studentLA = _context.studentLAs.Find(id);
+            if (studentLA == null)
+            {
+                result.Status = StatisticStatusAPIEnum.NOTFOUND;
+                result.mes = "Không tồn tại đối tượng";
+                return result;
+            }
+            result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
+            List<EvaluteACourse> evaluteACourses = new List<EvaluteACourse>();
+            int sttCourse = 1;
+            foreach (StudentCourse course in _context.studentCourses.Where(x => x.StudentLAId == id))
+            {
+                EvaluteACourse evaluteACourse = new EvaluteACourse();
+                evaluteACourse.SortNumber = sttCourse;
+                evaluteACourse.CourseName = _context.courses.Find(course.CourseLAId).CourseLAName;
+                evaluteACourse.SignInDateTime = course.OpenCourse.Value.Day + "-" + course.OpenCourse.Value.Month + "-" + course.OpenCourse.Value.Year;
+                evaluteACourse.SupportTime = course.SupportMonth.ToString();
+                evaluteACourse.DoneExpectedDateTime = course.CloseCourse.Value.Day + "-" + course.CloseCourse.Value.Month + "-" + course.CloseCourse.Value.Year;
+            //    StudentLACourseLesson lessonPhase = _context.studentLACourseLessons.Where(x=>x.Course==course.CourseLAId && x.StudentLAId == id).;
+                sttCourse++;
+            }
+            return result;
         }
 
         StatisticsStudyTimeDTO IStudentStatistical.getListStatisticsStudyTime()

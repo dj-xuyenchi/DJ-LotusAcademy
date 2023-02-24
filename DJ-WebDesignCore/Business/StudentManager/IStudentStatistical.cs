@@ -11,5 +11,6 @@ namespace DJ_WebDesignCore.Business.StudentManager
     {
         StudentLAPagingDTO getListStudentLA(int? page);
         StatisticsStudyTimeDTO getListStatisticsStudyTime();
+        StudentDetailDTO getStudentDetailById(int? id);
     }
 }

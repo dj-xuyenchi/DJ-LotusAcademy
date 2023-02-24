@@ -1,9 +1,10 @@
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
 import './StudentDetail.css';
-import zalo from '../../../../../assets/icons/zalo-icon.svg';
-import facebook from '../../../../../assets/icons/facebook-icon.svg';
 import { useState } from 'react';
+import Table, { ColumnsType } from 'antd/es/table';
+import { SimpleStudentEvalute } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
+import { Tag } from 'antd';
+import { Link } from 'react-router-dom';
 function StudentDetail() {
     const [studentDetail, setStudentDetail] = useState({
         avatar: "",
@@ -37,6 +38,52 @@ function StudentDetail() {
             linkStudentTest: "gggdrive/123"
         },]
     })
+    const columnsCourses: ColumnsType<SimpleStudentEvalute> = [
+        {
+            title: 'STT',
+            dataIndex: 'info',
+            key: 'info',
+            width: '10%',
+
+        },
+        {
+            title: 'Tên khóa học',
+            dataIndex: 'courseName',
+            key: 'courseName',
+            width: '15%',
+        },
+        {
+            title: 'Ngày đăng ký',
+            dataIndex: 'openDateTime',
+            key: 'openDateTime',
+            width: '15%',
+        },
+        {
+            title: 'Thời gian hỗ trợ',
+            key: 'mentorTime',
+            dataIndex: 'mentorTime',
+            width: '15%',
+        },
+        {
+            title: 'Dự kiến kết thúc',
+            key: 'closeDateTime',
+            dataIndex: 'closeDateTime',
+            width: '15%',
+        },
+        {
+            title: 'Tiến độ hiện tại',
+            key: 'currentProgress',
+            dataIndex: 'currentProgress',
+            width: '15%',
+        },
+        {
+            title: 'Đánh giá',
+            key: 'evalute',
+            dataIndex: 'evalute',
+            width: '15%',
+        },
+    ];
+
     return (
         <div className="StudentDetail w-100" style={{ padding: '24px 32px' }}>
             <div className="detail-title">
@@ -117,7 +164,9 @@ function StudentDetail() {
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
                     <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
-                    <Table className="table-default" hover>
+                    <Table columns={columnsCourses} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+          
+                    {/* <Table className="table-default" hover>
                         <thead>
                             <tr style={{ backgroundColor: "#ccc" }}>
                                 <th style={{ width: "10%" }}>
@@ -169,47 +218,9 @@ function StudentDetail() {
                             </tr>
                         </tbody>
                     </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ không phép</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "25%" }}>
-                                    <span>Ngày nghỉ</span>
-                                </th>
-                                <th style={{ width: "25%" }}>
-                                    <span>Ca nghỉ</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Xác nhận </span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Người xác nhận</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023</span>
-                                </th>
-                                <th>
-                                    <span>Ca 1-2</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023:14h-30p</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
+                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ không phép</h6> */}
+                    {/* <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+
                     <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ có phép</h6>
                     <Table className="table-default" hover>
                         <thead>
@@ -359,7 +370,7 @@ function StudentDetail() {
                                 return <DetailRow item={item} />
                             })}
                         </tbody>
-                    </Table>
+                    </Table> */}
                 </div>
             </div>
         </div>
