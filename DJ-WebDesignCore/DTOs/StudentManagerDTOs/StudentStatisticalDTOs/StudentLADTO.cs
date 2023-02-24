@@ -17,6 +17,5 @@ namespace DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs
         public string? EmployeeLAName { get;set; }
         public string? Status { get; set; }
 
-
     }
 }
