@@ -54,7 +54,7 @@ namespace DJ_UseCaseLayer.DAO
         {
            //optionsBuilder.UseSqlServer(Setting.connectServerUrl());
             //optionsBuilder.UseSqlServer(Setting.connectServerUrlMacOS());
-            optionsBuilder.UseSqlServer(Setting.urlLC());
+            optionsBuilder.UseSqlServer(Setting.url());
 
         }
 

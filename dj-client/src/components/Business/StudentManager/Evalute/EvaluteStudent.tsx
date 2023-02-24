@@ -45,6 +45,7 @@ function EvaluteStudent() {
             title: 'Họ tên',
             dataIndex: 'info',
             key: 'info',
+             width: '20%',
             render: (element) => <Link to="/hocvien/1">
                 <img src={element.avatar} alt="" />
                 <span>{element.name}</span>
@@ -53,12 +54,13 @@ function EvaluteStudent() {
         {
             title: 'Số điện thoại',
             dataIndex: 'phoneNumber',
-            key: 'phoneNumber',
+            key: 'phoneNumber', width: '20%',
         },
         {
             title: 'Khóa học',
             dataIndex: 'courses',
             key: 'courses',
+            width: '30%',
             render: (_, { courses }) => (
                 <>
                     {courses.map((course) => {
@@ -74,12 +76,14 @@ function EvaluteStudent() {
         {
             title: 'Trợ giảng',
             key: 'mentor',
-            dataIndex: 'mentor',
+            dataIndex: 'mentor', 
+            width: '15%',
         },
         {
             title: 'Trạng thái',
             key: 'status',
-            dataIndex: 'status',
+            dataIndex: 'status', 
+            width: '15%',
         },
     ];
 
@@ -401,7 +405,7 @@ function EvaluteStudent() {
                     <Button variant="outline-secondary">Export</Button>{' '}
                 </div>
             </div>
-            <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={true} pagination={{ position: ["bottomCenter"] }} />
             {/* <Table className="table" hover responsive="sm">
                 <thead>
                         <th id="table-name">

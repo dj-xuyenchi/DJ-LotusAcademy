@@ -21,8 +21,8 @@ export const mapData = (input: any): SimpleStudentEvalute[] => {
         return [];
     }
     return input.map((element: any) => {
-        const courses : string[]= ["java","c#"]
-       
+
+
         return {
             id: element.studentLAId,
             info: {
@@ -31,7 +31,7 @@ export const mapData = (input: any): SimpleStudentEvalute[] => {
             },
             phoneNumber: element.studentLASdt,
             mentor: element.employeeLAName,
-            courses: courses,
+            courses: element.studentCourses ? element.studentCourses : [],
             status: element.isActive == 1 ? "Học Online" : "Học Offline"
         };
     });
