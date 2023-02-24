@@ -8,6 +8,7 @@ namespace DJ_InterfaceAdapterLA.APIs.EmployeeManagerAPIs
 {
     public class EmployeeCRUDController : BaseAPI
     {
+
         private readonly IEmployeeCRUD _employeeCRUD;
         public EmployeeCRUDController()
         {
@@ -28,5 +29,6 @@ namespace DJ_InterfaceAdapterLA.APIs.EmployeeManagerAPIs
         {
             return Ok(_employeeCRUD.updateEmployee(employeeLA));
         }
+
     }
 }
