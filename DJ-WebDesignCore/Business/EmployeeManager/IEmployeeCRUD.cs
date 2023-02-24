@@ -1,10 +1,5 @@
 ﻿using DJ_WebDesignCore.DTOs.EmployeeManagerDTOs.EmployeeCRUDDTOs;
 using DJ_WebDesignCore.Entites.Employee;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DJ_WebDesignCore.Business.EmployeeManager
 {
@@ -12,6 +7,6 @@ namespace DJ_WebDesignCore.Business.EmployeeManager
     {
         EmployeeCreateDTO createEmployee(EmployeeLA newData);
         EmployeeUpdateDTO updateEmployee(EmployeeLA newData);
-        EmployeeDeleteDTO deleteEmployee(EmployeeLA newData);
+        EmployeeDeleteDTO deleteEmployee(int? employeeId);
     }
 }

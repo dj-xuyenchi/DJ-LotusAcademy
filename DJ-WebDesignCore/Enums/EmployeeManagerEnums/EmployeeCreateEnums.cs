@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DJ_WebDesignCore.Enums.EmployeeManagerEnums
+﻿namespace DJ_WebDesignCore.Enums.EmployeeManagerEnums
 {
     public enum EmployeeCreateEnums
     {
-        SUCCESSFULLY=1,
-        USERNAMEDUPLICATED =2,
-        EMAILDUPLICATED =3
+        SUCCESSFULLY = 1,
+        USERNAMEDUPLICATED = 2,
+        EMAILDUPLICATED = 3,
+        NOTFOUND = 4,
+        NULLID = 5,
+        NOT_VALUE = 6,
+        LENGTH_TOO_SHORT = 7
     }
 }
