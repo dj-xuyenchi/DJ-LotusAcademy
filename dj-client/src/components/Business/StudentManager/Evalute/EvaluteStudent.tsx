@@ -405,7 +405,7 @@ function EvaluteStudent() {
                     <Button variant="outline-secondary">Export</Button>{' '}
                 </div>
             </div>
-            <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={true} pagination={{ position: ["bottomCenter"] }} />
+            <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
             {/* <Table className="table" hover responsive="sm">
                 <thead>
                         <th id="table-name">

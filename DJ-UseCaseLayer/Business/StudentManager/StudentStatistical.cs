@@ -25,7 +25,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             List<StudentLADTO> data = new List<StudentLADTO>();
             //try
             //{
-            var listPage = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip((int)page - 1).Take(10).ToList();
+            var listPage = _context.studentLAs.Include(x => x.studentCourses).OrderBy(x => x.CreateAccountDatetime).Skip((int)page - 1).Take(10).OrderByDescending(x=>x.CreateAccountDatetime).ToList();
             listPage.ForEach(x =>
             {
                 StudentLADTO studentLa = new StudentLADTO();
@@ -39,9 +39,9 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 }
                 studentLa.StudentCourses = studentCoursesName;
                // studentLa.StudentCourses = x.studentCourses;
-                if (x.StudentStatusId == 1 || x.StudentStatusId == 2)
+                if (x.StudentStatusId == 1)
                 {
-                    studentLa.IsActive = DJ_WebDesignCore.Enums.StudentActiveManagerEnums.ActiveStatus.ACTIVE;
+                    studentLa.Status = "";
                 }
                 studentLa.IsActive = DJ_WebDesignCore.Enums.StudentActiveManagerEnums.ActiveStatus.UNACTIVE;
                 var t = _context.studentEmployees.Where(x => x.StudentLAId == x.StudentLAId).ToList();
