@@ -1,17 +1,13 @@
-import "./EvaluteStudent.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faUsers,
-    faArrowUp,
-    faSearch,
-} from "@fortawesome/free-solid-svg-icons";
-import Dropdown from "react-bootstrap/Dropdown";
-import Button from "react-bootstrap/Button";
-import { useEffect, useState } from "react";
-import studentStatisticalApi from "../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi";
-import { Table, Space, Tag } from "antd";
-import { coursesEnum } from "../../../../enums/CoursesEnum";
-import { Link } from "react-router-dom";
+import './EvaluteStudent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers, faArrowUp, faSearch } from '@fortawesome/free-solid-svg-icons';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import { useEffect, useState } from 'react';
+import studentStatisticalApi from '../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
+import { Table, Space, Tag } from 'antd';
+import { coursesEnum } from '../../../../enums/CoursesEnum';
+import { Link } from 'react-router-dom';
 function EvaluteStudent() {
     const [evaluteData, setEvaluteData] = useState({
         data: [
@@ -56,10 +52,12 @@ function EvaluteStudent() {
             title: 'Họ tên',
             dataIndex: 'name',
             key: 'name',
-            render: (element: any) => <Link to="/hocvien/1">
-                <img src={element.avatar} alt="" />
-                <span>{element.name}</span>
-            </Link>,
+            render: (element: any) => (
+                <Link to="/hocvien/1">
+                    <img src={element.avatar} alt="" />
+                    <span>{element.name}</span>
+                </Link>
+            ),
         },
         {
             title: 'SDT',
@@ -73,10 +71,10 @@ function EvaluteStudent() {
             render: (tags: any) => (
                 <>
                     {tags.map((tag: any) => {
-                        let color
+                        let color;
                         switch (tag.course) {
                             case coursesEnum.BEJAVA:
-                                color = 'blue'
+                                color = 'blue';
                                 break;
 
                             default:
@@ -95,12 +93,11 @@ function EvaluteStudent() {
             title: 'Trợ giảng',
             key: 'mentor',
             dataIndex: 'mentor',
-
         },
         {
             title: 'Trạng thái',
             key: 'status',
-            dataIndex: 'status'
+            dataIndex: 'status',
         },
     ];
     const data = [
@@ -108,34 +105,34 @@ function EvaluteStudent() {
             key: '1',
             name: {
                 avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
-                name: 'John Brown'
+                name: 'John Brown',
             },
             phone: '+84 968491797',
             courses: ['JAVA'],
-            mentor: "2 mét",
-            status: "Học Online"
+            mentor: '2 mét',
+            status: 'Học Online',
         },
         {
             key: '2',
             name: {
                 avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
-                name: 'John Brown'
+                name: 'John Brown',
             },
             phone: '+84 968491797',
             courses: ['JAVA'],
-            mentor: "2 mét",
-            status: "Học Online"
+            mentor: '2 mét',
+            status: 'Học Online',
         },
         {
             key: '3',
             name: {
                 avatar: 'https://i.pinimg.com/236x/e4/21/92/e42192b0682ede9d80d92260fb5e17cd.jpg',
-                name: 'John Brown'
+                name: 'John Brown',
             },
             phone: '+84 968491797',
             courses: ['JAVA'],
-            mentor: "2 mét",
-            status: "Học Online"
+            mentor: '2 mét',
+            status: 'Học Online',
         },
     ];
     useEffect(() => {

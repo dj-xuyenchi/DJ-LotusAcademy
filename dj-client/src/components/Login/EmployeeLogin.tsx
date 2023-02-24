@@ -1,7 +1,7 @@
 import './EmployeeLogin.css';
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
-const EmployeeLogin = (props:any) => {
+const EmployeeLogin = (props: any) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <div className="login">
@@ -10,7 +10,9 @@ const EmployeeLogin = (props:any) => {
                 <div className="login-main_content">
                     <div className="login-container">
                         <div className="login__title">
-                            <h3 style={{color:"#0d6efd"}} className="mb-1">LTS Edu!</h3>
+                            <h3 style={{ color: '#0d6efd' }} className="mb-1">
+                                LTS Edu!
+                            </h3>
                             <p>Nhập tên đăng nhập và mật khẩu!</p>
                         </div>
                         <div>
@@ -50,13 +52,19 @@ const EmployeeLogin = (props:any) => {
                                     </div>
                                     <a href="/">Quên mật khẩu?</a>
                                 </div>
-                                <button type="submit" className="btn btn-primary w-100 h-11" onClick={()=>{props.checkLogin(true)}}>
-                                    Sign In
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary w-100 h-11"
+                                    onClick={() => {
+                                        props.checkLogin(true);
+                                    }}
+                                >
+                                    Đăng nhập
                                 </button>
                                 <div className="mt-3 text-center">
                                     <span>Bạn không có tài khoản?</span>
                                     <a className="ml-2 text-decoration-none" href="/">
-                                       Đăng ký
+                                        Đăng ký
                                     </a>
                                 </div>
                             </form>
