@@ -1,9 +1,11 @@
 ﻿using DJ_WebDesignCore.Business.StudentManager;
 using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs;
 using DJ_WebDesignCore.Entites.Business;
+using DJ_WebDesignCore.Entites.Courses;
 using DJ_WebDesignCore.Entites.Student;
 using DJ_WebDesignCore.Enums.StatisticsEnums;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,9 +96,20 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 evaluteACourse.SignInDateTime = course.OpenCourse.Value.Day + "-" + course.OpenCourse.Value.Month + "-" + course.OpenCourse.Value.Year;
                 evaluteACourse.SupportTime = course.SupportMonth.ToString();
                 evaluteACourse.DoneExpectedDateTime = course.CloseCourse.Value.Day + "-" + course.CloseCourse.Value.Month + "-" + course.CloseCourse.Value.Year;
-            //    StudentLACourseLesson lessonPhase = _context.studentLACourseLessons.Where(x=>x.Course==course.CourseLAId && x.StudentLAId == id).;
+                var studentCourseLesson = _context.studentLACourseLessons.Where(x => x.StudentLAId == id && x.CourseLAId == course.CourseLAId);
+                if (studentCourseLesson.IsNullOrEmpty())
+                {
+                    sttCourse++;
+                    evaluteACourses.Add(evaluteACourse);
+                    continue;
+                }
+                evaluteACourse.LessonNow = studentCourseLesson.Include(x=>x.CourseLesson).OrderByDescending(x => x.SortNumber).FirstOrDefault().CourseLesson.CourseLessonName;
                 sttCourse++;
+                evaluteACourses.Add(evaluteACourse);
             }
+            result.EvaluteACourses = evaluteACourses;
+            result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
+            result.mes = "Lấy dữ liệu thành công!";
             return result;
         }
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DJUseCaseLayer.Migrations
 {
     [DbContext(typeof(LAContext))]
-    [Migration("20230224105048_updatestudentcou")]
-    partial class updatestudentcou
+    [Migration("20230225063930_createtblreview")]
+    partial class createtblreview
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -281,6 +281,33 @@ namespace DJUseCaseLayer.Migrations
                     b.HasIndex("StudentLAId");
 
                     b.ToTable("studentCourses");
+                });
+
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.StudentCourseEmployeeReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("ConfirmDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReviewDetail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("SortNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StudentCourseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentCourseId");
+
+                    b.ToTable("studentCourseEmployeeReviews");
                 });
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.StudentDatalog", b =>
@@ -1132,6 +1159,15 @@ namespace DJUseCaseLayer.Migrations
                     b.Navigation("CourseLA");
 
                     b.Navigation("StudentLA");
+                });
+
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.StudentCourseEmployeeReview", b =>
+                {
+                    b.HasOne("DJ_WebDesignCore.Entites.Business.StudentCourse", "StudentCourse")
+                        .WithMany()
+                        .HasForeignKey("StudentCourseId");
+
+                    b.Navigation("StudentCourse");
                 });
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.StudentEmployee", b =>

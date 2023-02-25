@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DJUseCaseLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class updatestudentcou : Migration
+    public partial class createtblreview : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -796,6 +796,27 @@ namespace DJUseCaseLayer.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "studentCourseEmployeeReviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentCourseId = table.Column<int>(type: "int", nullable: true),
+                    ConfirmDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ReviewDetail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SortNumber = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_studentCourseEmployeeReviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_studentCourseEmployeeReviews_studentCourses_StudentCourseId",
+                        column: x => x.StudentCourseId,
+                        principalTable: "studentCourses",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_attendance_AttendanceTypeStatusId",
                 table: "attendance",
@@ -937,6 +958,11 @@ namespace DJUseCaseLayer.Migrations
                 column: "StudentLAId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_studentCourseEmployeeReviews_StudentCourseId",
+                table: "studentCourseEmployeeReviews",
+                column: "StudentCourseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_studentCourses_CourseLAId",
                 table: "studentCourses",
                 column: "CourseLAId");
@@ -1066,7 +1092,7 @@ namespace DJUseCaseLayer.Migrations
                 name: "reserves");
 
             migrationBuilder.DropTable(
-                name: "studentCourses");
+                name: "studentCourseEmployeeReviews");
 
             migrationBuilder.DropTable(
                 name: "studentEmployees");
@@ -1084,10 +1110,10 @@ namespace DJUseCaseLayer.Migrations
                 name: "attendanceTypeStatuses");
 
             migrationBuilder.DropTable(
-                name: "courseLessons");
+                name: "studentCourses");
 
             migrationBuilder.DropTable(
-                name: "courses");
+                name: "courseLessons");
 
             migrationBuilder.DropTable(
                 name: "holidays");
@@ -1096,19 +1122,22 @@ namespace DJUseCaseLayer.Migrations
                 name: "interns");
 
             migrationBuilder.DropTable(
+                name: "courses");
+
+            migrationBuilder.DropTable(
                 name: "studentLAs");
 
             migrationBuilder.DropTable(
                 name: "courseLessonStatuses");
 
             migrationBuilder.DropTable(
-                name: "courseStatuses");
-
-            migrationBuilder.DropTable(
                 name: "holidayStatuses");
 
             migrationBuilder.DropTable(
                 name: "internStatuses");
+
+            migrationBuilder.DropTable(
+                name: "courseStatuses");
 
             migrationBuilder.DropTable(
                 name: "StudentDatalog");

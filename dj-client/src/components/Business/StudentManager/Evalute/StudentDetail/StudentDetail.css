@@ -87,6 +87,14 @@
     font-size: 20px;
 }
 
+.StudentDetail .active-table tbody tr td .day-of-last-and-next-month {
+    position: absolute;
+    bottom: 2px;
+    right: 2%;
+    color: rgb(146, 146, 146);
+    font-size: 20px;
+}
+
 .StudentDetail .active-table tbody tr td .active-detail .title {
     display: block;
     width: 95%;
@@ -99,11 +107,16 @@
     font-weight: 400;
     font-size: 14px;
 }
-.StudentDetail #back-solution{
+
+.StudentDetail #back-solution {
     color: #5694f6;
 }
 
-.StudentDetail #back-solution:hover{
+.StudentDetail #back-solution:hover {
     color: #80acf4;
     cursor: pointer;
+}
+
+.StudentDetail #button-group button:hover{
+    color: #eee;
 }

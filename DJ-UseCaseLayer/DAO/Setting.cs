@@ -11,7 +11,7 @@ namespace DJ_UseCaseLayer.DAO
         }
         public static string urlWin()
         {
-            return "Data Source=192.168.1.101;Initial Catalog=djxuyenc_ladatabase;User ID=sa;password=1231234;encrypt=true;trustservercertificate=true;";
+            return "Data Source=192.168.1.101;Initial Catalog=djxuyenc_ladatabase;User ID=sa;password=mamama99;encrypt=true;trustservercertificate=true;MultipleActiveResultSets=true";
         }
         public static string urlLC()
         {

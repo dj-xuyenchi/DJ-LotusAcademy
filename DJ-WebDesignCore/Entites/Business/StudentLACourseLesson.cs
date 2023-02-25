@@ -25,5 +25,6 @@ namespace DJ_WebDesignCore.Entites.Business
         public string? EmployeeEvaluate { get; set; }   
         // Link bài kiểm tra học viên làm
         public string? LinkStudentTest { get; set; }
+        public int? SortNumber { get; set; }
     }
 }
