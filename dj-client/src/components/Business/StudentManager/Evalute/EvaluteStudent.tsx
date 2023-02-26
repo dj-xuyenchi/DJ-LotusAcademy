@@ -44,7 +44,7 @@ function EvaluteStudent() {
             title: 'Họ tên',
             dataIndex: 'info',
             key: 'info',
-             width: '20%',
+             width: '25%',
             render: (element) => <Link to="/hocvien/1">
                 <img src={element.avatar} alt="" />
                 <span>{element.name}</span>
@@ -59,7 +59,7 @@ function EvaluteStudent() {
             title: 'Khóa học',
             dataIndex: 'courses',
             key: 'courses',
-            width: '30%',
+            width: '25%',
             render: (_, { courses }) => (
                 <>
                     {courses.map((course) => {
@@ -76,7 +76,7 @@ function EvaluteStudent() {
             title: 'Trợ giảng',
             key: 'mentor',
             dataIndex: 'mentor', 
-            width: '15%',
+            width: '20%',
         },
         {
             title: 'Trạng thái',

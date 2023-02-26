@@ -1,11 +1,12 @@
+import { StudentCourseSolution } from './../BusinessDTO/StudentManager/StudentEvalute/StudentCourseSolution';
 import { ColumnsType } from "antd/es/table";
 import { SimpleStudentEvalute } from "../BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
 
-export const columnsCourses: ColumnsType<SimpleStudentEvalute> = [
+export const columnsCourses: ColumnsType<StudentCourseSolution> = [
     {
         title: 'STT',
-        dataIndex: 'info',
-        key: 'info',
+        dataIndex: 'sortNumber',
+        key: 'sortNumber',
         width: '10%',
 
     },
@@ -17,26 +18,26 @@ export const columnsCourses: ColumnsType<SimpleStudentEvalute> = [
     },
     {
         title: 'Ngày đăng ký',
-        dataIndex: 'openDateTime',
-        key: 'openDateTime',
+        dataIndex: 'signInDateTime',
+        key: 'signInDateTime',
         width: '15%',
     },
     {
         title: 'Thời gian hỗ trợ',
-        key: 'mentorTime',
-        dataIndex: 'mentorTime',
+        key: 'supportTime',
+        dataIndex: 'supportTime',
         width: '15%',
     },
     {
         title: 'Dự kiến kết thúc',
-        key: 'closeDateTime',
-        dataIndex: 'closeDateTime',
+        key: 'doneExpectedDateTime',
+        dataIndex: 'doneExpectedDateTime',
         width: '15%',
     },
     {
         title: 'Tiến độ hiện tại',
-        key: 'currentProgress',
-        dataIndex: 'currentProgress',
+        key: 'lessonNow',
+        dataIndex: 'lessonNow',
         width: '15%',
     },
     {
@@ -46,7 +47,7 @@ export const columnsCourses: ColumnsType<SimpleStudentEvalute> = [
         width: '15%',
     },
 ];
-export const columnsUnactiveReason: ColumnsType<SimpleStudentEvalute> = [
+export const columnsActiveSolution: ColumnsType<SimpleStudentEvalute> = [
     {
         title: 'STT',
         dataIndex: 'stt',
@@ -55,28 +56,34 @@ export const columnsUnactiveReason: ColumnsType<SimpleStudentEvalute> = [
 
     },
     {
-        title: 'Ngày nghỉ',
+        title: 'Ngày tạo',
         dataIndex: 'yasumiDate',
         key: 'yasumiDate',
         width: '15%',
     },
     {
-        title: 'Ca nghỉ',
+        title: 'Ca học',
         dataIndex: 'slot',
         key: 'slot',
-        width: '10%',
+        width: '15%',
+    },
+    {
+        title: 'Trạng thái',
+        key: 'reason',
+        dataIndex: 'reason',
+        width: '15%',
     },
     {
         title: 'Lý do',
         key: 'reason',
         dataIndex: 'reason',
-        width: '30%',
+        width: '15%',
     },
     {
         title: 'Xác nhận',
         key: 'confirmDateTime',
         dataIndex: 'confirmDateTime',
-        width: '20%',
+        width: '15%',
     },
     {
         title: 'Người xác nhận',

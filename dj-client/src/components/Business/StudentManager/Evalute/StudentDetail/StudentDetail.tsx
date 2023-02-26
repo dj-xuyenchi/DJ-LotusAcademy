@@ -5,48 +5,54 @@ import Table, { ColumnsType } from 'antd/es/table';
 import { SimpleStudentEvalute } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
-import { columnsCourses, columnsUnactiveReason } from '../../../../../entities/table/TableColumn';
+import { columnsActiveSolution, columnsCourses} from '../../../../../entities/table/TableColumn';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import studentStatisticalApi from '../../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
+import { mapData } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/StudentCourseSolution';
 function StudentDetail() {
     const [tableView, setTableView] = useState(3)
-
-
     function handleSetTableView(opt: number) {
         setTableView(opt)
     }
-    const [studentDetail, setStudentDetail] = useState({
-        avatar: "",
-        name: "Thái Lan Hương",
-        email: "huongkute@gmail.com",
-        phone: "+84 968491797",
-        location: "Thái Thụy - Thái Bình",
-        birthday: "09-02-1999",
-        gender: "Nữ",
-        job: "Sinh viên cấp 2",
-        active: "Đang học",
-        zalo: "https://zalo.me/0968491797",
-        facebook: "https://www.facebook.com/xuyenchi0902hihihi/",
-        scoreBoard: [{
-            stt: 1,
-            lesson: "Java Method",
-            score: 10,
-            openTime: "02-01-2023",
-            closeTime: "12-01-2023",
-            employeeCheck: "Sếp Bình",
-            evaluate: "Đạt",
-            linkStudentTest: "gggdrive/123"
-        }, {
-            stt: 2,
-            lesson: "C# Method",
-            score: 10,
-            openTime: "02-01-2023",
-            closeTime: "12-01-2023",
-            employeeCheck: "Sếp Bình",
-            evaluate: "Đạt",
-            linkStudentTest: "gggdrive/123"
-        },]
-    })
-
+    const [studentDetail, setStudentDetail] = useState(
+        {
+            status: 1,
+            infoAndContact: {
+                studentLAId: 1,
+                studentLAName: "Ngọc Bảo Châu",
+                studentLASdt: "098765523",
+                studentCourses: null,
+                employeeLAId: null,
+                email: null,
+                addressDetail: null,
+                birthDay: "1-12-2003",
+                gender: "Nam",
+                job: null,
+                zaloUrl: "0968491707",
+                facebook: "fb/xuyenchi",
+                employeeLAName: null,
+                status: null
+            },
+            evaluteACourses: [
+                {
+                    sortNumber: 1,
+                    courseName: "Full Stack Java",
+                    signInDateTime: "1-1-2023",
+                    supportTime: "4",
+                    doneExpectedDateTime: "1-5-2023",
+                    lessonNow: "C Basic",
+                    evalute: "Yếu OOP"
+                }
+            ],
+            mes: "Lấy dữ liệu thành công!"
+        })
+    useEffect(() => {
+        const getData = async () => {
+            const data = await studentStatisticalApi.getStudentDetailById(1)
+            setStudentDetail(data)
+        }
+        getData()
+    }, [])
     return (
         <div className="StudentDetail w-100" style={{ padding: '24px 32px' }}>
             <div className="detail-title">
@@ -62,46 +68,47 @@ function StudentDetail() {
                         />
                     </div>
                     <div className="name" style={{ alignItems: 'center', margin: '0 auto' }}>
-                        <h4 style={{ marginTop: '20px', fontWeight: 'bold' }}>{studentDetail.name}</h4>
+                        <h4 style={{ marginTop: '20px', fontWeight: 'bold' }}>{studentDetail.infoAndContact.studentLAName}</h4>
+                        
                     </div>
-                    <div className="info" style={{ marginTop: '32px', fontSize: '14px'}}>
+                    <div className="info" style={{ marginTop: '32px', fontSize: '14px' }}>
                         <div>
                             <span>Email</span>
-                            <p>{studentDetail.email}</p>
+                            <p>{studentDetail.infoAndContact.email}</p>
                         </div>
                         <div>
                             <span>Số điện thoại</span>
-                            <p>{studentDetail.phone}</p>
+                            <p>{studentDetail.infoAndContact.studentLASdt}</p>
                         </div>
                         <div>
                             <span>Địa chỉ</span>
-                            <p>{studentDetail.location}</p>
+                            <p>{studentDetail.infoAndContact.addressDetail}</p>
                         </div>
                         <div>
                             <span>Ngày sinh</span>
-                            <p>{studentDetail.birthday}</p>
+                            <p>{studentDetail.infoAndContact.birthDay}</p>
                         </div>
                         <div>
                             <span>Giới tính</span>
-                            <p>{studentDetail.gender}</p>
+                            <p>{studentDetail.infoAndContact.gender}</p>
                         </div>
                         <div>
                             <span>Công việc</span>
-                            <p>{studentDetail.job}</p>
+                            <p>{studentDetail.infoAndContact.job}</p>
                         </div>
                         <div>
                             <span>Trạng thái</span>
-                            <p>{studentDetail.active}</p>
+                            <p>{studentDetail.infoAndContact.status}</p>
                         </div>
                         <div className="icons-social">
                             <span>Mạng xã hội</span>
                             <div style={{ display: 'flex' }}>
-                                <a target="_blank" href={studentDetail.zalo}>
+                                <a target="_blank" href={studentDetail.infoAndContact.zaloUrl}>
                                     <div className="icon-cirle">
                                         <img src={require('../../../../../assets/icons/zalo-icon-filled-256.png')} alt="" />
                                     </div>
                                 </a>
-                                <a target="_blank" href={studentDetail.facebook}>
+                                <a target="_blank" href={studentDetail.infoAndContact.facebook}>
                                     <div className="icon-cirle">
                                         <img src={require('../../../../../assets/icons/Facebook-200x200.jpg')} alt="" />
                                     </div>
@@ -126,7 +133,7 @@ function StudentDetail() {
                     </div>
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
-                    {tableView === 1 ? <TableViewSolution handleSetTableView={handleSetTableView} /> : ""
+                    {tableView === 1 ? <TableViewSolution handleSetTableView={handleSetTableView} solutionEvalute={studentDetail.evaluteACourses}/> : ""
                     }
                     {tableView === 3 ? <TableViewActiveChart handleSetTableView={handleSetTableView} /> : ""
                     }
@@ -135,15 +142,16 @@ function StudentDetail() {
         </div>
     );
 }
-function TableViewSolution({ handleSetTableView }: any) {
+function TableViewSolution({ handleSetTableView ,solutionEvalute}: any) {
+
     return (
         <>
             <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
-            <Table columns={columnsCourses} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <Table columns={columnsCourses} dataSource={mapData(solutionEvalute)}  bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
             <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Nghỉ học - <span id='active-chart' onClick={() => {
                 handleSetTableView(3)
             }}>Xem biểu đồ hoạt động</span></h6>
-            <Table columns={columnsUnactiveReason} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <Table columns={columnsActiveSolution} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
         </>
     )
 }

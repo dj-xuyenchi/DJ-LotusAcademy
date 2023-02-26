@@ -1,19 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace DJUseCaseLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class ud : Migration
+    public partial class crea1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "SortNumber",
-                table: "studentLACourseLessons",
-                type: "int",
+            migrationBuilder.AddColumn<DateTime>(
+                name: "CreateDateTime",
+                table: "attendance",
+                type: "datetime2",
                 nullable: true);
         }
 
@@ -21,8 +22,8 @@ namespace DJUseCaseLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "SortNumber",
-                table: "studentLACourseLessons");
+                name: "CreateDateTime",
+                table: "attendance");
         }
     }
 }

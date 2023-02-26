@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DJUseCaseLayer.Migrations
 {
     [DbContext(typeof(LAContext))]
-    [Migration("20230225063930_createtblreview")]
-    partial class createtblreview
+    [Migration("20230226155750_crea1")]
+    partial class crea1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,9 @@ namespace DJUseCaseLayer.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("ComfirmDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CreateDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("EmployeeComfirmId")
@@ -213,6 +216,25 @@ namespace DJUseCaseLayer.Migrations
                     b.ToTable("internTasks");
                 });
 
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.KnowByWhat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("KnowByWhatCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KnowByWhatName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("knowByWhats");
+                });
+
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.Reserve", b =>
                 {
                     b.Property<int>("Id")
@@ -326,7 +348,7 @@ namespace DJUseCaseLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("StudentDatalog");
+                    b.ToTable("studentDatalogs");
                 });
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.StudentEmployee", b =>
@@ -392,6 +414,9 @@ namespace DJUseCaseLayer.Migrations
 
                     b.Property<double?>("Score")
                         .HasColumnType("float");
+
+                    b.Property<int?>("SortNumber")
+                        .HasColumnType("int");
 
                     b.Property<int?>("StudentLAId")
                         .HasColumnType("int");
@@ -951,11 +976,17 @@ namespace DJUseCaseLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AddressDetail")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CreateAccountDatetime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DistrictCode")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FacebookUrl")
                         .HasColumnType("nvarchar(max)");
@@ -968,6 +999,9 @@ namespace DJUseCaseLayer.Migrations
 
                     b.Property<string>("InsightName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("KnowByWhatId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("LateMinuteTotal")
                         .HasColumnType("int");
@@ -1028,6 +1062,8 @@ namespace DJUseCaseLayer.Migrations
                     b.HasIndex("DistrictCode");
 
                     b.HasIndex("GenderId");
+
+                    b.HasIndex("KnowByWhatId");
 
                     b.HasIndex("ProvinceCode");
 
@@ -1369,6 +1405,10 @@ namespace DJUseCaseLayer.Migrations
                         .WithMany()
                         .HasForeignKey("GenderId");
 
+                    b.HasOne("DJ_WebDesignCore.Entites.Business.KnowByWhat", "KnowByWhat")
+                        .WithMany()
+                        .HasForeignKey("KnowByWhatId");
+
                     b.HasOne("DJ_WebDesignCore.Entites.Properties.Address.Province", "Province")
                         .WithMany()
                         .HasForeignKey("ProvinceCode");
@@ -1396,6 +1436,8 @@ namespace DJUseCaseLayer.Migrations
                     b.Navigation("District");
 
                     b.Navigation("Gender");
+
+                    b.Navigation("KnowByWhat");
 
                     b.Navigation("Province");
 

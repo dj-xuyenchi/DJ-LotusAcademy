@@ -1,4 +1,5 @@
-﻿using DJ_WebDesignCore.Enums.StatisticsEnums;
+﻿using DJ_WebDesignCore.Entites.Employee;
+using DJ_WebDesignCore.Enums.StatisticsEnums;
 
 namespace DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs
 {

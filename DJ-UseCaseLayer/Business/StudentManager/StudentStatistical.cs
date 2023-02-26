@@ -19,12 +19,12 @@ namespace DJ_UseCaseLayer.Business.StudentManager
         public StudentLAPagingDTO getListStudentLA(int? page)
         {
             StudentLAPagingDTO resultData = new StudentLAPagingDTO();
+         
             if (page == null)
             {
                 resultData.Mes = "Không nhận được page!";
                 resultData.Status = StatisticStatusAPIEnum.PARAMNULL;
                 return resultData;
-
             }
             SolutionCenterLADTO solutionCenterLADTO = new SolutionCenterLADTO();
             List<StudentLADTO> data = new List<StudentLADTO>();
@@ -58,7 +58,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             resultData.SolutionCenterLADTO = solutionCenterLADTO;
             resultData.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
             resultData.Data = data;
-            resultData.Mes = "Lấy dữ liệu thành công";
+            resultData.Mes = "Lấy dữ liệu thành công"; 
             return resultData;
             //}
             //catch (Exception e)
@@ -85,12 +85,34 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 result.mes = "Không tồn tại đối tượng";
                 return result;
             }
+            StudentLADTO studentLADTO = new StudentLADTO();
+            studentLADTO.StudentLASdt = studentLA.StudentLASdt;
+            studentLADTO.StudentLAName = studentLA.StudentLAName;
+            studentLADTO.StudentLAId = studentLA.Id;
+            studentLADTO.AddressDetail = studentLA.AddressDetail;
+            studentLADTO.BirthDay = studentLA.StudentLABirthDay.Value.Day + "-" + studentLA.StudentLABirthDay.Value.Month + "-" + studentLA.StudentLABirthDay.Value.Year;
+            studentLADTO.ZaloUrl = studentLA.ZaloUrl;
+            studentLADTO.Facebook = studentLA.FacebookUrl;
+            studentLADTO.Job = _context.studentDatalogs.Find(studentLA.StudentDatalogId).StudentDatalogName;
+            studentLADTO.Gender=_context.genders.Find(studentLA.GenderId).GenderName;
+            studentLADTO.Email = studentLA.Email;
+            studentLADTO.Status = _context.studentStatuses.Find(studentLA.StudentStatusId).StudentStatusName;
             result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
+            result.InfoAndContact = studentLADTO;
             List<EvaluteACourse> evaluteACourses = new List<EvaluteACourse>();
             int sttCourse = 1;
             foreach (StudentCourse course in _context.studentCourses.Where(x => x.StudentLAId == id))
             {
                 EvaluteACourse evaluteACourse = new EvaluteACourse();
+                var employeeReview = _context.studentCourseEmployeeReviews.Where(x => x.StudentCourseId == course.Id);
+                if (employeeReview.IsNullOrEmpty())
+                {
+                    evaluteACourse.Evalute = "Chưa có đánh giá";
+                }
+                else
+                {
+                    evaluteACourse.Evalute = employeeReview.OrderByDescending(x => x.SortNumber).FirstOrDefault().ReviewDetail;
+                }
                 evaluteACourse.SortNumber = sttCourse;
                 evaluteACourse.CourseName = _context.courses.Find(course.CourseLAId).CourseLAName;
                 evaluteACourse.SignInDateTime = course.OpenCourse.Value.Day + "-" + course.OpenCourse.Value.Month + "-" + course.OpenCourse.Value.Year;
@@ -99,13 +121,21 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 var studentCourseLesson = _context.studentLACourseLessons.Where(x => x.StudentLAId == id && x.CourseLAId == course.CourseLAId);
                 if (studentCourseLesson.IsNullOrEmpty())
                 {
+                    evaluteACourse.LessonNow = "Chưa bắt đầu học";
                     sttCourse++;
                     evaluteACourses.Add(evaluteACourse);
-                    continue;
                 }
+                else
+                {
                 evaluteACourse.LessonNow = studentCourseLesson.Include(x=>x.CourseLesson).OrderByDescending(x => x.SortNumber).FirstOrDefault().CourseLesson.CourseLessonName;
                 sttCourse++;
                 evaluteACourses.Add(evaluteACourse);
+                }
+            }
+            foreach(Attendance attendance in _context.attendance.Where(x => x.StudentLAId == id).OrderByDescending(x => x.CreateDateTime))
+            {
+                StudentActiveSolutionDTO activeSolutionDTO = new StudentActiveSolutionDTO();
+                activeSolutionDTO.Slot
             }
             result.EvaluteACourses = evaluteACourses;
             result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;

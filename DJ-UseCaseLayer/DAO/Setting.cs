@@ -15,7 +15,7 @@ namespace DJ_UseCaseLayer.DAO
         }
         public static string urlLC()
         {
-            return "Data Source=localhost;Initial Catalog=djxuyenc_ladatabase;User ID=sa;password=1231234;encrypt=true;trustservercertificate=true;";
+            return "Data Source=localhost;Initial Catalog=djxuyenc_ladatabase;User ID=sa;password=1231234;encrypt=true;trustservercertificate=true;MultipleActiveResultSets=true";
         }
     }
 }

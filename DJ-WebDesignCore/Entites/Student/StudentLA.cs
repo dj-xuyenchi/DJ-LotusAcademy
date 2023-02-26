@@ -13,6 +13,7 @@ namespace DJ_WebDesignCore.Entites.Student
         public string? StudentLAPassword { get; set; }
         public string? StudentLASdt { get; set; }
         public byte[]? StudentLAAvatar { get; set; }
+        public string? Email { get; set; }
         public string? ZaloUrl { get; set; }
         public string? FacebookUrl { get; set; }
         public int? StudentDatalogId { get; set; }
@@ -29,6 +30,7 @@ namespace DJ_WebDesignCore.Entites.Student
         public string? ProvinceCode { get; set; }
         [ForeignKey("ProvinceCode")]
         public Province? Province { get; set; }
+        public string? AddressDetail { get; set; }
         public DateTime? StudentLABirthDay { get; set; }
         public int? SaleId { get; set; }
         public EmployeeLA? Sale { get; set; }
@@ -43,6 +45,8 @@ namespace DJ_WebDesignCore.Entites.Student
         public float? UnauthorizedAbsencesTotal { get; set; }
         public int? LateMinuteTotal { get; set; }
         public int? UnactiveTotal { get; set; }
+        public int? KnowByWhatId { get; set; }
+        public KnowByWhat? KnowByWhat { get; set; }
         public IEnumerable<StudentCourse> studentCourses { get; set; }
     }
 }

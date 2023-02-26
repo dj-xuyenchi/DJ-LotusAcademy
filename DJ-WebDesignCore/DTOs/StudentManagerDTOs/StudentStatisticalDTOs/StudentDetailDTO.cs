@@ -12,6 +12,7 @@ namespace DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs
         public StatisticStatusAPIEnum Status { get; set; }
         public StudentLADTO? InfoAndContact { get; set; }
         public List<EvaluteACourse>? EvaluteACourses { get; set; }
+        public List<StudentActiveSolutionDTO>? StudentActiveSolutions { get; set; }
         public string? mes { get; set; }
     }
 }
