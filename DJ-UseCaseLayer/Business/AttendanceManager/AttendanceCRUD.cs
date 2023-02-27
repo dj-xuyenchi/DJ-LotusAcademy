@@ -156,6 +156,21 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     _context.SaveChanges();
                 }
 
+                if (newData.AttendanceSlotId != null)
+                {
+                    AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(newData.AttendanceSlotId);
+                    if (attendanceSlot == null)
+                    {
+                        res.Status = AttendanceEnum.FAILED;
+                        res.ShortDetail = $"Không tồn tại attendance slot có id là {newData.AttendanceSlotId}";
+                        return res;
+                    }
+
+                    attendance.AttendanceSlotId = newData.AttendanceSlotId;
+                    _context.Update(attendance);
+                    _context.SaveChanges();
+                }
+
                 UpdateStudentLA(attendance);
                 transaction.Commit();
 
@@ -216,21 +231,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     return res;
                 }
 
-                if (newData.AttendanceTypeStatusId == null)
-                {
-                    res.Status = AttendanceEnum.NULLID;
-                    res.ShortDetail = "Không tìm thấy attendance type status id";
-                    return res;
-                }
-                AttendanceTypeStatus attendanceTypeStatus = _context.attendanceTypeStatuses.Find(newData.AttendanceTypeStatusId);
-                if (attendanceTypeStatus == null)
-                {
-                    res.Status = AttendanceEnum.FAILED;
-                    res.ShortDetail = $"Không tồn tại attendance type status có id là ${newData.AttendanceTypeStatusId}";
-                    return res;
-                }
-
-                if (attendanceTypeStatus.Id == 8)
+                if (newData.AttendanceTypeStatusId == 8)
                 {
                     if (newData.UnactiveReason == null)
                     {
@@ -246,7 +247,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     res.ShortDetail = "Không nhận được attendance slot id";
                     return res;
                 }
-                AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(newData.AttendanceSlotId);
+                AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(newData.AttendanceSlotId);
                 if (attendanceSlot == null)
                 {
                     res.Status = AttendanceEnum.FAILED;

@@ -35,7 +35,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                 AttendanceProgressStatisticalGetter item = new AttendanceProgressStatisticalGetter();
                 item.CreateDateTime = attendance.CreateDateTime;
                 item.SlotId = attendance.AttendanceSlotId;
-                AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(attendance.AttendanceSlotId);
+                AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(attendance.AttendanceSlotId);
                 item.SlotName = attendanceSlot.AttendanceSlotName;
                 if (attendance.IsLate == null || attendance.IsLate == false)
                 {
