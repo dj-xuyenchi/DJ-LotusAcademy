@@ -1,5 +1,4 @@
-﻿using DJ_WebDesignCore.Entites;
-using DJ_WebDesignCore.Entites.Business;
+﻿using DJ_WebDesignCore.Entites.Business;
 using DJ_WebDesignCore.Entites.Courses;
 using DJ_WebDesignCore.Entites.Employee;
 using DJ_WebDesignCore.Entites.Properties;
@@ -9,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DJ_UseCaseLayer.DAO
 {
-    public class LAContext :DbContext
+    public class LAContext : DbContext
     {
 
         // Employee
@@ -33,7 +32,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<HolidayStatus> holidayStatuses { get; set; }
         // Student
         public DbSet<StudentLA> studentLAs { get; set; }
-    
+
         // Course
         public DbSet<CourseLA> courses { get; set; }
         public DbSet<CourseLesson> courseLessons { get; set; }
@@ -42,6 +41,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<Holiday> holidays { get; set; }
         public DbSet<Reserve> reserves { get; set; }
         public DbSet<Attendance> attendance { get; set; }
+        public DbSet<AttendanceSlot> attendanceSlots { get; set; }
         public DbSet<StudentCourse> studentCourses { get; set; }
         public DbSet<StudentLACourseLesson> studentLACourseLessons { get; set; }
         public DbSet<Intern> interns { get; set; }
@@ -52,7 +52,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<EmployeeLAHoliday> employeeLAHolidays { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           //optionsBuilder.UseSqlServer(Setting.connectServerUrl());
+            //optionsBuilder.UseSqlServer(Setting.connectServerUrl());
             //optionsBuilder.UseSqlServer(Setting.connectServerUrlMacOS());
             optionsBuilder.UseSqlServer(Setting.urlWin());
 

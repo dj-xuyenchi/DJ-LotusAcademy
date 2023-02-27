@@ -240,6 +240,20 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     }
                 }
 
+                if (newData.AttendanceSlotId == null)
+                {
+                    res.Status = AttendanceEnum.NULLID;
+                    res.ShortDetail = "Không nhận được attendance slot id";
+                    return res;
+                }
+                AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(newData.AttendanceSlotId);
+                if (attendanceSlot == null)
+                {
+                    res.Status = AttendanceEnum.FAILED;
+                    res.ShortDetail = $"Không tồn tại attendance slot có id {newData.AttendanceSlotId}";
+                    return res;
+                }
+
                 newData.CreateDateTime = resquestTime;
 
                 _context.attendance.Add(newData);

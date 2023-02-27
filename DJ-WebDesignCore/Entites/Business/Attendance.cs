@@ -18,6 +18,8 @@ namespace DJ_WebDesignCore.Entites.Business
         public bool? IsLate { get; set; }
         public int? LateMinuteTotal { get; set; }
         public DateTime? CreateDateTime { get; set; }
+        public int? AttendanceSlotId { get; set; }
+        public AttendanceSlot? AttendanceSlot { get; set; }
     }
 }
 
