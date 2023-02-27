@@ -141,7 +141,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     //    return res;
                     //}
                     attendance.IsLate = true;
-                    TimeSpan t = requestTime.Value - attendance.ComfirmDateTime.Value;
+                    TimeSpan t = requestTime.Value - attendance.CreateDateTime.Value;
                     attendance.LateMinuteTotal = Convert.ToInt32(t.TotalMinutes);
                     attendance.ActiveRealTime = requestTime;
                     _context.Update(attendance);
@@ -239,6 +239,8 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                         return res;
                     }
                 }
+
+                newData.CreateDateTime = resquestTime;
 
                 _context.attendance.Add(newData);
                 _context.SaveChanges();

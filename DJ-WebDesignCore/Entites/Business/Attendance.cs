@@ -17,7 +17,7 @@ namespace DJ_WebDesignCore.Entites.Business
         public DateTime? ActiveRealTime { get; set; }
         public bool? IsLate { get; set; }
         public int? LateMinuteTotal { get; set; }
-
+        public DateTime? CreateDateTime { get; set; }
     }
 }
 
