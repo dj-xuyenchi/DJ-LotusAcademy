@@ -13,6 +13,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
     {
         private void UpdateStudentLA(Attendance attendance)
         {
+            // hello world
             StudentLA studentLA = _context.studentLAs.Find(attendance.StudentLAId);
             List<Attendance> lstLeavePermission = _context.attendance.Where(x => x.StudentLAId == attendance.StudentLAId && x.AttendanceTypeStatusId == 8).ToList();
             List<Attendance> lstUnauthorizedAbsences = _context.attendance.Where(x => x.StudentLAId == attendance.StudentLAId && x.AttendanceTypeStatusId == 9).ToList();
