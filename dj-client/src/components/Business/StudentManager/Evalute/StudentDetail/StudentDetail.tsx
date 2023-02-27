@@ -148,7 +148,7 @@ function TableViewSolution({ handleSetTableView ,solutionEvalute}: any) {
         <>
             <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
             <Table columns={columnsCourses} dataSource={mapData(solutionEvalute)}  bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
-            <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Nghỉ học - <span id='active-chart' onClick={() => {
+            <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Hoạt động - <span id='active-chart' onClick={() => {
                 handleSetTableView(3)
             }}>Xem biểu đồ hoạt động</span></h6>
             <Table columns={columnsActiveSolution} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />

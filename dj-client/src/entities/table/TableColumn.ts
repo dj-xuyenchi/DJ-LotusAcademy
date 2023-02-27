@@ -50,15 +50,15 @@ export const columnsCourses: ColumnsType<StudentCourseSolution> = [
 export const columnsActiveSolution: ColumnsType<SimpleStudentEvalute> = [
     {
         title: 'STT',
-        dataIndex: 'stt',
-        key: 'stt',
+        dataIndex: 'sortNumber',
+        key: 'sortNumber',
         width: '10%',
 
     },
     {
         title: 'Ngày tạo',
-        dataIndex: 'yasumiDate',
-        key: 'yasumiDate',
+        dataIndex: 'createDateTime',
+        key: 'createDateTime',
         width: '15%',
     },
     {
@@ -69,8 +69,8 @@ export const columnsActiveSolution: ColumnsType<SimpleStudentEvalute> = [
     },
     {
         title: 'Trạng thái',
-        key: 'reason',
-        dataIndex: 'reason',
+        key: 'status',
+        dataIndex: 'status',
         width: '15%',
     },
     {
