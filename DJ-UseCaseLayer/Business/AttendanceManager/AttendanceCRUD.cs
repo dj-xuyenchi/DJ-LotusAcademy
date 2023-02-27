@@ -90,7 +90,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                         res.ShortDetail = $"Không tồn tại attendace type status có id là {newData.AttendanceTypeStatusId}";
                         return res;
                     }
-                    if (attendanceTypeStatus.Id == 8 || attendanceTypeStatus.Id == 9)
+                    if (attendanceTypeStatus.Id == 8)
                     {
                         if (newData.UnactiveReason == null)
                         {
@@ -229,7 +229,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     return res;
                 }
 
-                if (attendanceTypeStatus.Id == 8 || attendanceTypeStatus.Id == 9)
+                if (attendanceTypeStatus.Id == 8)
                 {
                     if (newData.UnactiveReason == null)
                     {
