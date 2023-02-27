@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DJUseCaseLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class crea : Migration
+    public partial class ss : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,6 +43,20 @@ namespace DJUseCaseLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_administrative_units", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "attendanceSlots",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AttendanceSlotCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AttendanceSlotName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_attendanceSlots", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -583,25 +597,32 @@ namespace DJUseCaseLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentLAId = table.Column<int>(type: "int", nullable: true),
+                    CreateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ComfirmDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UnactiveReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmployeeComfirmId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeConfirmId = table.Column<int>(type: "int", nullable: true),
                     AttendanceTypeStatusId = table.Column<int>(type: "int", nullable: true),
                     ActiveRealTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsLate = table.Column<bool>(type: "bit", nullable: true),
-                    LateMinuteTotal = table.Column<int>(type: "int", nullable: true)
+                    LateMinuteTotal = table.Column<int>(type: "int", nullable: true),
+                    AttendanceSlotId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_attendance", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_attendance_attendanceSlots_AttendanceSlotId",
+                        column: x => x.AttendanceSlotId,
+                        principalTable: "attendanceSlots",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_attendance_attendanceTypeStatuses_AttendanceTypeStatusId",
                         column: x => x.AttendanceTypeStatusId,
                         principalTable: "attendanceTypeStatuses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_attendance_employeeLA_EmployeeComfirmId",
-                        column: x => x.EmployeeComfirmId,
+                        name: "FK_attendance_employeeLA_EmployeeConfirmId",
+                        column: x => x.EmployeeConfirmId,
                         principalTable: "employeeLA",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -841,14 +862,19 @@ namespace DJUseCaseLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_attendance_AttendanceSlotId",
+                table: "attendance",
+                column: "AttendanceSlotId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_attendance_AttendanceTypeStatusId",
                 table: "attendance",
                 column: "AttendanceTypeStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_attendance_EmployeeComfirmId",
+                name: "IX_attendance_EmployeeConfirmId",
                 table: "attendance",
-                column: "EmployeeComfirmId");
+                column: "EmployeeConfirmId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_attendance_StudentLAId",
@@ -1133,6 +1159,9 @@ namespace DJUseCaseLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "studentLAInterns");
+
+            migrationBuilder.DropTable(
+                name: "attendanceSlots");
 
             migrationBuilder.DropTable(
                 name: "attendanceTypeStatuses");

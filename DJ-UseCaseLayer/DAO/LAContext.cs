@@ -53,6 +53,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<EmployeeLAHoliday> employeeLAHolidays { get; set; }
         public DbSet<StudentCourseEmployeeReview> studentCourseEmployeeReviews { get; set; }
         public DbSet<KnowByWhat> knowByWhats { get; set; }
+        public DbSet<AttendanceSlot> attendanceSlots { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(Setting.connectServerUrl());

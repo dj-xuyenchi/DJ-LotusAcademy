@@ -1,6 +1,7 @@
 import { StudentCourseSolution } from './../BusinessDTO/StudentManager/StudentEvalute/StudentCourseSolution';
 import { ColumnsType } from "antd/es/table";
 import { SimpleStudentEvalute } from "../BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
+import ActiveSolution from '../BusinessDTO/StudentManager/StudentEvalute/ActiveSolution';
 
 export const columnsCourses: ColumnsType<StudentCourseSolution> = [
     {
@@ -47,7 +48,7 @@ export const columnsCourses: ColumnsType<StudentCourseSolution> = [
         width: '15%',
     },
 ];
-export const columnsActiveSolution: ColumnsType<SimpleStudentEvalute> = [
+export const columnsActiveSolution: ColumnsType<ActiveSolution> = [
     {
         title: 'STT',
         dataIndex: 'sortNumber',
@@ -69,8 +70,8 @@ export const columnsActiveSolution: ColumnsType<SimpleStudentEvalute> = [
     },
     {
         title: 'Trạng thái',
-        key: 'status',
-        dataIndex: 'status',
+        key: 'activeStatus',
+        dataIndex: 'activeStatus',
         width: '15%',
     },
     {
@@ -87,8 +88,8 @@ export const columnsActiveSolution: ColumnsType<SimpleStudentEvalute> = [
     },
     {
         title: 'Người xác nhận',
-        key: 'confirmEmployee',
-        dataIndex: 'confirmEmployee',
+        key: 'employeeConfirm',
+        dataIndex: 'employeeConfirm',
         width: '15%',
     }
 ];

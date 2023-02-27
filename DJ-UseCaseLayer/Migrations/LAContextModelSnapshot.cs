@@ -33,6 +33,9 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<DateTime?>("ActiveRealTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("AttendanceSlotId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("AttendanceTypeStatusId")
                         .HasColumnType("int");
 
@@ -42,7 +45,7 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<DateTime?>("CreateDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EmployeeComfirmId")
+                    b.Property<int?>("EmployeeConfirmId")
                         .HasColumnType("int");
 
                     b.Property<bool?>("IsLate")
@@ -59,13 +62,34 @@ namespace DJUseCaseLayer.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AttendanceSlotId");
+
                     b.HasIndex("AttendanceTypeStatusId");
 
-                    b.HasIndex("EmployeeComfirmId");
+                    b.HasIndex("EmployeeConfirmId");
 
                     b.HasIndex("StudentLAId");
 
                     b.ToTable("attendance");
+                });
+
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.AttendanceSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AttendanceSlotCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AttendanceSlotName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("attendanceSlots");
                 });
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.EmployeeLAHoliday", b =>
@@ -1079,21 +1103,27 @@ namespace DJUseCaseLayer.Migrations
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.Attendance", b =>
                 {
+                    b.HasOne("DJ_WebDesignCore.Entites.Business.AttendanceSlot", "AttendanceSlot")
+                        .WithMany()
+                        .HasForeignKey("AttendanceSlotId");
+
                     b.HasOne("DJ_WebDesignCore.Entites.Properties.AttendanceTypeStatus", "AttendanceTypeStatus")
                         .WithMany()
                         .HasForeignKey("AttendanceTypeStatusId");
 
-                    b.HasOne("DJ_WebDesignCore.Entites.Employee.EmployeeLA", "EmployeeComfirm")
+                    b.HasOne("DJ_WebDesignCore.Entites.Employee.EmployeeLA", "EmployeeConfirm")
                         .WithMany()
-                        .HasForeignKey("EmployeeComfirmId");
+                        .HasForeignKey("EmployeeConfirmId");
 
                     b.HasOne("DJ_WebDesignCore.Entites.Student.StudentLA", "StudentLA")
                         .WithMany()
                         .HasForeignKey("StudentLAId");
 
+                    b.Navigation("AttendanceSlot");
+
                     b.Navigation("AttendanceTypeStatus");
 
-                    b.Navigation("EmployeeComfirm");
+                    b.Navigation("EmployeeConfirm");
 
                     b.Navigation("StudentLA");
                 });

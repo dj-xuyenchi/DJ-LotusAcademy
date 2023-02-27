@@ -2,26 +2,28 @@ export interface ActiveSolution {
     sortNumber:string;
     createDateTime:string;
     slot:string;
-    status:string;
+    activeStatus:string;
     reason:string;
     confirmDateTime:string;
-    confirmEmployee:string;
+    employeeConfirm:string;
 }
 
 
-export const mapData = (input: any): ActiveSolution[] => {
+export const mapDataActiveSolution = (input: any): ActiveSolution[] => {
     if (input === null || input.length === 0) {
         return [];
     }
     return input.map((element: any) => {
         return {
             sortNumber: element.sortNumber,
-            courseName: element.courseName,
-            signInDateTime: element.signInDateTime,
-            supportTime: element.supportTime + " tháng",
-            doneExpectedDateTime: element.doneExpectedDateTime,
-            lessonNow: element.lessonNow,
-            evalute: element.evalute
+            createDateTime: element.createDateTime,
+            slot: element.slot,
+            activeStatus: element.activeStatus,
+            reason: element.reason,
+            confirmDateTime: element.confirmDateTime,
+            employeeConfirm: element.employeeConfirm,
         };
     });
 };
+
+export default ActiveSolution
