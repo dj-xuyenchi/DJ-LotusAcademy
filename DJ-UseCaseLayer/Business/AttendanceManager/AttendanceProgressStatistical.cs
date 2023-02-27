@@ -47,17 +47,17 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     else if (attendance.AttendanceTypeStatusId == 9)
                     {
                         item.Status = "Nghỉ không phép";
-                        item.Reason = null;
+                        item.Reason = attendance.UnactiveReason;
                     }
                     else
                     {
                         item.Status = "Đi học đúng giờ";
-                        item.Reason = null;
                     }
                 }
                 else
                 {
                     item.Status = $"Đi học muộn - {attendance.LateMinuteTotal} phút";
+                    item.Reason = attendance.UnactiveReason;
                 }
 
                 item.ComfirmDateTime = attendance.ComfirmDateTime;
