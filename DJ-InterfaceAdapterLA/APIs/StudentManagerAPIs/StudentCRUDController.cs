@@ -16,15 +16,6 @@ namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
         {
             _studentCRUD = new StudentCRUD();
         }
-        [HttpPost("themmoi")]
-        public ActionResult<StudentCreateDTO> createEmployee([FromBody] StudentLA newData)
-        {
-            return Ok(_studentCRUD.createStudent(newData));
-        }
-        [HttpGet("timtheoid")]
-        public ActionResult<StudentFindByIdDTO> findStudentById(int? studentId)
-        {
-           return Ok(_studentCRUD.findStudentById(studentId));
-        }
+    
     }
 }

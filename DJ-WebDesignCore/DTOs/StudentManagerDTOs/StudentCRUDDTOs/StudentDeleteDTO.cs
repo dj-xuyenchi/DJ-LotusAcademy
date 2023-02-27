@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DJ_WebDesignCore.Entites.Student;
+using DJ_WebDesignCore.Enums.StudentManagerEnums;
 
 namespace DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentCRUDDTOs
 {
     public class StudentDeleteDTO
     {
+        public StudentDeleteEnums? Status { get; set; }
+        public StudentLA? Data { get; set; }
+        public string? ShortDetail { get; set; }
     }
 }

@@ -21,6 +21,10 @@ namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
         {
             return Ok(_studentStatistical.getListStudentLA(page));
         }
-     
+        [HttpGet("studentdetailbyid")]
+        public ActionResult<StudentLAPagingDTO> getStudentDetailById([FromQuery] int id)
+        {
+            return Ok(_studentStatistical.getStudentDetailById(id));
+        }
     }
 }

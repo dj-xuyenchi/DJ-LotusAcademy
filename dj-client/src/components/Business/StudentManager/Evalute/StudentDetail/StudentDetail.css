@@ -12,18 +12,111 @@
     margin-top: 16px;
 }
 
-.StudentDetail .icons-social .icon-cirle:hover{
+.StudentDetail .icons-social .icon-cirle:hover {
     cursor: pointer;
-    
+
 }
+
 .StudentDetail table tbody tr th {
     color: rgb(61, 62, 62);
     font-weight: 400;
     font-size: 14px;
 }
-.StudentDetail .icons-social .icon-cirle{
+
+.StudentDetail .icons-social .icon-cirle {
     border-radius: 50%;
     overflow: hidden;
     height: 40px;
     width: 40px;
+}
+
+.StudentDetail #active-chart {
+    color: blue;
+}
+
+.StudentDetail #active-chart:hover {
+    cursor: pointer;
+    color: rgb(119, 119, 245);
+}
+
+.StudentDetail .active-table {
+    width: 100%;
+
+}
+
+.StudentDetail .active-table thead th {
+    width: 14.2854%;
+    height: 80px;
+    font-size: 20px;
+    font-weight: 550;
+    position: relative;
+}
+
+.StudentDetail .active-table thead th span {
+    position: absolute;
+    top: 12px;
+    left: 4px;
+}
+
+.StudentDetail .active-table th,
+.StudentDetail .active-table td {
+    border: 1px solid #eee;
+    border-collapse: collapse;
+}
+
+.StudentDetail .active-table tbody tr td {
+    height: 120px;
+    position: relative;
+}
+
+.StudentDetail .active-table tbody tr td .active-detail {
+    width: 96%;
+    height: 88px;
+    border-left: 3px solid #5694f6;
+    background-color: #7fadf8;
+    position: absolute;
+    top: 2px;
+    left: 2%;
+}
+
+.StudentDetail .active-table tbody tr td .day-of-month {
+    position: absolute;
+    bottom: 2px;
+    right: 2%;
+    color: black;
+    font-size: 20px;
+}
+
+.StudentDetail .active-table tbody tr td .day-of-last-and-next-month {
+    position: absolute;
+    bottom: 2px;
+    right: 2%;
+    color: rgb(146, 146, 146);
+    font-size: 20px;
+}
+
+.StudentDetail .active-table tbody tr td .active-detail .title {
+    display: block;
+    width: 95%;
+    margin-left: 2.5%;
+    font-weight: 550;
+    font-size: 14px;
+}
+
+.StudentDetail .active-table tbody tr td .active-detail .title span {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.StudentDetail #back-solution {
+    color: #5694f6;
+}
+
+.StudentDetail #back-solution:hover {
+    color: #80acf4;
+    cursor: pointer;
+}
+
+.StudentDetail #button-group button:hover{
+    color: #eee;
 }

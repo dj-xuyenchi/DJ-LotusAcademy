@@ -1,46 +1,62 @@
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
 import './StudentDetail.css';
-import zalo from '../../../../../assets/icons/zalo-icon.svg';
-import facebook from '../../../../../assets/icons/facebook-icon.svg';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Table, { ColumnsType } from 'antd/es/table';
+import { SimpleStudentEvalute } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
+import { Tag } from 'antd';
+import { Link } from 'react-router-dom';
+import { columnsActiveSolution, columnsCourses} from '../../../../../entities/table/TableColumn';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import studentStatisticalApi from '../../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
+import { mapData } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/StudentCourseSolution';
 function StudentDetail() {
-    const [studentDetail, setStudentDetail] = useState({
-        avatar: "",
-        name: "Thái Lan Hương",
-        email: "huongkute@gmail.com",
-        phone: "+84 968491797",
-        location: "Thái Thụy - Thái Bình",
-        birthday: "09-02-1999",
-        gender: "Nữ",
-        job: "Sinh viên cấp 2",
-        active: "Đang học",
-        zalo: "https://zalo.me/0968491797",
-        facebook: "https://www.facebook.com/xuyenchi0902hihihi/",
-        scoreBoard: [{
-            stt: 1,
-            lesson: "Java Method",
-            score: 10,
-            openTime: "02-01-2023",
-            closeTime: "12-01-2023",
-            employeeCheck: "Sếp Bình",
-            evaluate: "Đạt",
-            linkStudentTest: "gggdrive/123"
-        }, {
-            stt: 2,
-            lesson: "C# Method",
-            score: 10,
-            openTime: "02-01-2023",
-            closeTime: "12-01-2023",
-            employeeCheck: "Sếp Bình",
-            evaluate: "Đạt",
-            linkStudentTest: "gggdrive/123"
-        },]
-    })
+    const [tableView, setTableView] = useState(3)
+    function handleSetTableView(opt: number) {
+        setTableView(opt)
+    }
+    const [studentDetail, setStudentDetail] = useState(
+        {
+            status: 1,
+            infoAndContact: {
+                studentLAId: 1,
+                studentLAName: "Ngọc Bảo Châu",
+                studentLASdt: "098765523",
+                studentCourses: null,
+                employeeLAId: null,
+                email: null,
+                addressDetail: null,
+                birthDay: "1-12-2003",
+                gender: "Nam",
+                job: null,
+                zaloUrl: "0968491707",
+                facebook: "fb/xuyenchi",
+                employeeLAName: null,
+                status: null
+            },
+            evaluteACourses: [
+                {
+                    sortNumber: 1,
+                    courseName: "Full Stack Java",
+                    signInDateTime: "1-1-2023",
+                    supportTime: "4",
+                    doneExpectedDateTime: "1-5-2023",
+                    lessonNow: "C Basic",
+                    evalute: "Yếu OOP"
+                }
+            ],
+            mes: "Lấy dữ liệu thành công!"
+        })
+    useEffect(() => {
+        const getData = async () => {
+            const data = await studentStatisticalApi.getStudentDetailById(1)
+            setStudentDetail(data)
+        }
+        getData()
+    }, [])
     return (
         <div className="StudentDetail w-100" style={{ padding: '24px 32px' }}>
             <div className="detail-title">
-                <h3>Student Detail</h3>
+                <h3>Thông tin học viên </h3>
             </div>
             <div style={{ display: 'flex' }}>
                 <div className="card" style={{ width: '30%', padding: '20px' }}>
@@ -52,46 +68,47 @@ function StudentDetail() {
                         />
                     </div>
                     <div className="name" style={{ alignItems: 'center', margin: '0 auto' }}>
-                        <h4 style={{ marginTop: '20px', fontWeight: 'bold' }}>{studentDetail.name}</h4>
+                        <h4 style={{ marginTop: '20px', fontWeight: 'bold' }}>{studentDetail.infoAndContact.studentLAName}</h4>
+                        
                     </div>
                     <div className="info" style={{ marginTop: '32px', fontSize: '14px' }}>
                         <div>
                             <span>Email</span>
-                            <p>{studentDetail.email}</p>
+                            <p>{studentDetail.infoAndContact.email}</p>
                         </div>
                         <div>
                             <span>Số điện thoại</span>
-                            <p>{studentDetail.phone}</p>
+                            <p>{studentDetail.infoAndContact.studentLASdt}</p>
                         </div>
                         <div>
                             <span>Địa chỉ</span>
-                            <p>{studentDetail.location}</p>
+                            <p>{studentDetail.infoAndContact.addressDetail}</p>
                         </div>
                         <div>
                             <span>Ngày sinh</span>
-                            <p>{studentDetail.birthday}</p>
+                            <p>{studentDetail.infoAndContact.birthDay}</p>
                         </div>
                         <div>
                             <span>Giới tính</span>
-                            <p>{studentDetail.gender}</p>
+                            <p>{studentDetail.infoAndContact.gender}</p>
                         </div>
                         <div>
                             <span>Công việc</span>
-                            <p>{studentDetail.job}</p>
+                            <p>{studentDetail.infoAndContact.job}</p>
                         </div>
                         <div>
                             <span>Trạng thái</span>
-                            <p>{studentDetail.active}</p>
+                            <p>{studentDetail.infoAndContact.status}</p>
                         </div>
                         <div className="icons-social">
                             <span>Mạng xã hội</span>
                             <div style={{ display: 'flex' }}>
-                                <a target="_blank" href={studentDetail.zalo}>
+                                <a target="_blank" href={studentDetail.infoAndContact.zaloUrl}>
                                     <div className="icon-cirle">
                                         <img src={require('../../../../../assets/icons/zalo-icon-filled-256.png')} alt="" />
                                     </div>
                                 </a>
-                                <a target="_blank" href={studentDetail.facebook}>
+                                <a target="_blank" href={studentDetail.infoAndContact.facebook}>
                                     <div className="icon-cirle">
                                         <img src={require('../../../../../assets/icons/Facebook-200x200.jpg')} alt="" />
                                     </div>
@@ -107,292 +124,224 @@ function StudentDetail() {
                                     marginRight: '10px',
                                 }}
                             >
-                                Delete
+                                Bảo lưu
                             </Button>
                             <Button variant="primary" style={{ width: '50%' }}>
-                                Edit
+                                Sửa thông tin
                             </Button>
                         </div>
                     </div>
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Tên khóa học</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Ngày đăng ký</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Thời gian hỗ trợ</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Dự kiến kết thúc</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Tiến độ hiện tại</span>
-                                </th>
-                                <th style={{ width: "10%" }}>
-                                    <span>Đánh giá</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>Back end Java</span>
-                                </th>
-                                <th>
-                                    <span>20-10-2023</span>
-                                </th>
-                                <th>
-                                    <span>4 tháng</span>
-                                </th>
-                                <th>
-                                    <span>20-10-2023</span>
-                                </th>
-                                <th>
-                                    <span>Java Basic</span>
-                                </th>
-                                <th>
-                                    <span>Khá</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ không phép</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "25%" }}>
-                                    <span>Ngày nghỉ</span>
-                                </th>
-                                <th style={{ width: "25%" }}>
-                                    <span>Ca nghỉ</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Xác nhận </span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Người xác nhận</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023</span>
-                                </th>
-                                <th>
-                                    <span>Ca 1-2</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023:14h-30p</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Nghỉ có phép</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Ngày nghỉ</span>
-                                </th>
-                                <th style={{ width: "10%" }}>
-                                    <span>Ca nghỉ</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Lý do</span>
-                                </th>
-                                <th style={{ width: "25%" }}>
-                                    <span>Xác nhận </span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Người xác nhận</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023</span>
-                                </th>
-                                <th>
-                                    <span>Ca 1-2</span>
-                                </th>
-                                <th>
-                                    <span>Đi pắn pia</span>
-                                </th>
-                                <th>
-                                    <span>20-01-2023:14h-30p</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảo lưu</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Lý do</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Bắt đầu</span>
-                                </th>
-                                <th style={{ width: "20%" }}>
-                                    <span>Kết thúc dự kiến</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Số ngày bảo lưu</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Người xác nhận</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <span>1</span>
-                                </th>
-                                <th>
-                                    <span>Việc bận gia đình</span>
-                                </th>
-                                <th>
-                                    <span>30-01-2023</span>
-                                </th>
-                                <th>
-                                    <span>19-02-2023</span>
-                                </th>
-                                <th>
-                                    <span>20 ngày</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <span>2</span>
-                                </th>
-                                <th>
-                                    <span>Đi chơi</span>
-                                </th>
-                                <th>
-                                    <span>23-02-2023</span>
-                                </th>
-                                <th>
-                                    <span>29-02-2023</span>
-                                </th>
-                                <th>
-                                    <span>6 ngày</span>
-                                </th>
-                                <th>
-                                    <span>Gấu mập</span>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảng điểm</h6>
-                    <Table className="table-default" hover>
-                        <thead>
-                            <tr style={{ backgroundColor: "#ccc" }}>
-                                <th style={{ width: "10%" }}>
-                                    <span>STT</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Học phần</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Ngày kiểm tra</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Ngày chấm</span>
-                                </th>
-                                <th style={{ width: "5%" }}>
-                                    <span>Điểm</span>
-                                </th>
-                                <th style={{ width: "10%" }}>
-                                    <span>Đánh giá</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Người check</span>
-                                </th>
-                                <th style={{ width: "15%" }}>
-                                    <span>Link bài làm</span>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {studentDetail.scoreBoard.map((item) => {
-                                return <DetailRow item={item} />
-                            })}
-                        </tbody>
-                    </Table>
+                    {tableView === 1 ? <TableViewSolution handleSetTableView={handleSetTableView} solutionEvalute={studentDetail.evaluteACourses}/> : ""
+                    }
+                    {tableView === 3 ? <TableViewActiveChart handleSetTableView={handleSetTableView} /> : ""
+                    }
                 </div>
             </div>
         </div>
     );
 }
-function DetailRow({ item }: any) {
+function TableViewSolution({ handleSetTableView ,solutionEvalute}: any) {
+
     return (
-        <><tr>
-            <th>
-                <span>{item.stt}</span>
-            </th>
-            <th>
-                <span>{item.lesson}</span>
-            </th>
-            <th>
-                <span>{item.openTime}</span>
-            </th>
-            <th>
-                <span>{item.closeTime}</span>
-            </th>
-            <th>
-                <span>{item.score}</span>
-            </th>
-            <th>
-                <span>{item.evaluate}</span>
-            </th>
-            <th>
-                <span>{item.employeeCheck}</span>
-            </th>
-            <th>
-                <span>{item.linkStudentTest}</span>
-            </th>
-        </tr></>
+        <>
+            <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
+            <Table columns={columnsCourses} dataSource={mapData(solutionEvalute)}  bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Nghỉ học - <span id='active-chart' onClick={() => {
+                handleSetTableView(3)
+            }}>Xem biểu đồ hoạt động</span></h6>
+            <Table columns={columnsActiveSolution} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+        </>
+    )
+}
+function TableViewReserve() {
+    return (
+        <>
+            <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Bảo lưu</h6>
+            <Table columns={columnsCourses} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+        </>
+    )
+}
+function TableViewActiveChart({ handleSetTableView }: any) {
+    const las = new Date();
+    const [updateState, setUpdateState] = useState(false);
+    const [now, setNow] = useState(las)
+    const content = useRef<any>()
+    function setCalendarView(opt: number) {
+        now.setMonth(now.getMonth() + opt)
+        setNow(now)
+        setUpdateState(!updateState);
+        let dayCounter = 1;
+        let lastDayOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate();
+        const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        const date = new Date();
+        date.setMonth(now.getMonth())
+        date.setDate(1)
+        date.setFullYear(now.getFullYear())
+        let dateOfMonth = date.getDay()
+        let dayOfNextMonth = 1;
+        // console.log(dateOfMonth)3
+        if (content) {
+            const trArray = content.current.children;
+            for (const td of trArray[0].children) {
+                if (dateOfMonth > 0) {
+                    const span: HTMLSpanElement = document.createElement("span")
+                    span.classList.add("day-of-last-and-next-month")
+                    span.innerHTML = (lastDayOfLastMonth - dateOfMonth + 1).toString()
+                    td.appendChild(span)
+                    dateOfMonth--
+                    continue
+                }
+                const span: HTMLSpanElement = document.createElement("span")
+                span.classList.add("day-of-month")
+                span.innerHTML = dayCounter.toString()
+                dayCounter++
+                td.appendChild(span)
+            }
+            for (let i = 1; i < 6; i++) {
+                for (const td of trArray[i].children) {
+                    if (dayCounter > lastDay) {
+                        const span: HTMLSpanElement = document.createElement("span")
+                        span.classList.add("day-of-last-and-next-month")
+                        span.innerHTML = dayOfNextMonth.toString()
+                        dayOfNextMonth++
+                        td.appendChild(span)
+                        continue
+                    }
+                    const span: HTMLSpanElement = document.createElement("span")
+                    span.classList.add("day-of-month")
+                    span.innerHTML = dayCounter.toString()
+                    dayCounter++
+                    td.appendChild(span)
+                }
+            }
+        }
+        const yearView = document.getElementById("calendar-year");
+
+
+    }
+    function handleClearSpan() {
+        while (document.querySelector(".day-of-last-and-next-month")) {
+            document.querySelector(".day-of-last-and-next-month")?.remove()
+        }
+        while (document.querySelector(".day-of-month")) {
+            document.querySelector(".day-of-month")?.remove()
+        }
+
+    }
+    useEffect(() => {
+        setCalendarView(0)
+    }, [])
+    useEffect(() => {
+    }, [updateState])
+    return (
+        <>
+            <div style={{
+                display: 'flex',
+                justifyContent: "space-between"
+            }}><h3 style={{ marginBottom: '16px', display: 'inline' }}>Lịch điểm danh học viên - <span id='back-solution' onClick={() => {
+                handleSetTableView(1)
+            }}>Trở lại tổng quan</span></h3>
+                <h3 id='calendar-year' style={{ marginBottom: '16px', display: 'inline' }}>{now.getFullYear()}</h3></div>
+            <div style={{
+                display: "flex",
+                justifyContent: "space-between"
+            }}>
+                <div id='button-group'>
+                    <button>
+                        <LeftOutlined style={{ fontSize: '30px', margin: "20px 30px 20px 0" }} onClick={() => {
+                            handleClearSpan()
+                            setCalendarView(-1)
+                        }} />
+                    </button>
+                    <button>
+                        <RightOutlined style={{ fontSize: '30px', margin: "20px 0 20px 0" }} onClick={() => {
+                            handleClearSpan()
+                            setCalendarView(1)
+                        }} />
+                    </button>
+                </div>
+                <div><span style={{
+                    fontSize: "24px"
+                }}>Tháng: {now.getMonth() + 1}</span></div>
+            </div>
+            <table className='active-table'>
+                <thead className="chart-header">
+                    <tr>
+                        <th className="element-week"><span>Chủ nhật</span></th>
+                        <th className="element-week"><span>Thứ 2</span></th>
+                        <th className="element-week"><span>Thứ 3</span></th>
+                        <th className="element-week"><span>Thứ 4</span></th>
+                        <th className="element-week"><span>Thứ 5</span></th>
+                        <th className="element-week"><span>Thứ 6</span></th>
+                        <th className="element-week"><span>Thứ 7</span></th>
+                    </tr>
+                </thead>
+                <tbody ref={content}>
+                    <tr>
+                        <td>
+                            <div className="active-detail">
+                                <span className='title'>Ca học: <span>Ca 1</span></span>
+                                <span className='title'>Điểm danh: <span>Quang Anh</span></span>
+                            </div>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </>
     )
 }
 export default StudentDetail;
