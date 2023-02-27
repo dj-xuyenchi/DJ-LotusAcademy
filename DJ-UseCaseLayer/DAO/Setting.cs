@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Extensions.Configuration;
-
-namespace DJ_UseCaseLayer.DAO
+﻿namespace DJ_UseCaseLayer.DAO
 {
     public class Setting
     {

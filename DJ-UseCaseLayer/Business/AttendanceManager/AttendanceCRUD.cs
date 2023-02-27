@@ -156,6 +156,21 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     _context.SaveChanges();
                 }
 
+                if (newData.AttendanceSlotId != null)
+                {
+                    AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(newData.AttendanceSlotId);
+                    if (attendanceSlot == null)
+                    {
+                        res.Status = AttendanceEnum.FAILED;
+                        res.ShortDetail = $"Không tồn tại attendance slot có id là {newData.AttendanceSlotId}";
+                        return res;
+                    }
+
+                    attendance.AttendanceSlotId = newData.AttendanceSlotId;
+                    _context.Update(attendance);
+                    _context.SaveChanges();
+                }
+
                 UpdateStudentLA(attendance);
                 transaction.Commit();
 
