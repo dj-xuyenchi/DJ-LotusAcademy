@@ -12,7 +12,7 @@ namespace DJ_UseCaseLayer.DAO
     {
 
         // Employee
-        public DbSet<EmployeeLA> employeeLA { get; }
+        public DbSet<EmployeeLA> employeeLA { get; set; }
         public DbSet<EmployeeRole> employeeRoles { get; set; }
         // Properties
         //
