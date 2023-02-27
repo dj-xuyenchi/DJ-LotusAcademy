@@ -41,7 +41,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<Holiday> holidays { get; set; }
         public DbSet<Reserve> reserves { get; set; }
         public DbSet<Attendance> attendance { get; set; }
-        public DbSet<AttendanceSlot> attendanceSlots { get; set; }
+        public DbSet<AttendanceSlot> attendanceSlot { get; set; }
         public DbSet<StudentCourse> studentCourses { get; set; }
         public DbSet<StudentLACourseLesson> studentLACourseLessons { get; set; }
         public DbSet<Intern> interns { get; set; }
