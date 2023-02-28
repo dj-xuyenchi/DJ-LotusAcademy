@@ -1,0 +1,21 @@
+.wrapper {
+    width: 100%;
+    background-color: #f0f2f5;
+}
+.title {
+    padding: 1rem;
+}
+.editinfo-main {
+    width: 100%;
+    background-color: white;
+}
+.form-title {
+    padding: 12px 20px 12px 20px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.form-container {
+    padding: 0 20px;
+    width: 100%;
+}

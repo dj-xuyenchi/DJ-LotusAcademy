@@ -1,7 +1,7 @@
 import NotFound from '../components/404/NotFound';
 import EvaluteStudent from '../components/Business/StudentManager/Evalute/EvaluteStudent';
 import StudentDetail from '../components/Business/StudentManager/Evalute/StudentDetail/StudentDetail';
-import C_AddNewStudent from '../components/Business/StudentManager/SaleAddNewStudent/C_AddStudent';
+import EditStudentProfile from '../components/Business/StudentManager/EditStudentProfile/EditStudentProfile';
 import Home from '../Layout/Home';
 
 const Routes = [
@@ -19,7 +19,7 @@ const Routes = [
     },
     {
         path: '/manager/',
-        element: <C_AddNewStudent />,
+        element: <EditStudentProfile />,
     },
 
     { path: '*', element: <NotFound /> },
