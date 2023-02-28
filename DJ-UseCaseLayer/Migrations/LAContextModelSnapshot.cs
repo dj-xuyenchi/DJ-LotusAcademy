@@ -45,7 +45,7 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<DateTime?>("CreateDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EmployeeComfirmId")
+                    b.Property<int?>("EmployeeConfirmId")
                         .HasColumnType("int");
 
                     b.Property<bool?>("IsLate")
@@ -66,11 +66,30 @@ namespace DJUseCaseLayer.Migrations
 
                     b.HasIndex("AttendanceTypeStatusId");
 
-                    b.HasIndex("EmployeeComfirmId");
+                    b.HasIndex("EmployeeConfirmId");
 
                     b.HasIndex("StudentLAId");
 
                     b.ToTable("attendance");
+                });
+
+            modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.AttendanceSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AttendanceSlotCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AttendanceSlotName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("attendanceSlots");
                 });
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.EmployeeLAHoliday", b =>
@@ -1103,7 +1122,7 @@ namespace DJUseCaseLayer.Migrations
 
             modelBuilder.Entity("DJ_WebDesignCore.Entites.Business.Attendance", b =>
                 {
-                    b.HasOne("DJ_WebDesignCore.Entites.Properties.AttendanceSlot", "AttendanceSlot")
+                    b.HasOne("DJ_WebDesignCore.Entites.Business.AttendanceSlot", "AttendanceSlot")
                         .WithMany()
                         .HasForeignKey("AttendanceSlotId");
 
@@ -1111,9 +1130,9 @@ namespace DJUseCaseLayer.Migrations
                         .WithMany()
                         .HasForeignKey("AttendanceTypeStatusId");
 
-                    b.HasOne("DJ_WebDesignCore.Entites.Employee.EmployeeLA", "EmployeeComfirm")
+                    b.HasOne("DJ_WebDesignCore.Entites.Employee.EmployeeLA", "EmployeeConfirm")
                         .WithMany()
-                        .HasForeignKey("EmployeeComfirmId");
+                        .HasForeignKey("EmployeeConfirmId");
 
                     b.HasOne("DJ_WebDesignCore.Entites.Student.StudentLA", "StudentLA")
                         .WithMany()
@@ -1123,7 +1142,7 @@ namespace DJUseCaseLayer.Migrations
 
                     b.Navigation("AttendanceTypeStatus");
 
-                    b.Navigation("EmployeeComfirm");
+                    b.Navigation("EmployeeConfirm");
 
                     b.Navigation("StudentLA");
                 });

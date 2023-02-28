@@ -5,10 +5,11 @@ import Table, { ColumnsType } from 'antd/es/table';
 import { SimpleStudentEvalute } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
-import { columnsActiveSolution, columnsCourses} from '../../../../../entities/table/TableColumn';
+import { columnsActiveSolution, columnsCourses } from '../../../../../entities/table/TableColumn';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import studentStatisticalApi from '../../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
 import { mapData } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/StudentCourseSolution';
+import { mapDataActiveSolution } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/ActiveSolution';
 function StudentDetail() {
     const [tableView, setTableView] = useState(3)
     function handleSetTableView(opt: number) {
@@ -44,6 +45,18 @@ function StudentDetail() {
                     evalute: "Yếu OOP"
                 }
             ],
+            studentActiveSolutions:
+                [
+                    {
+                        sortNumber: 1,
+                        createDateTime: "28-2-2023",
+                        slot: "Ca 1",
+                        activeStatus: "Đi muộn 20 phút",
+                        reason: null,
+                        confirmDateTime: "28-2-2023",
+                        employeeConfirm: "Sếp Nguyên"
+                    }
+                ],
             mes: "Lấy dữ liệu thành công!"
         })
     useEffect(() => {
@@ -69,7 +82,7 @@ function StudentDetail() {
                     </div>
                     <div className="name" style={{ alignItems: 'center', margin: '0 auto' }}>
                         <h4 style={{ marginTop: '20px', fontWeight: 'bold' }}>{studentDetail.infoAndContact.studentLAName}</h4>
-                        
+
                     </div>
                     <div className="info" style={{ marginTop: '32px', fontSize: '14px' }}>
                         <div>
@@ -133,7 +146,7 @@ function StudentDetail() {
                     </div>
                 </div>
                 <div style={{ marginLeft: "20px", width: "100%" }}>
-                    {tableView === 1 ? <TableViewSolution handleSetTableView={handleSetTableView} solutionEvalute={studentDetail.evaluteACourses}/> : ""
+                    {tableView === 1 ? <TableViewSolution handleSetTableView={handleSetTableView} studentActiveSolutions={studentDetail.studentActiveSolutions} solutionEvalute={studentDetail.evaluteACourses} /> : ""
                     }
                     {tableView === 3 ? <TableViewActiveChart handleSetTableView={handleSetTableView} /> : ""
                     }
@@ -142,16 +155,16 @@ function StudentDetail() {
         </div>
     );
 }
-function TableViewSolution({ handleSetTableView ,solutionEvalute}: any) {
+function TableViewSolution({ handleSetTableView, solutionEvalute, studentActiveSolutions }: any) {
 
     return (
         <>
             <h6 style={{ fontSize: '16px', marginBottom: '16px' }}>Các khóa học đăng ký</h6>
-            <Table columns={columnsCourses} dataSource={mapData(solutionEvalute)}  bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
-            <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Nghỉ học - <span id='active-chart' onClick={() => {
+            <Table columns={columnsCourses} dataSource={mapData(solutionEvalute)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <h6 style={{ fontSize: '16px', marginBottom: '16px', marginTop: '16px' }}>Hoạt động - <span id='active-chart' onClick={() => {
                 handleSetTableView(3)
             }}>Xem biểu đồ hoạt động</span></h6>
-            <Table columns={columnsActiveSolution} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <Table columns={columnsActiveSolution} dataSource={mapDataActiveSolution(studentActiveSolutions)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
         </>
     )
 }

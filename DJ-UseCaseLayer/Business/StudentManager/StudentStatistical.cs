@@ -19,7 +19,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
         public StudentLAPagingDTO getListStudentLA(int? page)
         {
             StudentLAPagingDTO resultData = new StudentLAPagingDTO();
-         
+
             if (page == null)
             {
                 resultData.Mes = "Không nhận được page!";
@@ -58,7 +58,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             resultData.SolutionCenterLADTO = solutionCenterLADTO;
             resultData.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
             resultData.Data = data;
-            resultData.Mes = "Lấy dữ liệu thành công"; 
+            resultData.Mes = "Lấy dữ liệu thành công";
             return resultData;
             //}
             //catch (Exception e)
@@ -94,7 +94,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             studentLADTO.ZaloUrl = studentLA.ZaloUrl;
             studentLADTO.Facebook = studentLA.FacebookUrl;
             studentLADTO.Job = _context.studentDatalogs.Find(studentLA.StudentDatalogId).StudentDatalogName;
-            studentLADTO.Gender=_context.genders.Find(studentLA.GenderId).GenderName;
+            studentLADTO.Gender = _context.genders.Find(studentLA.GenderId).GenderName;
             studentLADTO.Email = studentLA.Email;
             studentLADTO.Status = _context.studentStatuses.Find(studentLA.StudentStatusId).StudentStatusName;
             result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
@@ -127,16 +127,56 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 }
                 else
                 {
-                evaluteACourse.LessonNow = studentCourseLesson.Include(x=>x.CourseLesson).OrderByDescending(x => x.SortNumber).FirstOrDefault().CourseLesson.CourseLessonName;
-                sttCourse++;
-                evaluteACourses.Add(evaluteACourse);
+                    evaluteACourse.LessonNow = studentCourseLesson.Include(x => x.CourseLesson).OrderByDescending(x => x.SortNumber).FirstOrDefault().CourseLesson.CourseLessonName;
+                    sttCourse++;
+                    evaluteACourses.Add(evaluteACourse);
                 }
             }
-            foreach(Attendance attendance in _context.attendance.Where(x => x.StudentLAId == id).OrderByDescending(x => x.CreateDateTime))
+            sttCourse = 1;
+            List<StudentActiveSolutionDTO> activeSolutions = new List<StudentActiveSolutionDTO>();
+            foreach (Attendance attendance in _context.attendance.Where(x => x.StudentLAId == id).OrderByDescending(x => x.CreateDateTime))
             {
                 StudentActiveSolutionDTO activeSolutionDTO = new StudentActiveSolutionDTO();
-               // activeSolutionDTO.Slot
+                activeSolutionDTO.Slot = _context.attendanceSlots.Find(attendance.AttendanceSlotId).AttendanceSlotName;
+                activeSolutionDTO.SortNumber = sttCourse;
+                activeSolutionDTO.ConfirmDateTime = attendance.ComfirmDateTime.Value.Day + "-" + attendance.ComfirmDateTime.Value.Month + "-" + attendance.ComfirmDateTime.Value.Year;
+                activeSolutionDTO.CreateDateTime = attendance.CreateDateTime.Value.Day + "-" + attendance.CreateDateTime.Value.Month + "-" + attendance.CreateDateTime.Value.Year;
+                activeSolutionDTO.EmployeeConfirm = _context.employeeLA.Find(attendance.EmployeeConfirmId).EmployeeLAName;
+                activeSolutions.Add(activeSolutionDTO);
+                sttCourse++;
+                if (attendance.AttendanceTypeStatusId == 8)
+                {
+
+                    activeSolutionDTO.Reason = attendance.UnactiveReason;
+                    activeSolutionDTO.ActiveStatus = _context.attendanceTypeStatuses.Find(attendance.AttendanceTypeStatusId).AttendanceTypeName;
+                }
+                if (attendance.AttendanceTypeStatusId == 9)
+                {
+
+                    if (attendance.UnactiveReason.IsNullOrEmpty())
+                    {
+                        activeSolutionDTO.Reason = attendance.UnactiveReason;
+                    }
+                    activeSolutionDTO.ActiveStatus = _context.attendanceTypeStatuses.Find(attendance.AttendanceTypeStatusId).AttendanceTypeName;
+                }
+                if (attendance.AttendanceTypeStatusId == 10)
+                {
+
+                    if (attendance.UnactiveReason.IsNullOrEmpty())
+                    {
+                        activeSolutionDTO.Reason = attendance.UnactiveReason;
+                    }
+                    if (attendance.IsLate.Value)
+                    {
+                        activeSolutionDTO.ActiveStatus = "Đi muộn " + attendance.LateMinuteTotal + " phút";
+                    }
+                    else
+                    {
+                        activeSolutionDTO.ActiveStatus = _context.attendanceTypeStatuses.Find(attendance.AttendanceTypeStatusId).AttendanceTypeName;
+                    }
+                }
             }
+            result.StudentActiveSolutions = activeSolutions;
             result.EvaluteACourses = evaluteACourses;
             result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
             result.mes = "Lấy dữ liệu thành công!";
