@@ -11,18 +11,32 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
 {
     public class AttendanceCRUD : BaseDB, IAttendanceCRUD
     {
-        private void UpdateStudentLA(Attendance attendance)
+        private void UpdateStudentLA(StudentLA currentStudent = null, StudentLA studentBefore = null)
         {
-            // hello world 12345
-            StudentLA studentLA = _context.studentLAs.Find(attendance.StudentLAId);
-            List<Attendance> lstLeavePermission = _context.attendance.Where(x => x.StudentLAId == attendance.StudentLAId && x.AttendanceTypeStatusId == 8).ToList();
-            List<Attendance> lstUnauthorizedAbsences = _context.attendance.Where(x => x.StudentLAId == attendance.StudentLAId && x.AttendanceTypeStatusId == 9).ToList();
-            List<Attendance> lstLateMinute = _context.attendance.Where(x => x.StudentLAId == attendance.StudentLAId).ToList();
-            studentLA.UnactiveTotal = lstLeavePermission.Count;
-            studentLA.UnauthorizedAbsencesTotal = lstUnauthorizedAbsences.Count;
-            studentLA.LateMinuteTotal = lstLateMinute.Sum(x => x.LateMinuteTotal);
-            _context.Update(studentLA);
-            _context.SaveChanges();
+            if (studentBefore != null)
+            {
+                List<Attendance> lstLeavePermissionBefore = _context.attendance.Where(x => x.StudentLAId == studentBefore.Id && x.AttendanceTypeStatusId == 8).ToList();
+                List<Attendance> lstUnauthorizedAbsencesBefore = _context.attendance.Where(x => x.StudentLAId == studentBefore.Id && x.AttendanceTypeStatusId == 9).ToList();
+                List<Attendance> lstLateMinuteBefore = _context.attendance.Where(x => x.StudentLAId == studentBefore.Id).ToList();
+
+                studentBefore.UnactiveTotal = lstLeavePermissionBefore.Count;
+                studentBefore.UnauthorizedAbsencesTotal = lstUnauthorizedAbsencesBefore.Count;
+                studentBefore.LateMinuteTotal = lstLateMinuteBefore.Sum(x => x.LateMinuteTotal);
+                _context.Update(studentBefore);
+                _context.SaveChanges();
+            }
+
+            if (currentStudent != null)
+            {
+                List<Attendance> lstLeavePermissionCurrent = _context.attendance.Where(x => x.StudentLAId == currentStudent.Id && x.AttendanceTypeStatusId == 8).ToList();
+                List<Attendance> lstUnauthorizedAbsencesCurrent = _context.attendance.Where(x => x.StudentLAId == currentStudent.Id && x.AttendanceTypeStatusId == 9).ToList();
+                List<Attendance> lstLateMinuteCurrent = _context.attendance.Where(x => x.StudentLAId == currentStudent.Id).ToList();
+                currentStudent.UnactiveTotal = lstLeavePermissionCurrent.Count;
+                currentStudent.UnauthorizedAbsencesTotal = lstUnauthorizedAbsencesCurrent.Count;
+                currentStudent.LateMinuteTotal = lstLateMinuteCurrent.Sum(x => x.LateMinuteTotal);
+                _context.Update(currentStudent);
+                _context.SaveChanges();
+            }
         }
         AttendanceUpdateDTO IAttendanceCRUD.updateAttendance(Attendance newData, DateTime? requestTime)
         {
@@ -45,6 +59,9 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     return res;
                 }
 
+                // Student Before -> Không được xóa dòng này
+                StudentLA studentBefore = _context.studentLAs.Find(attendance.StudentLAId);
+
                 if (newData.StudentLAId != null)
                 {
                     if (_context.studentLAs.Find(newData.StudentLAId) == null)
@@ -57,6 +74,9 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     _context.Update(attendance);
                     _context.SaveChanges();
                 }
+
+                // Current Student -> Không được xóa dòng này
+                StudentLA currentStudent = _context.studentLAs.Find(attendance.StudentLAId);
 
                 if (newData.EmployeeComfirmId == null)
                 {
@@ -122,24 +142,6 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                         res.ShortDetail = "Vui lòng điền thời gian điểm danh cần sửa";
                         return res;
                     }
-
-                    //if (newData.ComfirmDateTime == null)
-                    //{
-                    //    res.Status = AttendanceEnum.FAILED;
-                    //    res.ShortDetail = $"Vui lòng điền confirm datetime";
-                    //    return res;
-                    //}
-                    //attendance.ComfirmDateTime = newData.ComfirmDateTime;
-                    //_context.Update(attendance);
-                    //_context.SaveChanges();
-
-
-                    //if (newData.ActiveRealTime == null)
-                    //{
-                    //    res.Status = AttendanceEnum.FAILED;
-                    //    res.ShortDetail = $"Vui lòng điền thời gian mà học viên đến muộn";
-                    //    return res;
-                    //}
                     attendance.IsLate = true;
                     TimeSpan t = requestTime.Value - attendance.CreateDateTime.Value;
                     attendance.LateMinuteTotal = Convert.ToInt32(t.TotalMinutes);
@@ -171,7 +173,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     _context.SaveChanges();
                 }
 
-                UpdateStudentLA(attendance);
+                UpdateStudentLA(currentStudent, studentBefore);
                 transaction.Commit();
 
                 res.Status = AttendanceEnum.SUCCESSFULLY;
@@ -259,7 +261,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
 
                 _context.attendance.Add(newData);
                 _context.SaveChanges();
-                UpdateStudentLA(newData);
+                UpdateStudentLA(studentLA);
 
                 transaction.Commit();
                 res.Status = AttendanceEnum.SUCCESSFULLY;
