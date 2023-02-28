@@ -22,12 +22,14 @@
     font-size: 16px;
     font-weight: 550;
 }
-.MeoAI img{
+
+.MeoAI img {
     width: 20%;
     position: absolute;
     right: 0;
     bottom: -2%;
 }
+
 .MeoAI input {
     position: absolute;
     height: 40px;
@@ -36,5 +38,13 @@
     border-radius: 10px;
     bottom: 2%;
     left: 35%;
-padding-left: 12px;
+    padding-left: 12px;
+}
+
+.MeoAI button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 30px;
+    width: 30px;
 }
