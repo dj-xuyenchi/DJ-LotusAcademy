@@ -78,17 +78,17 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                 // Current Student -> Không được xóa dòng này
                 StudentLA currentStudent = _context.studentLAs.Find(attendance.StudentLAId);
 
-                if (newData.EmployeeComfirmId == null)
+                if (newData.EmployeeConfirmId == null)
                 {
                     res.Status = AttendanceEnum.FAILED;
                     res.ShortDetail = $"Chưa nhận được id nhân viên";
                     return res;
                 }
-                EmployeeLA employeeLA = _context.employeeLA.Find(newData.EmployeeComfirmId);
+                EmployeeLA employeeLA = _context.employeeLA.Find(newData.EmployeeConfirmId);
                 if (employeeLA == null)
                 {
                     res.Status = AttendanceEnum.FAILED;
-                    res.ShortDetail = $"Không tồn tại nhân viên có id là {newData.EmployeeComfirmId}";
+                    res.ShortDetail = $"Không tồn tại nhân viên có id là {newData.EmployeeConfirmId}";
                     return res;
                 }
                 if (employeeLA.EmployeeRoleId != 2)
@@ -97,7 +97,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     res.ShortDetail = $"Bạn không có quyền truy cập vào thông tin học sinh, vui lòng liên hệ với admin";
                     return res;
                 }
-                attendance.EmployeeComfirmId = newData.EmployeeComfirmId;
+                attendance.EmployeeConfirmId = newData.EmployeeConfirmId;
                 _context.Update(attendance);
                 _context.SaveChanges();
 
@@ -160,7 +160,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
 
                 if (newData.AttendanceSlotId != null)
                 {
-                    AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(newData.AttendanceSlotId);
+                    AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(newData.AttendanceSlotId);
                     if (attendanceSlot == null)
                     {
                         res.Status = AttendanceEnum.FAILED;
@@ -218,18 +218,25 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                 }
                 newData.ComfirmDateTime = DateTime.Now;
 
-                if (newData.EmployeeComfirmId == null)
+                if (newData.EmployeeConfirmId == null)
                 {
                     res.Status = AttendanceEnum.NULLID;
                     res.ShortDetail = "Không tìm thấy nhân viên id";
                     return res;
                 }
 
-                EmployeeLA employeeLA = _context.employeeLA.Find(newData.EmployeeComfirmId);
+                EmployeeLA employeeLA = _context.employeeLA.Find(newData.EmployeeConfirmId);
                 if (employeeLA == null)
                 {
                     res.Status = AttendanceEnum.FAILED;
-                    res.ShortDetail = $"Không tồn tại nhân viên có id là ${newData.EmployeeComfirmId}";
+                    res.ShortDetail = $"Không tồn tại nhân viên có id là ${newData.EmployeeConfirmId}";
+                    return res;
+                }
+
+                if (newData.AttendanceTypeStatus == null)
+                {
+                    res.Status = AttendanceEnum.NULLID;
+                    res.ShortDetail = $"Không nhận được attendance type status id";
                     return res;
                 }
 
@@ -249,7 +256,7 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     res.ShortDetail = "Không nhận được attendance slot id";
                     return res;
                 }
-                AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(newData.AttendanceSlotId);
+                AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(newData.AttendanceSlotId);
                 if (attendanceSlot == null)
                 {
                     res.Status = AttendanceEnum.FAILED;

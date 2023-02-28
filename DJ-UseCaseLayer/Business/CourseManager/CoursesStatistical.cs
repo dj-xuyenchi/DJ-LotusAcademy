@@ -32,16 +32,22 @@ namespace DJ_UseCaseLayer.Business.CourseManager
             studentCourseList.ForEach(studentCourse =>
             {
                 CoursesStatisticalGetter item = new CoursesStatisticalGetter();
-                item.CourseLAId = studentCourse.CourseLAId;
+                item.CourseId = studentCourse.CourseLAId;
                 CourseLA course = _context.courses.Find(studentCourse.CourseLAId);
-                item.CourseLAName = course.CourseLAName;
-                item.OpenCourse = studentCourse.OpenCourse;
-                item.SupportMonth = studentCourse.SupportMonth;
-                item.CloseCourse = studentCourse.CloseCourse;
+                item.courseName = course.CourseLAName;
+                item.signInDateTime = studentCourse.OpenCourse;
+                item.supportTime = studentCourse.SupportMonth;
+                item.doneExpectedDateTime = studentCourse.CloseCourse;
 
                 List<CourseLACourseLesson> courseLACourseLessons = _context.courseLACourseLessons.Where(x => x.CourseLAId == course.Id).OrderByDescending(x => x.SortNumber).ToList();
                 CourseLesson courseLesson = _context.courseLessons.Find(courseLACourseLessons.FirstOrDefault().CourseLessonId);
-                item.Processing = courseLesson.CourseLessonName;
+                item.lessonNow = courseLesson.CourseLessonName;
+
+                List<StudentLACourseLesson> studentLACourseLessons = _context.studentLACourseLessons.Where(x => x.StudentLAId == studentId && x.CourseLAId == course.Id).OrderByDescending(x => x.SortNumber).ToList();
+                if (studentLACourseLessons.FirstOrDefault() != null)
+                {
+                    item.evalute = studentLACourseLessons.FirstOrDefault().EmployeeEvaluate;
+                }
 
                 coursesStatisticalGetters.Add(item);
             });

@@ -12,8 +12,8 @@ namespace DJ_InterfaceAdapterLA.APIs.AttendanceProgressManagerAPIs
         {
             _attendanceProgressStatistical = new AttendanceProgressStatistical();
         }
-        [HttpGet("AttendanceProgressStatistical/{studentId}")]
-        public ActionResult<AttendanceProgressStatisticalGetDTO> getAttendanceProgressStatistical(int? studentId)
+        [HttpGet("AttendanceProgressStatistical")]
+        public ActionResult<AttendanceProgressStatisticalGetDTO> getAttendanceProgressStatistical([FromQuery] int? studentId)
         {
             return Ok(_attendanceProgressStatistical.getAttendanceProgressStatistical(studentId));
         }

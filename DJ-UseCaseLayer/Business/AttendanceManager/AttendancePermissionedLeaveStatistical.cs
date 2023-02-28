@@ -44,8 +44,8 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
 
                     item.ConfirmDateTime = attendances.ComfirmDateTime;
 
-                    item.EmployeeConfirmId = attendances.EmployeeComfirmId;
-                    EmployeeLA employeeLA = _context.employeeLA.Find(attendances.EmployeeComfirmId);
+                    item.EmployeeConfirmId = attendances.EmployeeConfirmId;
+                    EmployeeLA employeeLA = _context.employeeLA.Find(attendances.EmployeeConfirmId);
                     item.EmployeeConfirmName = employeeLA.EmployeeLAName;
                     lst.Add(item);
                 }

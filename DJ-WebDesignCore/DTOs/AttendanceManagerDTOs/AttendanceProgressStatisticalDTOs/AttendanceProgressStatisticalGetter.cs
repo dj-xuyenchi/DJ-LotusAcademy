@@ -2,14 +2,21 @@
 {
     public class AttendanceProgressStatisticalGetter
     {
-        public string? SortNumber { get; set; }
-        public DateTime? CreateDateTime { get; set; }
-        public int? SlotId { get; set; }
-        public string? SlotName { get; set; }
-        public string? Status { get; set; }
-        public string? Reason { get; set; }
-        public DateTime? ComfirmDateTime { get; set; }
-        public int? EmployeeLAId { get; set; }
-        public string? ConfirmEmployee { get; set; }
+        //    sortNumber:string;
+        //createDateTime:string;
+        //slot:string;
+        //activeStatus:string;
+        //reason:string;
+        //confirmDateTime:string;
+        //employeeConfirm:string;
+        public string? sortNumber { get; set; }
+        public DateTime? createDateTime { get; set; }
+        public int? slotId { get; set; }
+        public string? slot { get; set; }
+        public string? activeStatus { get; set; }
+        public string? reason { get; set; }
+        public DateTime? confirmDateTime { get; set; }
+        public int? employeeConfirmId { get; set; }
+        public string? employeeConfirm { get; set; }
     }
 }
