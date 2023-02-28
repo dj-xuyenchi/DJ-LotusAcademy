@@ -14,6 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useLocation, useRoutes } from 'react-router-dom';
 import Routes from '../route/Router';
+import MeoAI from './MeoAI';
 const { Sider } = Layout;
 
 const LotusLayout = (props:any) => {
@@ -77,6 +78,7 @@ const LotusLayout = (props:any) => {
                 </div>
             </Sider>
             {component}
+            <MeoAI />
         </Layout>
     );
 };

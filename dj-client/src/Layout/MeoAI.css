@@ -1,0 +1,36 @@
+.MeoAI {
+    height: 200px;
+    width: 10%;
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
+
+.MeoAI .content-chat {
+    position: absolute;
+    border: 2px solid #c4ff57;
+    border-radius: 10px;
+    display: inline-flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    top: 15%;
+    left: -50%;
+    min-width: 120px;
+    min-height: 50px;
+}
+
+.MeoAI .content-chat span {
+    font-size: 16px;
+    font-weight: 550;
+}
+
+.MeoAI input {
+    position: absolute;
+    height: 40px;
+    width: 400%;
+    border: 1px solid #797979;
+    border-radius: 5px;
+    right: 205%;
+    bottom: 3%;
+}
