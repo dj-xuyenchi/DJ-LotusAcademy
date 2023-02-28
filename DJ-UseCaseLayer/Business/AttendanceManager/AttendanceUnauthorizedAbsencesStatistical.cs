@@ -40,9 +40,9 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
                     item.OffShift = attendanceTypeStatus.AttendanceTypeName;
 
                     item.ConfirmDateTime = attendance.ComfirmDateTime;
-                    item.EmployeeConfirmId = attendance.EmployeeComfirmId;
+                    item.EmployeeConfirmId = attendance.EmployeeConfirmId;
 
-                    EmployeeLA employeeLA = _context.employeeLA.Find(attendance.EmployeeComfirmId);
+                    EmployeeLA employeeLA = _context.employeeLA.Find(attendance.EmployeeConfirmId);
                     item.EmployeeConfirmName = employeeLA.EmployeeLAName;
                     lst.Add(item);
                 }

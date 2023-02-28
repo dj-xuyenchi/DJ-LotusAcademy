@@ -12,8 +12,8 @@ namespace DJ_InterfaceAdapterLA.APIs.CoursesStatisticalManagerAPIs
         {
             _coursesStatistical = new CoursesStatistical();
         }
-        [HttpGet("CoursesStatistical/{studentId}")]
-        public ActionResult<CoursesStatisticalGetDTO> getCoursesStatistical(int? studentId)
+        [HttpGet("CoursesStatistical")]
+        public ActionResult<CoursesStatisticalGetDTO> getCoursesStatistical([FromQuery] int? studentId)
         {
             return Ok(_coursesStatistical.getCoursesStatistical(studentId));
         }

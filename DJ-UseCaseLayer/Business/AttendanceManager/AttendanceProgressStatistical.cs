@@ -33,37 +33,37 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
             attendances.ForEach(attendance =>
             {
                 AttendanceProgressStatisticalGetter item = new AttendanceProgressStatisticalGetter();
-                item.CreateDateTime = attendance.CreateDateTime;
-                item.SlotId = attendance.AttendanceSlotId;
-                AttendanceSlot attendanceSlot = _context.attendanceSlot.Find(attendance.AttendanceSlotId);
-                item.SlotName = attendanceSlot.AttendanceSlotName;
+                item.createDateTime = attendance.CreateDateTime;
+                item.slotId = attendance.AttendanceSlotId;
+                AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(attendance.AttendanceSlotId);
+                item.slot = attendanceSlot.AttendanceSlotName;
                 if (attendance.IsLate == null || attendance.IsLate == false)
                 {
                     if (attendance.AttendanceTypeStatusId == 8)
                     {
-                        item.Status = "Nghỉ có phép";
-                        item.Reason = attendance.UnactiveReason;
+                        item.activeStatus = "Nghỉ có phép";
+                        item.reason = attendance.UnactiveReason;
                     }
                     else if (attendance.AttendanceTypeStatusId == 9)
                     {
-                        item.Status = "Nghỉ không phép";
-                        item.Reason = attendance.UnactiveReason;
+                        item.activeStatus = "Nghỉ không phép";
+                        item.reason = attendance.UnactiveReason;
                     }
                     else
                     {
-                        item.Status = "Đi học đúng giờ";
+                        item.activeStatus = "Đi học đúng giờ";
                     }
                 }
                 else
                 {
-                    item.Status = $"Đi học muộn - {attendance.LateMinuteTotal} phút";
-                    item.Reason = attendance.UnactiveReason;
+                    item.activeStatus = $"Đi học muộn - {attendance.LateMinuteTotal} phút";
+                    item.reason = attendance.UnactiveReason;
                 }
 
-                item.ComfirmDateTime = attendance.ComfirmDateTime;
-                item.EmployeeLAId = attendance.EmployeeComfirmId;
-                EmployeeLA employeeLA = _context.employeeLA.Find(attendance.EmployeeComfirmId);
-                item.ConfirmEmployee = employeeLA.EmployeeLAName;
+                item.confirmDateTime = attendance.ComfirmDateTime;
+                item.employeeConfirmId = attendance.EmployeeConfirmId;
+                EmployeeLA employeeLA = _context.employeeLA.Find(attendance.EmployeeConfirmId);
+                item.employeeConfirm = employeeLA.EmployeeLAName;
 
                 lst.Add(item);
             });
