@@ -22,6 +22,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<Province> provinces { get; set; }
         public DbSet<AdministrativeRegion> administrative_regions { get; set; }
         public DbSet<AdministrativeUnits> administrative_units { get; set; }
+        public DbSet<AttendanceSlot> attendanceSlots { get; set; }
      
         //
         public DbSet<CourseStatus> courseStatuses { get; set; }
@@ -58,7 +59,7 @@ namespace DJ_UseCaseLayer.DAO
             //optionsBuilder.UseSqlServer(Setting.connectServerUrl());
             //optionsBuilder.UseSqlServer(Setting.connectServerUrlMacOS());
             //optionsBuilder.UseSqlServer(Setting.urlWin());
-            optionsBuilder.UseSqlServer(Setting.urlLC());
+            optionsBuilder.UseSqlServer(Setting.urlMayCty());
         }
 
     }

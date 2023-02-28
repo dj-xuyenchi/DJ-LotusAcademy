@@ -5,7 +5,7 @@ using DJ_WebDesignCore.Entites.Properties;
 
 namespace DJ_WebDesignCore.Entites.Business
 {
-	public class Attendance : BaseEntity
+    public class Attendance : BaseEntity
     {
         public int? StudentLAId { get; set; }
         public StudentLA? StudentLA { get; set; }
@@ -18,7 +18,8 @@ namespace DJ_WebDesignCore.Entites.Business
         public DateTime? ActiveRealTime { get; set; }
         public bool? IsLate { get; set; }
         public int? LateMinuteTotal { get; set; }
-      
+        public int? AttendanceSlotId { get; set; }
+        public AttendanceSlot? AttendanceSlot { get; set; }
     }
 }
 

@@ -135,7 +135,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             foreach(Attendance attendance in _context.attendance.Where(x => x.StudentLAId == id).OrderByDescending(x => x.CreateDateTime))
             {
                 StudentActiveSolutionDTO activeSolutionDTO = new StudentActiveSolutionDTO();
-                activeSolutionDTO.Slot
+               // activeSolutionDTO.Slot
             }
             result.EvaluteACourses = evaluteACourses;
             result.Status = StatisticStatusAPIEnum.SUCCESSFULLY;
