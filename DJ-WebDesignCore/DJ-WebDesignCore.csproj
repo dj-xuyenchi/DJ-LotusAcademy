@@ -12,5 +12,9 @@
     <None Remove="Entites\Courses\" />
     <None Remove="Enums\" />
     <None Remove="Enums\StudentActiveManagerEnums\" />
+    <None Remove="Entites\MeoAI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entites\MeoAI\" />
   </ItemGroup>
 </Project>

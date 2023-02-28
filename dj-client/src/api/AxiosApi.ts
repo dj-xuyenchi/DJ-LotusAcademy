@@ -6,6 +6,7 @@ import queryString from 'query-string';
 const axiosClient = axios.create({
     baseURL: 'https://localhost:7128/',
     // baseURL: 'https://192.168.1.64:7128/',
+    // baseURL: 'https://192.168.1.64:7128/',
     headers: {
         'content-type': 'application/json',
     },

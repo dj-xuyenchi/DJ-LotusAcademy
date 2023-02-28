@@ -1,7 +1,7 @@
 .MeoAI {
     height: 200px;
-    width: 10%;
-    position: absolute;
+    width: 100%;
+    position: fixed;
     bottom: 2%;
     right: 5%;
 }
@@ -14,8 +14,6 @@
     background-color: white;
     justify-content: center;
     align-items: center;
-    top: 15%;
-    left: -50%;
     min-width: 120px;
     min-height: 50px;
 }
@@ -24,13 +22,19 @@
     font-size: 16px;
     font-weight: 550;
 }
-
+.MeoAI img{
+    width: 20%;
+    position: absolute;
+    right: 0;
+    bottom: -2%;
+}
 .MeoAI input {
     position: absolute;
     height: 40px;
-    width: 400%;
+    width: 40%;
     border: 1px solid #797979;
-    border-radius: 5px;
-    right: 205%;
-    bottom: 3%;
+    border-radius: 10px;
+    bottom: 2%;
+    left: 35%;
+padding-left: 12px;
 }
