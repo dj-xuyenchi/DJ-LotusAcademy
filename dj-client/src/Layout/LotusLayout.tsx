@@ -17,7 +17,7 @@ import Routes from '../route/Router';
 import MeoAI from './MeoAI';
 const { Sider } = Layout;
 
-const LotusLayout = (props:any) => {
+const LotusLayout = ({setContent, setCatReact,content,catReact ,checkLogin}:any) => {
     const [collapsed, setCollapsed] = useState(true);
     const component = useRoutes(Routes);
     const location = useLocation();
@@ -71,14 +71,14 @@ const LotusLayout = (props:any) => {
                     }}>
                         <FontAwesomeIcon icon={faMessage} className="text-[#042341]" />
                     </div>
-                    <Avatar onClick={()=>{props.checkLogin(false)}}
+                    <Avatar onClick={()=>{checkLogin(false)}}
                         className="h-[50px] w-[50px] bg-top bg-cover bg-[url('https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-trung-quoc.jpg')] align-middle"
                         size="large"
                     ></Avatar>
                 </div>
             </Sider>
             {component}
-            <MeoAI />
+            <MeoAI catReact={catReact} content={content} setContent={setContent} setCatReact={setCatReact}/>
         </Layout>
     );
 };
