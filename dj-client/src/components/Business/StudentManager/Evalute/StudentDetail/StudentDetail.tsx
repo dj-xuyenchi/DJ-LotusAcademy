@@ -3,8 +3,6 @@ import './StudentDetail.css';
 import { useEffect, useRef, useState } from 'react';
 import Table, { ColumnsType } from 'antd/es/table';
 import { SimpleStudentEvalute } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
-import { Tag } from 'antd';
-import { Link } from 'react-router-dom';
 import { columnsActiveSolution, columnsCourses } from '../../../../../entities/table/TableColumn';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import studentStatisticalApi from '../../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
@@ -194,7 +192,6 @@ function TableViewActiveChart({ handleSetTableView }: any) {
         date.setFullYear(now.getFullYear())
         let dateOfMonth = date.getDay()
         let dayOfNextMonth = 1;
-        // console.log(dateOfMonth)3
         if (content) {
             const trArray = content.current.children;
             for (const td of trArray[0].children) {
@@ -231,8 +228,6 @@ function TableViewActiveChart({ handleSetTableView }: any) {
             }
         }
         const yearView = document.getElementById("calendar-year");
-
-
     }
     function handleClearSpan() {
         while (document.querySelector(".day-of-last-and-next-month")) {
@@ -248,6 +243,12 @@ function TableViewActiveChart({ handleSetTableView }: any) {
     }, [])
     useEffect(() => {
     }, [updateState])
+    const [checkOutList,setCheckOutList] = useState([
+        {
+            day:1,
+            slot: 1
+        }
+    ])
     return (
         <>
             <div style={{

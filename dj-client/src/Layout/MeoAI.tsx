@@ -18,7 +18,6 @@ function Content({ setActive, isActive ,content,catReact}: any) {
     let dataChat = ""
     const interval = setInterval(() => {
         if (i === content.length) {
-           
             clearInterval(interval)
         }
         if (content[i] != undefined) {
