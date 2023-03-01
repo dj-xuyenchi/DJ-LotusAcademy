@@ -11,10 +11,11 @@
     border: 2px solid #c4ff57;
     border-radius: 10px;
     display: inline-flex;
+    right: 8%;
     background-color: white;
     justify-content: center;
     align-items: center;
-    min-width: 120px;
+    min-width: 160px;
     min-height: 50px;
 }
 
@@ -22,12 +23,14 @@
     font-size: 16px;
     font-weight: 550;
 }
-.MeoAI img{
-    width: 20%;
+
+.MeoAI img {
+    width: 12%;
     position: absolute;
     right: 0;
     bottom: -2%;
 }
+
 .MeoAI input {
     position: absolute;
     height: 40px;
@@ -36,5 +39,5 @@
     border-radius: 10px;
     bottom: 2%;
     left: 35%;
-padding-left: 12px;
+    padding-left: 12px;
 }
