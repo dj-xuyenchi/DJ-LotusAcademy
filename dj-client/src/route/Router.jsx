@@ -21,8 +21,10 @@ const Routes = [
         path: '/manager/',
         element: <EditStudentProfile />,
     },
-
-    { path: '*', element: <NotFound /> },
+    {
+        path: '/hocvien/thongtincanhan',
+        element: <EditStudentProfile />,
+    },
 ];
 
 export default Routes;

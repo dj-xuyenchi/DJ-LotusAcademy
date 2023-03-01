@@ -1,120 +1,76 @@
 import './EditStudentProfile.css';
-import { SettingOutlined, UserOutlined } from '@ant-design/icons';
-import {
-    Button,
-    Cascader,
-    DatePicker,
-    Form,
-    Input,
-    InputNumber,
-    Radio,
-    Select,
-    Switch,
-    TreeSelect,
-    Row,
-    Col,
-} from 'antd';
+import { SettingOutlined, UserOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { Input, Upload } from 'antd';
+import { useState } from 'react';
 function EditStudentProfile() {
+    const [loading, setLoading] = useState(false);
+    const [imageUrl, setImageUrl] = useState('');
+    const uploadButton = (
+        <div>
+            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            <div style={{ marginTop: 8 }}>Tải ảnh lên</div>
+        </div>
+    );
+
     return (
-        <div className="wrapper">
-            <div className="container">
-                <h4 className="title">Cập nhật thông tin cá nhân</h4>
-                <form className="editinfo-main pb-4">
-                    <div>
-                        <div className="form-title">
-                            <SettingOutlined style={{ fontSize: '14px' }} />
-                            <span style={{ marginLeft: '10px' }}>Thông tin tài khoản</span>
-                        </div>
-                        <div className="form-container">
-                            <div className="row mb-3">
-                                <div className="form-group col-md-6">
-                                    <label>Tên đăng nhập</label>
-                                    <Input />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Họ tên</label>
-                                    <Input />
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="form-group col-md-6">
-                                    <label>Email</label>
-                                    <Input />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Số điện thoại</label>
-                                    <Input />
-                                </div>
-                            </div>
-                        </div>
+        <div className="infor-edit">
+            <div className="wrapper">
+                <div className="row">
+                    <div className="col-md-15">
+                        <nav>
+                            <ul>
+                                <li className="nav_item mb-2 d-flex">
+                                    <SettingOutlined style={{ fontSize: '20px' }} />
+                                    <span className="ml-3">Thông tin tài khoản</span>
+                                </li>
+                                <li className="nav_item mb-2 d-flex">
+                                    <UserOutlined style={{ fontSize: '20px' }} />
+                                    <span className="ml-3">Thông tin cá nhân</span>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-                    <div>
-                        <div className="form-title">
-                            <UserOutlined style={{ fontSize: '14px' }} />
-                            <span style={{ marginLeft: '10px' }}>Thông tin cá nhân</span>
+                    <div className="col-md-45">
+                        <div className="mb-8">
+                            <h3 className="mb-2">Thông tin tài khoản</h3>
                         </div>
-                        <div className="form-container">
-                            <div className="row mb-3">
-                                <div className="form-group col-md-6">
-                                    <label>Ngày sinh</label>
-                                    <DatePicker style={{ width: '100%' }} />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Tỉnh thành</label>
-                                    <Select style={{ width: '100%' }}>
-                                        <Select.Option value="demo">Demo</Select.Option>
-                                    </Select>
-                                </div>
+                        <form>
+                            <Upload
+                                name="avatar"
+                                listType="picture-circle"
+                                className="avatar-uploader mb-2"
+                                showUploadList={false}
+                                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                                // beforeUpload={beforeUpload}
+                                // onChange={handleChange}
+                            >
+                                {imageUrl ? (
+                                    <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+                                ) : (
+                                    uploadButton
+                                )}
+                            </Upload>
+                            <div className="form-group col-md-5 mb-3">
+                                <label className="mb-2">Tên đăng nhập</label>
+                                <Input size="large" />
                             </div>
-                            <div className="row mb-3">
-                                <div className="form-group col-md-6">
-                                    <label>Trường CĐ / ĐH</label>
-                                    <Select style={{ width: '100%' }}>
-                                        <Select.Option value="demo">Demo</Select.Option>
-                                    </Select>
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Quận huyện</label>
-                                    <Select style={{ width: '100%' }}>
-                                        <Select.Option value="demo">Demo</Select.Option>
-                                    </Select>
-                                </div>
+                            <div className="form-group col-md-5 mb-3">
+                                <label className="mb-2">Họ tên</label>
+                                <Input size="large" />
                             </div>
-                            <div className="row mb-3">
-                                <div className="form-group col-md-6">
-                                    <label>Khoa (Ngành)</label>
-                                    <Input />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Xã phường</label>
-                                    <Select style={{ width: '100%' }}>
-                                        <Select.Option value="demo">Demo</Select.Option>
-                                    </Select>
-                                </div>
+                            <div className="form-group col-md-5 mb-3">
+                                <label className="mb-2">Email</label>
+                                <Input size="large" />
                             </div>
-                            <div className="row mb-3">
-                                <div className="form-group col-md-6">
-                                    <label>Năm thứ</label>
-                                    <Select style={{ width: '100%' }}>
-                                        <Select.Option value="1">1</Select.Option>
-                                        <Select.Option value="2">2</Select.Option>
-                                        <Select.Option value="3">3</Select.Option>
-                                        <Select.Option value="4">4</Select.Option>
-                                        <Select.Option value="5">5</Select.Option>
-                                    </Select>
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label>Số nhà</label>
-                                    <Input />
-                                </div>
+                            <div className="form-group col-md-5 mb-3">
+                                <label className="mb-2">Số điện thoại</label>
+                                <Input size="large" />
                             </div>
-                        </div>
+                            <button type="submit" className="btn btn-secondary">
+                                Sign in
+                            </button>
+                        </form>
                     </div>
-                </form>
-                <div className="d-flex justify-content-center">
-                    <button type="submit" className="btn btn-primary mt-4">
-                        Lưu thay đổi
-                    </button>
                 </div>
             </div>
         </div>

@@ -7,7 +7,11 @@ namespace DJ_UseCaseLayer.DAO
 	{
         public static string url()
         {
+<<<<<<< Updated upstream
             return "Data Source=192.168.1.101;Initial Catalog=djxuyenc_ladatabase;User ID=sa;password=1231234;encrypt=true;trustservercertificate=true;";
+=======
+            return "Data Source=192.168.1.13;Initial Catalog=djxuyenc_ladatabase;User ID=hieu_remote;password=1231234;encrypt=true;trustservercertificate=true;";
+>>>>>>> Stashed changes
         }
         public static string urlWin()
         {

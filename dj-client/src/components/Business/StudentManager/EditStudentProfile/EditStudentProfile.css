@@ -1,21 +1,76 @@
-.wrapper {
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-md-15 {
+    width: 20%;
+    float: left;
+}
+.col-md-45 {
+    width: 80%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+    .col-md-45 {
+        width: 80%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+    .col-md-45 {
+        width: 80%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+    .col-md-45 {
+        width: 80%;
+        float: left;
+    }
+}
+.infor-edit {
     width: 100%;
-    background-color: #f0f2f5;
 }
-.title {
-    padding: 1rem;
-}
-.editinfo-main {
+.infor-edit .wrapper {
     width: 100%;
-    background-color: white;
+    padding: 1.5rem 2rem;
 }
-.form-title {
-    padding: 12px 20px 12px 20px;
-    font-size: 16px;
-    display: flex;
+.infor-edit .nav_item {
+    height: 40px;
+    padding: 0 12px;
     align-items: center;
+    cursor: pointer;
+    display: block;
+    border-radius: 8px;
 }
-.form-container {
-    padding: 0 20px;
-    width: 100%;
+.infor-edit .nav_item:hover {
+    background-color: #edeeef;
+}
+.infor-edit .nav_item span {
+    font-size: 1.2rem;
+}
+.infor-edit h3 {
+    font-size: 24px;
+    font-weight: bold;
 }
