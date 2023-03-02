@@ -8,6 +8,9 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import studentStatisticalApi from '../../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
 import { mapData } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/StudentCourseSolution';
 import { mapDataActiveSolution } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/ActiveSolution';
+import { ActiveNote } from '../../../../../entities/BusinessDTO/StudentManager/StudentEvalute/ActiveNote';
+import { activeType } from '../../../../../enums/ActiveType';
+import { slotEnum } from '../../../../../enums/SlotEnum';
 function StudentDetail() {
     const [tableView, setTableView] = useState(3)
     function handleSetTableView(opt: number) {
@@ -175,6 +178,35 @@ function TableViewReserve() {
     )
 }
 function TableViewActiveChart({ handleSetTableView }: any) {
+    const [checkOutList, setCheckOutList] = useState<ActiveNote[]>([
+        {
+            day: 10,
+            activeType: activeType.LATE,
+            confirmDate: "19h-20p 10/02/2023",
+            confirmEmployee: "Pé Mai",
+            lateTotal: "20 phút",
+            note: "Mải chơi",
+            slot: slotEnum.CA1
+        },
+        {
+            day: 20,
+            activeType: activeType.NOTLATE,
+            confirmDate: "19h-20p 20/02/2023",
+            confirmEmployee: "Pé Mai",
+            lateTotal: "20 phút",
+            note: "Mải chơi",
+            slot: slotEnum.CA1
+        },
+        {
+            day: 21,
+            activeType: activeType.UNACTIVE,
+            confirmDate: "19h-20p 21/02/2023",
+            confirmEmployee: "Pé Mai",
+            lateTotal: "20 phút",
+            note: "Không rõ",
+            slot: slotEnum.CA1
+        },
+    ])
     const las = new Date();
     const [updateState, setUpdateState] = useState(false);
     const [now, setNow] = useState(las)
@@ -206,8 +238,20 @@ function TableViewActiveChart({ handleSetTableView }: any) {
                 const span: HTMLSpanElement = document.createElement("span")
                 span.classList.add("day-of-month")
                 span.innerHTML = dayCounter.toString()
-                dayCounter++
                 td.appendChild(span)
+                const attendance = checkOutList.find((element)=>{
+                    return element.day === dayCounter;
+                })
+                if (attendance) {
+                    const divNote: HTMLDivElement = document.createElement("div")
+                    divNote.classList.add("active-detail")
+                    const spanSlot: HTMLSpanElement = document.createElement("span")
+                    spanSlot.innerHTML = "Ca 1"
+                    divNote.appendChild(spanSlot)
+                    console.log(divNote);
+                    td.appendChild(divNote)
+                }
+                dayCounter++
             }
             for (let i = 1; i < 6; i++) {
                 for (const td of trArray[i].children) {
@@ -224,6 +268,18 @@ function TableViewActiveChart({ handleSetTableView }: any) {
                     span.innerHTML = dayCounter.toString()
                     dayCounter++
                     td.appendChild(span)
+                    const attendance = checkOutList.find((element)=>{
+                        return element.day === dayCounter;
+                    })
+                    if (attendance) {
+                        const divNote: HTMLDivElement = document.createElement("div")
+                        divNote.classList.add("active-detail")
+                        const spanSlot: HTMLSpanElement = document.createElement("span")
+                        spanSlot.innerHTML = "Ca 1"
+                        divNote.appendChild(spanSlot)
+                        console.log(divNote);
+                        td.appendChild(divNote)
+                    }
                 }
             }
         }
@@ -243,12 +299,7 @@ function TableViewActiveChart({ handleSetTableView }: any) {
     }, [])
     useEffect(() => {
     }, [updateState])
-    const [checkOutList,setCheckOutList] = useState([
-        {
-            day:1,
-            slot: 1
-        }
-    ])
+   
     return (
         <>
             <div style={{
@@ -295,10 +346,10 @@ function TableViewActiveChart({ handleSetTableView }: any) {
                 <tbody ref={content}>
                     <tr>
                         <td>
-                            <div className="active-detail">
+                            {/* <div className="active-detail">
                                 <span className='title'>Ca học: <span>Ca 1</span></span>
                                 <span className='title'>Điểm danh: <span>Quang Anh</span></span>
-                            </div>
+                            </div> */}
                         </td>
                         <td></td>
                         <td></td>

@@ -22,7 +22,11 @@ function Content({ setActive, isActive ,content,catReact}: any) {
         }
         if (content[i] != undefined) {
             dataChat = dataChat + content[i]
-            showContentSpan.current.innerHTML = dataChat
+            console.log(typeof showContentSpan);
+            
+            if(showContentSpan.current !== undefined) {
+                showContentSpan.current.innerHTML = dataChat
+            }
             i++
         }
     }, 50)
