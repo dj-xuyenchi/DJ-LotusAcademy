@@ -68,11 +68,11 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 item.FacebookUrl = studentLA.FacebookUrl;
 
                 lst.Add(item);
+                res.Data = item;
 
             });
             res.Static = StudentFetailStatisticalEnum.SUCCESSFULLY;
             res.ShortDetail = "Lấy dữ liệu thành công!";
-            res.Data = lst;
             return res;
         }
     }
