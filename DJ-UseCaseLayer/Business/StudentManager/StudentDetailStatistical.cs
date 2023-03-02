@@ -68,7 +68,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 item.FacebookUrl = studentLA.FacebookUrl;
 
                 lst.Add(item);
-                res.Data = item;
+                res.infoAndContact = item;
 
             });
             res.Static = StudentFetailStatisticalEnum.SUCCESSFULLY;
