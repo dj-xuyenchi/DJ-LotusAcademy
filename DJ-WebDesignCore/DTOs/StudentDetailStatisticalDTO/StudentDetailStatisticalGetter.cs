@@ -17,7 +17,7 @@ namespace DJ_WebDesignCore.DTOs.StudentDetailStatisticalDTO
         public string? ProvinceCode { get; set; }
         public string? ProvinceName { get; set; }
         public string? addressDetail { get; set; }
-        public DateTime? birthday { get; set; }
+        public DateTime? birthDay { get; set; }
         public int? GenderId { get; set; }
         public string? gender { get; set; }
         public int? StudentStatusId { get; set; }
