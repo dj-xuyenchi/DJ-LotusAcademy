@@ -36,9 +36,9 @@ namespace DJ_UseCaseLayer.Business.StudentManager
             studentLAs.ForEach(studentLA =>
             {
                 StudentDetailStatisticalGetter item = new StudentDetailStatisticalGetter();
-                item.StudentName = studentLA.StudentLAName;
-                item.Email = studentLA.Email;
-                item.StudentSdt = studentLA.StudentLASdt;
+                item.studentLAName = studentLA.StudentLAName;
+                item.email = studentLA.Email;
+                item.studentLASdt = studentLA.StudentLASdt;
 
                 item.DistrictCode = studentLA.DistrictCode;
                 District district = _context.districts.Find(studentLA.DistrictCode);
@@ -48,24 +48,24 @@ namespace DJ_UseCaseLayer.Business.StudentManager
                 Province province = _context.provinces.Find(studentLA.ProvinceCode);
                 item.ProvinceName = province.name;
 
-                item.Address = $"{item.DistrictName} - {item.ProvinceName}";
+                item.addressDetail = $"{item.DistrictName} - {item.ProvinceName}";
 
-                item.StudentBirthday = studentLA.StudentLABirthDay;
+                item.birthday = studentLA.StudentLABirthDay;
 
                 item.GenderId = studentLA.GenderId;
                 Gender gender = _context.genders.Find(studentLA.GenderId);
-                item.GenderName = gender.GenderName;
+                item.gender = gender.GenderName;
 
                 item.StudentStatusId = studentLA.StudentStatusId;
                 StudentStatus studentStatus = _context.studentStatuses.Find(studentLA.StudentStatusId);
-                item.StudentStatusName = studentStatus.StudentStatusName;
+                item.status = studentStatus.StudentStatusName;
 
                 item.StudentDatalogId = studentLA.StudentDatalogId;
                 StudentDatalog studentDatalog = _context.studentDatalogs.Find(studentLA.StudentDatalogId);
-                item.StudentDatalogName = studentDatalog.StudentDatalogName;
+                item.job = studentDatalog.StudentDatalogName;
 
-                item.ZaloUrl = studentLA.ZaloUrl;
-                item.FacebookUrl = studentLA.FacebookUrl;
+                item.zaloUrl = studentLA.ZaloUrl;
+                item.facebookUrl = studentLA.FacebookUrl;
 
                 lst.Add(item);
                 res.infoAndContact = item;
