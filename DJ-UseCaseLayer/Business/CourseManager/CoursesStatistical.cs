@@ -29,15 +29,19 @@ namespace DJ_UseCaseLayer.Business.CourseManager
 
             List<CoursesStatisticalGetter> coursesStatisticalGetters = new List<CoursesStatisticalGetter>();
             List<StudentCourse> studentCourseList = _context.studentCourses.Where(x => x.StudentLAId == studentId).ToList();
+            int cnt = 0;
             studentCourseList.ForEach(studentCourse =>
             {
+                cnt++;
                 CoursesStatisticalGetter item = new CoursesStatisticalGetter();
-                item.CourseId = studentCourse.CourseLAId;
+                item.sortNumber = cnt;
+                item.courseId = studentCourse.CourseLAId;
+
                 CourseLA course = _context.courses.Find(studentCourse.CourseLAId);
                 item.courseName = course.CourseLAName;
-                item.signInDateTime = studentCourse.OpenCourse;
+                item.signInDateTime = studentCourse.OpenCourse.Value.Day + " - " + studentCourse.OpenCourse.Value.Month + " - " + studentCourse.OpenCourse.Value.Year;
                 item.supportTime = studentCourse.SupportMonth;
-                item.doneExpectedDateTime = studentCourse.CloseCourse;
+                item.doneExpectedDateTime = studentCourse.CloseCourse.Value.Day + " - " + studentCourse.CloseCourse.Value.Month + " - " + studentCourse.CloseCourse.Value.Year;
 
                 List<CourseLACourseLesson> courseLACourseLessons = _context.courseLACourseLessons.Where(x => x.CourseLAId == course.Id).OrderByDescending(x => x.SortNumber).ToList();
                 CourseLesson courseLesson = _context.courseLessons.Find(courseLACourseLessons.FirstOrDefault().CourseLessonId);
@@ -53,7 +57,7 @@ namespace DJ_UseCaseLayer.Business.CourseManager
             });
 
             res.Status = CoursesStatisticalEnum.SUCCESSFULLY;
-            res.Data = coursesStatisticalGetters;
+            res.data = coursesStatisticalGetters;
             res.ShortDetail = "Lấy dữ liệu thành công!";
             return res;
         }

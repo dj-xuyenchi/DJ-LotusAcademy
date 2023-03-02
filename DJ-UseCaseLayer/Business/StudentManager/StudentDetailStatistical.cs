@@ -5,11 +5,6 @@ using DJ_WebDesignCore.Entites.Properties;
 using DJ_WebDesignCore.Entites.Properties.Address;
 using DJ_WebDesignCore.Entites.Student;
 using DJ_WebDesignCore.Enums.StudentDetailStatisticalEnums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DJ_UseCaseLayer.Business.StudentManager
 {
@@ -50,7 +45,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
 
                 item.addressDetail = $"{item.DistrictName} - {item.ProvinceName}";
 
-                item.birthDay = studentLA.StudentLABirthDay;
+                item.birthDay = studentLA.StudentLABirthDay.Value.Day + " - " + studentLA.StudentLABirthDay.Value.Month + " - " + studentLA.StudentLABirthDay.Value.Year;
 
                 item.GenderId = studentLA.GenderId;
                 Gender gender = _context.genders.Find(studentLA.GenderId);

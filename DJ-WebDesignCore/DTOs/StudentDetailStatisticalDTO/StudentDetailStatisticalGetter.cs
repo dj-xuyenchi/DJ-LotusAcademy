@@ -1,11 +1,4 @@
-﻿using DJ_WebDesignCore.Entites.Properties;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DJ_WebDesignCore.DTOs.StudentDetailStatisticalDTO
+﻿namespace DJ_WebDesignCore.DTOs.StudentDetailStatisticalDTO
 {
     public class StudentDetailStatisticalGetter
     {
@@ -17,7 +10,7 @@ namespace DJ_WebDesignCore.DTOs.StudentDetailStatisticalDTO
         public string? ProvinceCode { get; set; }
         public string? ProvinceName { get; set; }
         public string? addressDetail { get; set; }
-        public DateTime? birthDay { get; set; }
+        public string? birthDay { get; set; }
         public int? GenderId { get; set; }
         public string? gender { get; set; }
         public int? StudentStatusId { get; set; }

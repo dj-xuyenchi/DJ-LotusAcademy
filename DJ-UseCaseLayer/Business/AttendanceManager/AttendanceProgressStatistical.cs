@@ -30,9 +30,12 @@ namespace DJ_UseCaseLayer.Business.AttendanceManager
 
             List<AttendanceProgressStatisticalGetter> lst = new List<AttendanceProgressStatisticalGetter>();
             List<Attendance> attendances = _context.attendance.Where(x => x.StudentLAId == studendId).ToList();
+            int cnt = 0;
             attendances.ForEach(attendance =>
             {
+                cnt++;
                 AttendanceProgressStatisticalGetter item = new AttendanceProgressStatisticalGetter();
+                item.sortNumber = cnt.ToString();
                 item.createDateTime = attendance.CreateDateTime;
                 item.slotId = attendance.AttendanceSlotId;
                 AttendanceSlot attendanceSlot = _context.attendanceSlots.Find(attendance.AttendanceSlotId);
