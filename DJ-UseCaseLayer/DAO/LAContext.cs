@@ -59,7 +59,7 @@ namespace DJ_UseCaseLayer.DAO
             //optionsBuilder.UseSqlServer(Setting.connectServerUrl());
             //optionsBuilder.UseSqlServer(Setting.connectServerUrlMacOS());
             //optionsBuilder.UseSqlServer(Setting.urlWin());
-            optionsBuilder.UseSqlServer(Setting.urlMayCty());
+            optionsBuilder.UseSqlServer(Setting.urlMayNha(),b=>b.MigrationsAssembly("DJ-UseCaseLayer"));
         }
 
     }

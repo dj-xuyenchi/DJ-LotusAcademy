@@ -10,12 +10,16 @@ namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
     [Route("api/hocvien/")]
     public class StudentCRUDController : BaseAPI
     {
-     private readonly IStudentCRUD _studentCRUD;
+        private readonly IStudentCRUD _studentCRUD;
 
         public StudentCRUDController()
         {
             _studentCRUD = new StudentCRUD();
         }
-    
+        [HttpPost("createStudent")]
+        public ActionResult<StudentCreateDTO> createStudent([FromBody] StudentLA newData)
+        {
+            return Ok(_studentCRUD.createStudent(newData));
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace DJ_WebDesignCore.Entites.Student
         public Province? Province { get; set; }
         public string? AddressDetail { get; set; }
         public DateTime? StudentLABirthDay { get; set; }
-        public int? SaleId { get; set; }
+        public int? SaleId { get; set; }    
         public EmployeeLA? Sale { get; set; }
         public int? GenderId { get; set; }
         public Gender? Gender { get; set; }
