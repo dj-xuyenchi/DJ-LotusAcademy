@@ -13,6 +13,7 @@ namespace DJ_WebDesignCore.Entites.Student
         public string? StudentLAPassword { get; set; }
         public string? StudentLASdt { get; set; }
         public byte[]? StudentLAAvatar { get; set; }
+        public string? Email { get; set; }
         public string? ZaloUrl { get; set; }
         public string? FacebookUrl { get; set; }
         public int? StudentDatalogId { get; set; }

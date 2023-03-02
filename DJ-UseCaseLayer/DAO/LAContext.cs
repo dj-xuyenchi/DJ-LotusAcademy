@@ -30,6 +30,7 @@ namespace DJ_UseCaseLayer.DAO
         public DbSet<CourseLessonStatus> courseLessonStatuses { get; set; }
         public DbSet<InternStatus> internStatuses { get; set; }
         public DbSet<HolidayStatus> holidayStatuses { get; set; }
+        public DbSet<StudentDatalog> studentDatalogs { get; set; }
         // Student
         public DbSet<StudentLA> studentLAs { get; set; }
 
