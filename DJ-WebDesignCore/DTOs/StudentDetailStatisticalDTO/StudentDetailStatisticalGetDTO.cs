@@ -11,6 +11,6 @@ namespace DJ_WebDesignCore.DTOs.StudentDetailStatisticalDTO
     {
         public StudentFetailStatisticalEnum? Static { get; set; }
         public string? ShortDetail { get; set; }
-        public StudentDetailStatisticalGetter Data { get; set; }
+        public StudentDetailStatisticalGetter infoAndContact { get; set; }
     }
 }
