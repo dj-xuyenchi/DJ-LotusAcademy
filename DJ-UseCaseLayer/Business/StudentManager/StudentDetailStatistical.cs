@@ -50,7 +50,7 @@ namespace DJ_UseCaseLayer.Business.StudentManager
 
                 item.addressDetail = $"{item.DistrictName} - {item.ProvinceName}";
 
-                item.birthday = studentLA.StudentLABirthDay;
+                item.birthDay = studentLA.StudentLABirthDay;
 
                 item.GenderId = studentLA.GenderId;
                 Gender gender = _context.genders.Find(studentLA.GenderId);
