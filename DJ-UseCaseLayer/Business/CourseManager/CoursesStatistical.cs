@@ -12,7 +12,7 @@ namespace DJ_UseCaseLayer.Business.CourseManager
         CoursesStatisticalGetDTO ICoursesStatistical.getCoursesStatistical(int? studentId)
         {
             CoursesStatisticalGetDTO res = new CoursesStatisticalGetDTO();
-
+            1
             if (studentId == null)
             {
                 res.Status = CoursesStatisticalEnum.NULLID;
