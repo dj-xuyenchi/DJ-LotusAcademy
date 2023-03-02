@@ -3,7 +3,7 @@ import { Content, Header } from 'antd/es/layout/layout';
 
 const Home = () => {
     return (
-        <Layout className="bg-white">
+        <Layout className="bg-white ml-[80px]">
             <Header className=" d-flex items-center">
                 <h3 className="m-0">Bảng tin</h3>
             </Header>

@@ -1,33 +1,32 @@
-import "./EvaluteStudent.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './EvaluteStudent.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers, faArrowUp, faSearch } from '@fortawesome/free-solid-svg-icons';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Button from 'react-bootstrap/Button';
+import { useEffect, useState } from 'react';
+import studentStatisticalApi from '../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
+import Table, { ColumnsType } from 'antd/es/table';
+import Tag from 'antd/es/tag';
+import { DataType } from '../../../../entities/table/Datatype';
+import { Link } from 'react-router-dom';
 import {
-    faUsers,
-    faArrowUp,
-    faSearch,
-} from "@fortawesome/free-solid-svg-icons";
-import Dropdown from "react-bootstrap/Dropdown";
-import Button from "react-bootstrap/Button";
-import { useEffect, useState } from "react";
-import studentStatisticalApi from "../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi";
-import Table, { ColumnsType } from "antd/es/table";
-import Tag from "antd/es/tag";
-import { DataType } from "../../../../entities/table/Datatype";
-import { Link } from "react-router-dom";
-import { mapData, SimpleStudentEvalute } from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
+    mapData,
+    SimpleStudentEvalute,
+} from '../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
 function EvaluteStudent() {
     const [evaluteData, setEvaluteData] = useState({
         data: [
             {
                 id: 1,
                 info: {
-                    avatar: "https://thietbigiadinh.org/wp-content/uploads/2022/04/anh-3d-meo-01.jpg",
-                    name: "Thai Lan Huowng"
+                    avatar: 'https://thietbigiadinh.org/wp-content/uploads/2022/04/anh-3d-meo-01.jpg',
+                    name: 'Thai Lan Huowng',
                 },
-                phoneNumber: "+84 968491797",
-                mentor: "2 Mét",
-                courses: ["Java", "c#"],
-                status: "Học Online",
-            }
+                phoneNumber: '+84 968491797',
+                mentor: '2 Mét',
+                courses: ['Java', 'c#'],
+                status: 'Học Online',
+            },
         ],
         solutionCenterLADTO: {
             totalStudentOFF: 0,
@@ -45,16 +44,19 @@ function EvaluteStudent() {
             title: 'Họ tên',
             dataIndex: 'info',
             key: 'info',
-             width: '20%',
-            render: (element) => <Link to="/hocvien/1">
-                <img src={element.avatar} alt="" />
-                <span>{element.name}</span>
-            </Link>,
+            width: '20%',
+            render: (element) => (
+                <Link to="/hocvien/1">
+                    <img src={element.avatar} alt="" />
+                    <span>{element.name}</span>
+                </Link>
+            ),
         },
         {
             title: 'Số điện thoại',
             dataIndex: 'phoneNumber',
-            key: 'phoneNumber', width: '20%',
+            key: 'phoneNumber',
+            width: '20%',
         },
         {
             title: 'Khóa học',
@@ -65,7 +67,7 @@ function EvaluteStudent() {
                 <>
                     {courses.map((course) => {
                         return (
-                            <Tag color={"green"} key={course}>
+                            <Tag color={'green'} key={course}>
                                 {course.toUpperCase()}
                             </Tag>
                         );
@@ -76,17 +78,16 @@ function EvaluteStudent() {
         {
             title: 'Trợ giảng',
             key: 'mentor',
-            dataIndex: 'mentor', 
+            dataIndex: 'mentor',
             width: '15%',
         },
         {
             title: 'Trạng thái',
             key: 'status',
-            dataIndex: 'status', 
+            dataIndex: 'status',
             width: '15%',
         },
     ];
-
 
     useEffect(() => {
         // const dt = setInterval(() => {
@@ -103,11 +104,10 @@ function EvaluteStudent() {
 
     return (
         <div
-            className="EvaStudent"
+            className="EvaStudent ml-[80px]"
             style={{
                 padding: '24px 32px',
                 width: '100%',
-                margin: '0 auto',
             }}
         >
             <div className="table-title">
@@ -405,7 +405,13 @@ function EvaluteStudent() {
                     <Button variant="outline-secondary">Export</Button>{' '}
                 </div>
             </div>
-            <Table columns={columns} dataSource={mapData(evaluteData.data)} bordered={false} loading={false} pagination={{ position: ["bottomCenter"] }} />
+            <Table
+                columns={columns}
+                dataSource={mapData(evaluteData.data)}
+                bordered={false}
+                loading={false}
+                pagination={{ position: ['bottomCenter'] }}
+            />
             {/* <Table className="table" hover responsive="sm">
                 <thead>
                         <th id="table-name">

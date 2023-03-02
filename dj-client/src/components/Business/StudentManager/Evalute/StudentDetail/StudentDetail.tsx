@@ -38,7 +38,7 @@ function StudentDetail() {
         },]
     })
     return (
-        <div className="StudentDetail w-100" style={{ padding: '24px 32px' }}>
+        <div className="StudentDetail w-100 ml-[80px]" style={{ padding: '24px 32px' }}>
             <div className="detail-title">
                 <h3>Student Detail</h3>
             </div>

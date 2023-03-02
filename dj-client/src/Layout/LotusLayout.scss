@@ -9,6 +9,12 @@
     background-color: white;
 }
 
+:where(.css-dev-only-do-not-override-1km3mtt).ant-layout .ant-layout-sider {
+    position: fixed;
+    height: 100vh;
+    z-index: 999;
+}
+
 :where(.css-dev-only-do-not-override-diro6f).ant-menu-dark .ant-menu-item-selected {
     background-color: #042341;
 }

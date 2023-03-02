@@ -16,7 +16,7 @@ import { Link, useLocation, useRoutes } from 'react-router-dom';
 import Routes from '../route/Router';
 const { Sider } = Layout;
 
-const LotusLayout = (props:any) => {
+const LotusLayout = (props: any) => {
     const [collapsed, setCollapsed] = useState(true);
     const component = useRoutes(Routes);
     const location = useLocation();
@@ -65,12 +65,13 @@ const LotusLayout = (props:any) => {
                     />
                 </div>
                 <div className="d-flex flex-column justify-content-between align-items-center mb-3">
-                    <div className="mb-3" onClick={()=>{
-                       
-                    }}>
+                    <div className="mb-3" onClick={() => {}}>
                         <FontAwesomeIcon icon={faMessage} className="text-[#042341]" />
                     </div>
-                    <Avatar onClick={()=>{props.checkLogin(false)}}
+                    <Avatar
+                        onClick={() => {
+                            props.checkLogin(false);
+                        }}
                         className="h-[50px] w-[50px] bg-top bg-cover bg-[url('https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-trung-quoc.jpg')] align-middle"
                         size="large"
                     ></Avatar>
