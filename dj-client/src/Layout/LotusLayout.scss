@@ -9,6 +9,11 @@
     background-color: white;
 }
 
+:where(.css-dev-only-do-not-override-1km3mtt).ant-layout .ant-layout-header {
+    background: #fff;
+    padding: 0 25px;
+}
+
 :where(.css-dev-only-do-not-override-1km3mtt).ant-layout .ant-layout-sider {
     position: fixed;
     height: 100vh;

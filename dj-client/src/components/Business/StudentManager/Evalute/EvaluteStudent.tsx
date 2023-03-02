@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import studentStatisticalApi from '../../../../api/BusinessApi/StudentManagerAPIs/StudentStatisticalApi';
 import Table, { ColumnsType } from 'antd/es/table';
 import Tag from 'antd/es/tag';
-import { DataType } from '../../../../entities/table/Datatype';
 import { Link } from 'react-router-dom';
 import {
     mapData,
@@ -44,7 +43,7 @@ function EvaluteStudent() {
             title: 'Họ tên',
             dataIndex: 'info',
             key: 'info',
-            width: '20%',
+            width: '25%',
             render: (element) => (
                 <Link to="/hocvien/1">
                     <img src={element.avatar} alt="" />
@@ -62,7 +61,7 @@ function EvaluteStudent() {
             title: 'Khóa học',
             dataIndex: 'courses',
             key: 'courses',
-            width: '30%',
+            width: '25%',
             render: (_, { courses }) => (
                 <>
                     {courses.map((course) => {
@@ -79,7 +78,7 @@ function EvaluteStudent() {
             title: 'Trợ giảng',
             key: 'mentor',
             dataIndex: 'mentor',
-            width: '15%',
+            width: '20%',
         },
         {
             title: 'Trạng thái',

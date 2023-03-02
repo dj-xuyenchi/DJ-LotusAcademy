@@ -5,6 +5,7 @@ import queryString from 'query-string';
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
 const axiosClient = axios.create({
     baseURL: 'https://localhost:7128/',
+    // baseURL: 'https://192.168.1.64:7128/',
     headers: {
         'content-type': 'application/json',
     },
