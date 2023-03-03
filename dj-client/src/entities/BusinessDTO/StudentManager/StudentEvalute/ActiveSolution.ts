@@ -1,11 +1,14 @@
+import { activeType } from './../../../../enums/ActiveType';
+import { slotEnum } from "../../../../enums/SlotEnum";
+
 export interface ActiveSolution {
-    sortNumber:string;
-    createDateTime:string;
-    slot:string;
-    activeStatus:string;
+    day:number;
+    slot:slotEnum;
+    activeType:activeType;
     reason:string;
     confirmDateTime:string;
     employeeConfirm:string;
+    late:number
 }
 
 
