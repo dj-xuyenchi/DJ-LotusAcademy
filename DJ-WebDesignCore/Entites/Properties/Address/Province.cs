@@ -11,7 +11,7 @@ namespace DJ_WebDesignCore.Entites.Properties.Address
     public  class Province
     {
         [Key]
-        public string code { get; set; }
+        public string? code { get; set; }
         public string? name { get; set; }
         public string? name_en { get; set; }
         public string? full_name { get; set; }

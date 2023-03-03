@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DJUseCaseLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class ss : Migration
+    public partial class Intinal : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -416,6 +416,61 @@ namespace DJUseCaseLayer.Migrations
                         principalColumn: "code");
                     table.ForeignKey(
                         name: "FK_employeeLA_wards_WardCode",
+                        column: x => x.WardCode,
+                        principalTable: "wards",
+                        principalColumn: "code");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "studentGreateLAs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentLAName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentLAUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentLAPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentLASdt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentDatalogId = table.Column<int>(type: "int", nullable: true),
+                    WardCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    DistrictCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ProvinceCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    SaleId = table.Column<int>(type: "int", nullable: true),
+                    GenderId = table.Column<int>(type: "int", nullable: true),
+                    CreateAccountDatetime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    HolidayTotal = table.Column<float>(type: "real", nullable: true),
+                    ReserveTotal = table.Column<float>(type: "real", nullable: true),
+                    UnauthorizedAbsencesTotal = table.Column<float>(type: "real", nullable: true),
+                    LateMinuteTotal = table.Column<int>(type: "int", nullable: true),
+                    UnactiveTotal = table.Column<int>(type: "int", nullable: true),
+                    KnowByWhatId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_studentGreateLAs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_studentGreateLAs_districts_DistrictCode",
+                        column: x => x.DistrictCode,
+                        principalTable: "districts",
+                        principalColumn: "code");
+                    table.ForeignKey(
+                        name: "FK_studentGreateLAs_genders_GenderId",
+                        column: x => x.GenderId,
+                        principalTable: "genders",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_studentGreateLAs_knowByWhats_KnowByWhatId",
+                        column: x => x.KnowByWhatId,
+                        principalTable: "knowByWhats",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_studentGreateLAs_provinces_ProvinceCode",
+                        column: x => x.ProvinceCode,
+                        principalTable: "provinces",
+                        principalColumn: "code");
+                    table.ForeignKey(
+                        name: "FK_studentGreateLAs_wards_WardCode",
                         column: x => x.WardCode,
                         principalTable: "wards",
                         principalColumn: "code");
@@ -1032,6 +1087,31 @@ namespace DJUseCaseLayer.Migrations
                 column: "StudentLAId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_studentGreateLAs_DistrictCode",
+                table: "studentGreateLAs",
+                column: "DistrictCode");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentGreateLAs_GenderId",
+                table: "studentGreateLAs",
+                column: "GenderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentGreateLAs_KnowByWhatId",
+                table: "studentGreateLAs",
+                column: "KnowByWhatId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentGreateLAs_ProvinceCode",
+                table: "studentGreateLAs",
+                column: "ProvinceCode");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentGreateLAs_WardCode",
+                table: "studentGreateLAs",
+                column: "WardCode");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_studentLACourseLessons_CourseLAId",
                 table: "studentLACourseLessons",
                 column: "CourseLAId");
@@ -1150,6 +1230,9 @@ namespace DJUseCaseLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "studentEmployees");
+
+            migrationBuilder.DropTable(
+                name: "studentGreateLAs");
 
             migrationBuilder.DropTable(
                 name: "studentLACourseLessons");

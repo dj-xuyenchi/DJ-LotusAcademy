@@ -8,6 +8,7 @@ namespace DJ_WebDesignCore.Entites.Business
 {
     public class StudentDatalog : BaseEntity
     {
+      
         public string? StudentDatalogCode { get; set; }
         public string? StudentDatalogName { get; set; }
 

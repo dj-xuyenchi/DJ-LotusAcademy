@@ -17,7 +17,7 @@ namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
             _studentCRUD = new StudentCRUD();
         }
         [HttpPost("createStudent")]
-        public ActionResult<StudentCreateDTO> createStudent([FromBody] StudentLA newData)
+        public ActionResult<StudentCreateDTO> createStudent([FromBody] StudentCreateLA newData)
         {
             return Ok(_studentCRUD.createStudent(newData));
         }

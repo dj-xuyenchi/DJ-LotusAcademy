@@ -36,6 +36,7 @@ namespace DJ_UseCaseLayer.DAO
         // Student
         public DbSet<StudentLA> studentLAs { get; set; }
         public DbSet<StudentDatalog> studentDatalogs { get; set; }
+        public DbSet<StudentCreateLA> studentGreateLAs { get; set; }    
         // Course
         public DbSet<CourseLA> courses { get; set; }
         public DbSet<CourseLesson> courseLessons { get; set; }
