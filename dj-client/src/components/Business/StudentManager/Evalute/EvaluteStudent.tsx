@@ -12,6 +12,8 @@ import {
     mapData,
     SimpleStudentEvalute,
 } from '../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute';
+import { mapData, SimpleStudentEvalute } from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
+import { mapData, SimpleStudentEvalute } from "../../../../entities/BusinessDTO/StudentManager/StudentEvalute/SimpleStudentEvalute";
 function EvaluteStudent() {
     const [evaluteData, setEvaluteData] = useState({
         data: [
@@ -41,8 +43,6 @@ function EvaluteStudent() {
     const columns: ColumnsType<SimpleStudentEvalute> = [
         {
             title: 'Họ tên',
-            dataIndex: 'info',
-            key: 'info',
             width: '25%',
             render: (element) => (
                 <Link to="/hocvien/1">
@@ -50,6 +50,8 @@ function EvaluteStudent() {
                     <span>{element.name}</span>
                 </Link>
             ),
+                <span>{element.name}</span>
+            </Link>,
         },
         {
             title: 'Số điện thoại',
@@ -75,10 +77,10 @@ function EvaluteStudent() {
             ),
         },
         {
-            title: 'Trợ giảng',
-            key: 'mentor',
             dataIndex: 'mentor',
             width: '20%',
+            dataIndex: 'mentor', 
+            width: '15%',
         },
         {
             title: 'Trạng thái',

@@ -8,6 +8,7 @@ export interface ActiveSolution {
     employeeConfirm: string;
 }
 
+
 export const mapDataActiveSolution = (input: any): ActiveSolution[] => {
     if (input === null || input === undefined) {
         return [];

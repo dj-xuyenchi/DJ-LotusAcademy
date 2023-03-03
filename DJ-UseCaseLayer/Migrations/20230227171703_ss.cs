@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DJUseCaseLayer.Migrations
 {
     /// <inheritdoc />
-    public partial class create : Migration
+    public partial class ss : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -43,6 +43,20 @@ namespace DJUseCaseLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_administrative_units", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "attendanceSlots",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AttendanceSlotCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AttendanceSlotName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_attendanceSlots", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -155,6 +169,34 @@ namespace DJUseCaseLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_internStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "knowByWhats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    KnowByWhatCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    KnowByWhatName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_knowByWhats", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "studentDatalogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentDatalogCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentDatalogName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_studentDatalogs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -331,12 +373,14 @@ namespace DJUseCaseLayer.Migrations
                     EmployeeLAUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeLAPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeRoleId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeAvatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     WardCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DistrictCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ProvinceCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     GenderId = table.Column<int>(type: "int", nullable: true),
                     NumberPhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FacebookUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZaloUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SkyUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeLAName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EmployeeLABirthDay = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -446,9 +490,17 @@ namespace DJUseCaseLayer.Migrations
                     StudentLAUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudentLAPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudentLASdt = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentLAAvatar = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZaloUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FacebookUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentDatalogId = table.Column<int>(type: "int", nullable: true),
+                    StudentDatalogDetail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StudentIntroduceId = table.Column<int>(type: "int", nullable: true),
                     WardCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DistrictCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ProvinceCode = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    AddressDetail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StudentLABirthDay = table.Column<DateTime>(type: "datetime2", nullable: true),
                     SaleId = table.Column<int>(type: "int", nullable: true),
                     GenderId = table.Column<int>(type: "int", nullable: true),
@@ -459,7 +511,8 @@ namespace DJUseCaseLayer.Migrations
                     ReserveTotal = table.Column<float>(type: "real", nullable: true),
                     UnauthorizedAbsencesTotal = table.Column<float>(type: "real", nullable: true),
                     LateMinuteTotal = table.Column<int>(type: "int", nullable: true),
-                    UnactiveTotal = table.Column<int>(type: "int", nullable: true)
+                    UnactiveTotal = table.Column<int>(type: "int", nullable: true),
+                    KnowByWhatId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -480,10 +533,25 @@ namespace DJUseCaseLayer.Migrations
                         principalTable: "genders",
                         principalColumn: "Id");
                     table.ForeignKey(
+                        name: "FK_studentLAs_knowByWhats_KnowByWhatId",
+                        column: x => x.KnowByWhatId,
+                        principalTable: "knowByWhats",
+                        principalColumn: "Id");
+                    table.ForeignKey(
                         name: "FK_studentLAs_provinces_ProvinceCode",
                         column: x => x.ProvinceCode,
                         principalTable: "provinces",
                         principalColumn: "code");
+                    table.ForeignKey(
+                        name: "FK_studentLAs_studentDatalogs_StudentDatalogId",
+                        column: x => x.StudentDatalogId,
+                        principalTable: "studentDatalogs",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_studentLAs_studentLAs_StudentIntroduceId",
+                        column: x => x.StudentIntroduceId,
+                        principalTable: "studentLAs",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_studentLAs_studentStatuses_StudentStatusId",
                         column: x => x.StudentStatusId,
@@ -529,25 +597,32 @@ namespace DJUseCaseLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentLAId = table.Column<int>(type: "int", nullable: true),
+                    CreateDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ComfirmDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UnactiveReason = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmployeeComfirmId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeConfirmId = table.Column<int>(type: "int", nullable: true),
                     AttendanceTypeStatusId = table.Column<int>(type: "int", nullable: true),
                     ActiveRealTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsLate = table.Column<bool>(type: "bit", nullable: true),
-                    LateMinuteTotal = table.Column<int>(type: "int", nullable: true)
+                    LateMinuteTotal = table.Column<int>(type: "int", nullable: true),
+                    AttendanceSlotId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_attendance", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_attendance_attendanceSlots_AttendanceSlotId",
+                        column: x => x.AttendanceSlotId,
+                        principalTable: "attendanceSlots",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_attendance_attendanceTypeStatuses_AttendanceTypeStatusId",
                         column: x => x.AttendanceTypeStatusId,
                         principalTable: "attendanceTypeStatuses",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_attendance_employeeLA_EmployeeComfirmId",
-                        column: x => x.EmployeeComfirmId,
+                        name: "FK_attendance_employeeLA_EmployeeConfirmId",
+                        column: x => x.EmployeeConfirmId,
                         principalTable: "employeeLA",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -681,12 +756,14 @@ namespace DJUseCaseLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentLAId = table.Column<int>(type: "int", nullable: true),
                     CourseLessonId = table.Column<int>(type: "int", nullable: true),
+                    CourseLAId = table.Column<int>(type: "int", nullable: true),
                     OpenCourse = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CloseCourse = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Score = table.Column<double>(type: "float", nullable: true),
                     EmployeeLAComfirmId = table.Column<int>(type: "int", nullable: true),
                     EmployeeEvaluate = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LinkStudentTest = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    LinkStudentTest = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SortNumber = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -695,6 +772,11 @@ namespace DJUseCaseLayer.Migrations
                         name: "FK_studentLACourseLessons_courseLessons_CourseLessonId",
                         column: x => x.CourseLessonId,
                         principalTable: "courseLessons",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_studentLACourseLessons_courses_CourseLAId",
+                        column: x => x.CourseLAId,
+                        principalTable: "courses",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_studentLACourseLessons_employeeLA_EmployeeLAComfirmId",
@@ -758,15 +840,41 @@ namespace DJUseCaseLayer.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "studentCourseEmployeeReviews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentCourseId = table.Column<int>(type: "int", nullable: true),
+                    ConfirmDateTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ReviewDetail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SortNumber = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_studentCourseEmployeeReviews", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_studentCourseEmployeeReviews_studentCourses_StudentCourseId",
+                        column: x => x.StudentCourseId,
+                        principalTable: "studentCourses",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_attendance_AttendanceSlotId",
+                table: "attendance",
+                column: "AttendanceSlotId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_attendance_AttendanceTypeStatusId",
                 table: "attendance",
                 column: "AttendanceTypeStatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_attendance_EmployeeComfirmId",
+                name: "IX_attendance_EmployeeConfirmId",
                 table: "attendance",
-                column: "EmployeeComfirmId");
+                column: "EmployeeConfirmId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_attendance_StudentLAId",
@@ -899,6 +1007,11 @@ namespace DJUseCaseLayer.Migrations
                 column: "StudentLAId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_studentCourseEmployeeReviews_StudentCourseId",
+                table: "studentCourseEmployeeReviews",
+                column: "StudentCourseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_studentCourses_CourseLAId",
                 table: "studentCourses",
                 column: "CourseLAId");
@@ -917,6 +1030,11 @@ namespace DJUseCaseLayer.Migrations
                 name: "IX_studentEmployees_StudentLAId",
                 table: "studentEmployees",
                 column: "StudentLAId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentLACourseLessons_CourseLAId",
+                table: "studentLACourseLessons",
+                column: "CourseLAId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_studentLACourseLessons_CourseLessonId",
@@ -964,6 +1082,11 @@ namespace DJUseCaseLayer.Migrations
                 column: "GenderId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_studentLAs_KnowByWhatId",
+                table: "studentLAs",
+                column: "KnowByWhatId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_studentLAs_ProvinceCode",
                 table: "studentLAs",
                 column: "ProvinceCode");
@@ -972,6 +1095,16 @@ namespace DJUseCaseLayer.Migrations
                 name: "IX_studentLAs_SaleId",
                 table: "studentLAs",
                 column: "SaleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentLAs_StudentDatalogId",
+                table: "studentLAs",
+                column: "StudentDatalogId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_studentLAs_StudentIntroduceId",
+                table: "studentLAs",
+                column: "StudentIntroduceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_studentLAs_StudentStatusId",
@@ -1013,7 +1146,7 @@ namespace DJUseCaseLayer.Migrations
                 name: "reserves");
 
             migrationBuilder.DropTable(
-                name: "studentCourses");
+                name: "studentCourseEmployeeReviews");
 
             migrationBuilder.DropTable(
                 name: "studentEmployees");
@@ -1028,10 +1161,13 @@ namespace DJUseCaseLayer.Migrations
                 name: "studentLAInterns");
 
             migrationBuilder.DropTable(
+                name: "attendanceSlots");
+
+            migrationBuilder.DropTable(
                 name: "attendanceTypeStatuses");
 
             migrationBuilder.DropTable(
-                name: "courses");
+                name: "studentCourses");
 
             migrationBuilder.DropTable(
                 name: "courseLessons");
@@ -1043,10 +1179,10 @@ namespace DJUseCaseLayer.Migrations
                 name: "interns");
 
             migrationBuilder.DropTable(
-                name: "studentLAs");
+                name: "courses");
 
             migrationBuilder.DropTable(
-                name: "courseStatuses");
+                name: "studentLAs");
 
             migrationBuilder.DropTable(
                 name: "courseLessonStatuses");
@@ -1058,7 +1194,16 @@ namespace DJUseCaseLayer.Migrations
                 name: "internStatuses");
 
             migrationBuilder.DropTable(
+                name: "courseStatuses");
+
+            migrationBuilder.DropTable(
                 name: "employeeLA");
+
+            migrationBuilder.DropTable(
+                name: "knowByWhats");
+
+            migrationBuilder.DropTable(
+                name: "studentDatalogs");
 
             migrationBuilder.DropTable(
                 name: "studentStatuses");

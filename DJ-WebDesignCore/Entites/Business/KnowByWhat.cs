@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace DJ_WebDesignCore.Entites.Business
 {
-    public class StudentDatalog : BaseEntity
+    public class KnowByWhat : BaseEntity
     {
-        public string? StudentDatalogCode { get; set; }
-        public string? StudentDatalogName { get; set; }
-
+        public string? KnowByWhatCode { get; set; }
+        public string? KnowByWhatName { get; set; }
     }
 }

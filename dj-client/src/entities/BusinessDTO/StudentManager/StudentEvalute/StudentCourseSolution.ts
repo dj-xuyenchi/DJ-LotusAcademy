@@ -8,6 +8,7 @@ export interface StudentCourseSolution {
     evalute: string;
 }
 
+
 export const mapData = (input: any): StudentCourseSolution[] => {
 
     if (input === null||input === undefined) {

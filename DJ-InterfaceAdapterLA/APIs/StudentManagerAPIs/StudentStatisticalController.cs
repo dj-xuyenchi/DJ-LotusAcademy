@@ -1,9 +1,4 @@
-﻿using DJ_UseCaseLayer.Business.StudentManager;
-using DJ_WebDesignCore.Business.StudentManager;
-using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
+﻿namespace DJ_InterfaceAdapterLA.APIs.StudentManagerAPIs
 {
     public class StudentStatisticalController : BaseAPI
     {

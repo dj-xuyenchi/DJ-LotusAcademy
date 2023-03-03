@@ -18,6 +18,9 @@ namespace DJ_WebDesignCore.Entites.Student
         public string? FacebookUrl { get; set; }
         public int? StudentDatalogId { get; set; }
         public StudentDatalog? StudentDatalog { get; set; }
+        public string? StudentDatalogDetail { get; set; }
+        public int? StudentIntroduceId { get; set; }
+        public StudentLA? StudentIntroduce { get; set; }
         public string? WardCode { get; set; }
         [ForeignKey("WardCode")]
         public Ward? Ward { get; set; }
@@ -27,8 +30,9 @@ namespace DJ_WebDesignCore.Entites.Student
         public string? ProvinceCode { get; set; }
         [ForeignKey("ProvinceCode")]
         public Province? Province { get; set; }
+        public string? AddressDetail { get; set; }
         public DateTime? StudentLABirthDay { get; set; }
-        public int? SaleId { get; set; }
+        public int? SaleId { get; set; }    
         public EmployeeLA? Sale { get; set; }
         public int? GenderId { get; set; }
         public Gender? Gender { get; set; }
@@ -41,6 +45,8 @@ namespace DJ_WebDesignCore.Entites.Student
         public float? UnauthorizedAbsencesTotal { get; set; }
         public int? LateMinuteTotal { get; set; }
         public int? UnactiveTotal { get; set; }
+        public int? KnowByWhatId { get; set; }
+        public KnowByWhat? KnowByWhat { get; set; }
         public IEnumerable<StudentCourse> studentCourses { get; set; }
     }
 }

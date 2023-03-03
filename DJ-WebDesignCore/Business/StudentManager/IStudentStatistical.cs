@@ -1,6 +1,4 @@
-﻿using DJ_WebDesignCore.DTOs.StudentManagerDTOs.StudentStatisticalDTOs;
-
-namespace DJ_WebDesignCore.Business.StudentManager
+﻿namespace DJ_WebDesignCore.Business.StudentManager
 {
     public interface IStudentStatistical
     {

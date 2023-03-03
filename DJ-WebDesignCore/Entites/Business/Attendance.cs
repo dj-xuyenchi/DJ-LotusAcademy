@@ -1,13 +1,10 @@
-﻿using DJ_WebDesignCore.Entites.Employee;
-using DJ_WebDesignCore.Entites.Properties;
-using DJ_WebDesignCore.Entites.Student;
-
-namespace DJ_WebDesignCore.Entites.Business
+﻿namespace DJ_WebDesignCore.Entites.Business
 {
     public class Attendance : BaseEntity
     {
         public int? StudentLAId { get; set; }
         public StudentLA? StudentLA { get; set; }
+        public DateTime? CreateDateTime { get; set; }
         public DateTime? ComfirmDateTime { get; set; }
         public string? UnactiveReason { get; set; }
         public int? EmployeeConfirmId { get; set; }

@@ -4,6 +4,7 @@ using DJ_UseCaseLayer.DAO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DJUseCaseLayer.Migrations
 {
     [DbContext(typeof(LAContext))]
-    partial class LAContextModelSnapshot : ModelSnapshot
+    [Migration("20230228075239_Intinal")]
+    partial class Intinal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.3")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -45,7 +48,7 @@ namespace DJUseCaseLayer.Migrations
                     b.Property<DateTime?>("CreateDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("EmployeeComfirmId")
+                    b.Property<int?>("EmployeeConfirmId")
                         .HasColumnType("int");
 
                     b.Property<bool?>("IsLate")

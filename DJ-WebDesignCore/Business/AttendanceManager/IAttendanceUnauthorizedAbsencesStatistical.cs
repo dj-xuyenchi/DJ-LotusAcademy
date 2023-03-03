@@ -4,6 +4,6 @@ namespace DJ_WebDesignCore.Business.AttendanceManager
 {
     public interface IAttendanceUnauthorizedAbsencesStatistical
     {
-        AttendanceUnauthorizedAbsencesGetDTO getAttendanceUnauthorizedAbsences(int? studentLAId);
+
     }
 }
