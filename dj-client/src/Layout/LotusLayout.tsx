@@ -23,7 +23,12 @@ const LotusLayout = ({setContent, setCatReact,content,catReact ,checkLogin}:any)
     const location = useLocation();
     return (
         <Layout className="bg-white ">
-            <Sider trigger={null} collapsible collapsed={collapsed} className="border-r-[2px] border-[#ededed]">
+            <Sider style={{
+                position:"fixed",
+                height:'100vh',
+                zIndex: 1,
+                width:"5%"
+            }} trigger={null} collapsible collapsed={collapsed} className="border-r-[2px] border-[#ededed]">
                 <div>
                     <div className="logo h-[60px] d-flex align-items-center justify-content-center text-white">
                         <FontAwesomeIcon icon={faSchool} className="text-[#042341]" />
@@ -77,8 +82,13 @@ const LotusLayout = ({setContent, setCatReact,content,catReact ,checkLogin}:any)
                     ></Avatar>
                 </div>
             </Sider>
+            <div style={{
+                width:"95%",
+                marginLeft:"5%"
+            }}>
             {component}
-            <MeoAI catReact={catReact} content={content} setContent={setContent} setCatReact={setCatReact}/>
+            </div>
+            {/* <MeoAI catReact={catReact} content={content} setContent={setContent} setCatReact={setCatReact}/> */}
         </Layout>
     );
 };

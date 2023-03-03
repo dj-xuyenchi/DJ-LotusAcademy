@@ -72,8 +72,38 @@
 .StudentDetail .active-table tbody tr td .active-detail {
     width: 96%;
     height: 88px;
-    border-left: 3px solid #5694f6;
-    background-color: #7fadf8;
+    border-left: 3px solid #038af8;
+    background-color: #83c3fa;
+    position: absolute;
+    top: 2px;
+    left: 2%;
+}
+
+.StudentDetail .active-table tbody tr td .unactive-detail {
+    width: 96%;
+    height: 88px;
+    border-left: 3px solid #fa5f2b;
+    background-color: #f99a7d;
+    position: absolute;
+    top: 2px;
+    left: 2%;
+}
+
+.StudentDetail .active-table tbody tr td .late-detail {
+    width: 96%;
+    height: 88px;
+    border-left: 3px solid #fbff00;
+    background-color: #f4ef95;
+    position: absolute;
+    top: 2px;
+    left: 2%;
+}
+
+.StudentDetail .active-table tbody tr td .unactiveReason-detail {
+    width: 96%;
+    height: 88px;
+    border-left: 3px solid #37ff00;
+    background-color: #a2f6b4;
     position: absolute;
     top: 2px;
     left: 2%;
@@ -117,6 +147,13 @@
     cursor: pointer;
 }
 
-.StudentDetail #button-group button:hover{
+.StudentDetail #button-group button:hover {
     color: #eee;
+}
+
+.StudentDetail .attendance-detail {
+    height: 300px;
+    width: 200px;
+    position: absolute;
+    border: 1px solid #ababab;
 }

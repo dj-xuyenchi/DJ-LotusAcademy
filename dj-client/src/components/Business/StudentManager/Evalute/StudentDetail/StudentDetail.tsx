@@ -195,16 +195,25 @@ function TableViewActiveChart({ handleSetTableView }: any) {
             confirmEmployee: "Pé Mai",
             lateTotal: "20 phút",
             note: "Mải chơi",
-            slot: slotEnum.CA1
+            slot: slotEnum.CA4
         },
         {
-            day: 21,
+            day: 31,
             activeType: activeType.UNACTIVE,
             confirmDate: "19h-20p 21/02/2023",
             confirmEmployee: "Pé Mai",
             lateTotal: "20 phút",
             note: "Không rõ",
-            slot: slotEnum.CA1
+            slot: slotEnum.CA123
+        },
+        {
+            day: 11,
+            activeType: activeType.UNACTIVEREASON,
+            confirmDate: "19h-20p 21/02/2023",
+            confirmEmployee: "Pé Mai",
+            lateTotal: "20 phút",
+            note: "Không rõ",
+            slot: slotEnum.CA2
         },
     ])
     const las = new Date();
@@ -239,17 +248,11 @@ function TableViewActiveChart({ handleSetTableView }: any) {
                 span.classList.add("day-of-month")
                 span.innerHTML = dayCounter.toString()
                 td.appendChild(span)
-                const attendance = checkOutList.find((element)=>{
+                const attendance = checkOutList.find((element) => {
                     return element.day === dayCounter;
                 })
                 if (attendance) {
-                    const divNote: HTMLDivElement = document.createElement("div")
-                    divNote.classList.add("active-detail")
-                    const spanSlot: HTMLSpanElement = document.createElement("span")
-                    spanSlot.innerHTML = "Ca 1"
-                    divNote.appendChild(spanSlot)
-                    console.log(divNote);
-                    td.appendChild(divNote)
+                    createAttendance(td, attendance)
                 }
                 dayCounter++
             }
@@ -268,17 +271,11 @@ function TableViewActiveChart({ handleSetTableView }: any) {
                     span.innerHTML = dayCounter.toString()
                     dayCounter++
                     td.appendChild(span)
-                    const attendance = checkOutList.find((element)=>{
-                        return element.day === dayCounter;
+                    const attendance = checkOutList.find((element) => {
+                        return element.day + 1 === dayCounter;
                     })
                     if (attendance) {
-                        const divNote: HTMLDivElement = document.createElement("div")
-                        divNote.classList.add("active-detail")
-                        const spanSlot: HTMLSpanElement = document.createElement("span")
-                        spanSlot.innerHTML = "Ca 1"
-                        divNote.appendChild(spanSlot)
-                        console.log(divNote);
-                        td.appendChild(divNote)
+                        createAttendance(td, attendance)
                     }
                 }
             }
@@ -292,16 +289,38 @@ function TableViewActiveChart({ handleSetTableView }: any) {
         while (document.querySelector(".day-of-month")) {
             document.querySelector(".day-of-month")?.remove()
         }
-
+        while (document.querySelector(".active-detail")) {
+            document.querySelector(".active-detail")?.remove()
+        }
+        while (document.querySelector(".unactive-detail")) {
+            document.querySelector(".unactive-detail")?.remove()
+        }
+        while (document.querySelector(".unactiveReason-detail")) {
+            document.querySelector(".unactiveReason-detail")?.remove()
+        }
+        while (document.querySelector(".late-detail")) {
+            document.querySelector(".late-detail")?.remove()
+        }
     }
     useEffect(() => {
         setCalendarView(0)
+        if(attendanceDiv){
+            console.log(attendanceDiv);
+            
+        }
     }, [])
     useEffect(() => {
     }, [updateState])
+    const attendanceDiv = useRef<any>(undefined)
    
     return (
-        <>
+        <div onMouseMove={(e) => {
+            console.log(e.clientX);
+            console.log(e.clientY);
+        }}>
+            <div ref={attendanceDiv} className="attendance-detail">
+                s
+            </div>
             <div style={{
                 display: 'flex',
                 justifyContent: "space-between"
@@ -406,7 +425,57 @@ function TableViewActiveChart({ handleSetTableView }: any) {
 
                 </tbody>
             </table>
-        </>
+        </div>
     )
+}
+function createAttendance(td: HTMLElement, attendance: ActiveNote) {
+    const divNote: HTMLDivElement = document.createElement("div")
+    const contentContainer: HTMLDivElement = document.createElement("div")
+    contentContainer.style.marginLeft = "4px"
+    const slot: HTMLSpanElement = document.createElement("span")
+    switch (attendance.slot) {
+        case slotEnum.CA1:
+            slot.innerHTML = "Ca 1"
+            break;
+        case slotEnum.CA2:
+            slot.innerHTML = "Ca 2"
+            break;
+        case slotEnum.CA3:
+            slot.innerHTML = "Ca 3"
+            break;
+        case slotEnum.CA12:
+            slot.innerHTML = "Ca 1 và 2"
+            break;
+        case slotEnum.CA23:
+            slot.innerHTML = "Ca 2 và 3"
+            break;
+        case slotEnum.CA123:
+            slot.innerHTML = "Ca 1 2 và 3"
+            break;
+        case slotEnum.CA4:
+            slot.innerHTML = "Học online ca 4"
+            break;
+        default:
+            alert("Không có data")
+    }
+    contentContainer.appendChild(slot)
+    if (attendance.activeType === activeType.LATE) {
+        divNote.classList.add("late-detail")
+        const spanLate = document.createElement("span")
+        spanLate.innerHTML = "Muộn " + attendance.lateTotal
+        contentContainer.appendChild(spanLate)
+    }
+    if (attendance.activeType === activeType.NOTLATE) {
+        divNote.classList.add("active-detail")
+    }
+    if (attendance.activeType === activeType.UNACTIVE) {
+        divNote.classList.add("unactive-detail")
+    }
+    if (attendance.activeType === activeType.UNACTIVEREASON) {
+        divNote.classList.add("unactiveReason-detail")
+    }
+    divNote.appendChild(contentContainer)
+    console.log(divNote);
+    td.appendChild(divNote)
 }
 export default StudentDetail;
